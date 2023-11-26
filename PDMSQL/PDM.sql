@@ -91,7 +91,7 @@ CREATE TABLE [OrderManagement].[Order] (
 CREATE TABLE [OrderManagement].[Order_Items] (
     Order_Item_ID INT PRIMARY KEY,
     Order_ID INT,
-    ProductId INT,
+    Product_ID INT,
     Product_Name VARCHAR(255),
     Price DECIMAL(10, 2),
     Product_Quantity INT,
