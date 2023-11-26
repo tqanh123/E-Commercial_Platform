@@ -68,7 +68,7 @@ VALUES
    (4, 4, 299.98, '2023-11-13', 'Processing', 15.00, '2023-11-13 15:30:00', Null, '2023-11-14 16:00:00', '2023-11-17 16:15:00', '2023-11-17 16:30:00'),
    (5, 5, 799.96, '2023-11-14', 'Delivered', 8.00, '2023-11-14 16:30:00', Null, '2023-11-15 17:00:00', '2023-11-17 17:15:00', '2023-11-19 17:30:00');
 
-INSERT INTO [OrderManagement].[Order_Items] (Order_Item_ID, Order_ID, Product_Id, Product_Name, Price, Product_Quantity)
+INSERT INTO [OrderManagement].[Order_Items] (Order_Item_ID, Order_ID, Product_ID, Product_Name, Price, Product_Quantity)
 VALUES
    (1, 1, 1, 'Smartphone', 799.99, 1),
    (2, 2, 2, 'Denim Jeans', 49.99, 2),
