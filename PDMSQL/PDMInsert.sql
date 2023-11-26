@@ -20,13 +20,13 @@ VALUES
    (4, 4, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
    (5, 5, '2023-11-14 18:00:00', '2023-11-14 18:30:00');
 
-INSERT INTO [Product].[Category] (Category_ID, Category_Name, Category_Description)
+INSERT INTO [Product].[Category] (Category_ID, Category_Name)
 VALUES
-   (1, 'Electronics', 'Electronic devices and accessories'),
-   (2, 'Clothing', 'Clothing items and accessories'),
-   (3, 'Books', 'Books and literature'),
-   (4, 'Home & Garden', 'Home and garden products'),
-   (5, 'Sports & Outdoors', 'Sports and outdoor equipment'); 
+   (1, 'Electronics'),
+   (2, 'Clothing'),
+   (3, 'Books'),
+   (4, 'Home & Garden'),
+   (5, 'Sports & Outdoors'); 
 
 INSERT INTO [Product].[Product] (Product_ID, Category_ID, Product_Name, Product_Description, Price, Discount, Product_Category, Product_Quantity, Product_Sold, Product_Status, Product_Ratings)
 VALUES
