@@ -1,4 +1,4 @@
-/*INSERT INTO [Account].[Account] (Account_ID, Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
+INSERT INTO [Account].[Account] (Account_ID, Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
 VALUES
  (1, 'Thanh Khiem', 'BIDV', '123456', 'password1', '123 Le Loi', 'Male', '0901998998', 'thanhkhiem14@gmail.com', 'profile_pic1.jpg'),
  (2, 'Quang Anh', 'VIETCOMBANK', '654321', 'password2', '45 Tan Lap', 'Male', '0913474747', 'anhden123@gmail.com', 'profile_pic2.jpg'),
@@ -60,23 +60,23 @@ VALUES
    (4, 4, 4, 2, 299.98, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
    (5, 5, 5, 4, 799.96, '2023-11-14 18:00:00', '2023-11-14 18:30:00'); 
 
-INSERT INTO [OrderManagement].[Order] (Order_ID, Customer_ID, Total_Order_Value, Order_Date, Order_Status, Shipping_Fee, Payment_ID, Order_Purchase_TimeStamp, Order_Canceled, Order_Delivered_Carrier_Date, Order_Delivered_Customer_Date, Order_Estimated_Customer_Date)
+INSERT INTO [OrderManagement].[Order] (Order_ID, Customer_ID, Total_Order_Value, Order_Date, Order_Status, Shipping_Fee, Order_Purchase_TimeStamp, Order_Canceled, Order_Delivered_Carrier_Date, Order_Delivered_Customer_Date, Order_Estimated_Customer_Date)
 VALUES
-   (1, 1, 799.99, '2023-11-10', 'Processing', 5.00, 1, '2023-11-10 12:30:00', Null, '2023-11-11 11:30:00', '2023-11-13 12:30:00', '2023-11-13 12:30:00'),
-   (2, 2, 99.98, '2023-11-11', 'Shipped', 7.50, 2, '2023-11-11 13:30:00', Null, '2023-11-12 14:00:00', '2023-11-13 14:15:00', '2023-11-13 11:30:00'),
-   (3, 3, 38.97, '2023-11-12', 'Delivered', 10.00, 3, '2023-11-12 14:30:00', Null, '2023-11-13 15:00:00', '2023-11-16 15:15:00', '2023-11-16 15:30:00'),
-   (4, 4, 299.98, '2023-11-13', 'Processing', 15.00, 4, '2023-11-13 15:30:00', Null, '2023-11-14 16:00:00', '2023-11-17 16:15:00', '2023-11-17 16:30:00'),
-   (5, 5, 799.96, '2023-11-14', 'Delivered', 8.00, 5, '2023-11-14 16:30:00', Null, '2023-11-15 17:00:00', '2023-11-17 17:15:00', '2023-11-19 17:30:00');
+   (1, 1, 799.99, '2023-11-10', 'Processing', 5.00, '2023-11-10 12:30:00', Null, '2023-11-11 11:30:00', '2023-11-13 12:30:00', '2023-11-13 12:30:00'),
+   (2, 2, 99.98, '2023-11-11', 'Shipped', 7.50, '2023-11-11 13:30:00', Null, '2023-11-12 14:00:00', '2023-11-13 14:15:00', '2023-11-13 11:30:00'),
+   (3, 3, 38.97, '2023-11-12', 'Delivered', 10.00, '2023-11-12 14:30:00', Null, '2023-11-13 15:00:00', '2023-11-16 15:15:00', '2023-11-16 15:30:00'),
+   (4, 4, 299.98, '2023-11-13', 'Processing', 15.00, '2023-11-13 15:30:00', Null, '2023-11-14 16:00:00', '2023-11-17 16:15:00', '2023-11-17 16:30:00'),
+   (5, 5, 799.96, '2023-11-14', 'Delivered', 8.00, '2023-11-14 16:30:00', Null, '2023-11-15 17:00:00', '2023-11-17 17:15:00', '2023-11-19 17:30:00');
 
-INSERT INTO [OrderManagement].[Order_Items] (Order_ID, Order_Item_ID, ProductId, Product_Name, Price, Product_Quantity, Cart_ID)
+INSERT INTO [OrderManagement].[Order_Items] (Order_Item_ID, Order_ID, Product_Id, Product_Name, Price, Product_Quantity)
 VALUES
-   (1, 1, 1, 'Smartphone', 799.99, 1, 1),
-   (2, 2, 2, 'Denim Jeans', 49.99, 2, 2),
-   (3, 3, 3, 'The Great Gatsby', 12.99, 3, 3),
-   (4, 4, 4, 'Home Decor Set', 149.99, 2, 4),
-   (5, 5, 5, 'Outdoor Camping Tent', 199.99, 4, 5);
+   (1, 1, 1, 'Smartphone', 799.99, 1),
+   (2, 2, 2, 'Denim Jeans', 49.99, 2),
+   (3, 3, 3, 'The Great Gatsby', 12.99, 3),
+   (4, 4, 4, 'Home Decor Set', 149.99, 2),
+   (5, 5, 5, 'Outdoor Camping Tent', 199.99, 4);
 
-INSERT INTO [OrderManagement].[Payments] (PaymentID, OrderID, Payment_Sequential, Payment_Type, Payment_Installments, Payment_Value)
+INSERT INTO [OrderManagement].[Payments] (Payment_ID, Order_ID, Payment_Sequential, Payment_Type, Payment_Installments, Payment_Value)
 VALUES
    (1, 1, 1, 'Banking', 3, 799.99),
    (2, 2, 1, 'Cash', 1, 99.98),
@@ -98,7 +98,7 @@ VALUES
    (2, 2, 2, 2, '2023-11-11 15:30:00', 'Denim Jeans'),
    (3, 3, 3, 3, '2023-11-12 16:30:00', 'The Great Gatsby'),
    (4, 4, 4, 4, '2023-11-13 17:30:00', 'Home Decor Set'),
-   (5, 5, 5, 5, '2023-11-14 18:30:00', 'Outdoor Camping Tent'); */
+   (5, 5, 5, 5, '2023-11-14 18:30:00', 'Outdoor Camping Tent'); 
 
 
 
