@@ -11,15 +11,6 @@ VALUES
  (9, 'Ngoc Trinh', 'VIETCOMBANK', '111111', 'password9', '99 Le Loi', 'Female', '0988343434', 'ngoctrinh3@gmail.com', 'profile_pic9.jpg'),
  (10, 'Thuy Tien', 'AGRIBANK', '345345', 'password10', '1 Le Van Viet', 'Female', '0913567567', 'hhthuytien@gmail.com', 'profile_pic10.jpg');
 
-
-INSERT INTO [Cart].[Cart] (Cart_ID, Customer_ID, Create_at, Update_at)
-VALUES 
-   (1, 1, '2023-11-10 14:00:00', '2023-11-10 14:30:00'),
-   (2, 2, '2023-11-11 15:00:00', '2023-11-11 15:30:00'),
-   (3, 3, '2023-11-12 16:00:00', '2023-11-12 16:30:00'),
-   (4, 4, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
-   (5, 5, '2023-11-14 18:00:00', '2023-11-14 18:30:00');
-
 INSERT INTO [Product].[Category] (Category_ID, Category_Name)
 VALUES
    (1, 'Electronics'),
@@ -51,6 +42,14 @@ VALUES
    (3, 3, 3),
    (4, 4, 4),
    (5, 5, 5); 
+
+INSERT INTO [Cart].[Cart] (Cart_ID, Customer_ID, Create_at, Update_at)
+VALUES 
+   (1, 1, '2023-11-10 14:00:00', '2023-11-10 14:30:00'),
+   (2, 2, '2023-11-11 15:00:00', '2023-11-11 15:30:00'),
+   (3, 3, '2023-11-12 16:00:00', '2023-11-12 16:30:00'),
+   (4, 4, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
+   (5, 5, '2023-11-14 18:00:00', '2023-11-14 18:30:00');
 
 INSERT INTO [Cart].[CartItem] (Cart_Item_ID, Cart_ID, Product_ID, Cart_Item_Quantity, Cart_Item_Price, Create_at, Update_at)
 VALUES
