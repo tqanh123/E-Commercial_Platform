@@ -11,14 +11,6 @@ CREATE TABLE [Account].[Account] (
     Profile_Picture VARCHAR(255)
 ); 
 
-CREATE TABLE [Cart].[Cart] (
-    Cart_ID INT PRIMARY KEY,
-    Customer_ID INT,
-    Create_at DATETIME,
-    Update_at DATETIME
-    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
-);
-
 CREATE TABLE [Product].[Category] (
     Category_ID INT PRIMARY KEY,
     Category_Name VARCHAR(255),
@@ -60,6 +52,14 @@ CREATE TABLE [Account].[Customer] (
     FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID)
 );
 
+CREATE TABLE [Cart].[Cart] (
+    Cart_ID INT PRIMARY KEY,
+    Customer_ID INT,
+    Create_at DATETIME,
+    Update_at DATETIME
+    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
+);
+
 CREATE TABLE [Cart].[CartItem] (
     Cart_Item_ID INT PRIMARY KEY,
     Cart_ID INT,
@@ -71,7 +71,6 @@ CREATE TABLE [Cart].[CartItem] (
     FOREIGN KEY (Cart_ID) REFERENCES [Cart].[Cart](Cart_ID),
     FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID)
 );
-
 
 CREATE TABLE [OrderManagement].[Order] (
     Order_ID INT PRIMARY KEY,
