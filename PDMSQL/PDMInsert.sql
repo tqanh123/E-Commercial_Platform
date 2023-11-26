@@ -44,13 +44,13 @@ VALUES
    (4, 9, 4, 4, 'Home and decor shop providing quality products', 'Home & Garden', 4.2, 'Sole a Home Decor Set'),
    (5, 10, 5, 5, 'Outdoor equipment supplier for camping enthusiasts', 'Sports & Outdoors', 4.6, 'Sold an Outdoor Camping Tent');
 
-INSERT INTO [Account].[Customer] (Customer_ID, Account_ID, Product_ID, Reward_Points)
+INSERT INTO [Account].[Customer] (Customer_ID, Account_ID, Product_ID)
 VALUES
-   (1, 1, 1, 50),
-   (2, 2, 2, 30),
-   (3, 3, 3, 20),
-   (4, 4, 4, 40),
-   (5, 5, 5, 25); 
+   (1, 1, 1),
+   (2, 2, 2),
+   (3, 3, 3),
+   (4, 4, 4),
+   (5, 5, 5); 
 
 INSERT INTO [Cart].[CartItem] (Cart_Item_ID, Cart_ID, Product_ID, Cart_Item_Quantity, Cart_Item_Price, Create_at, Update_at)
 VALUES
