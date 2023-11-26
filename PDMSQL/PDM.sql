@@ -58,7 +58,7 @@ CREATE TABLE [Account].[Customer] (
     Product_ID INT,
     FOREIGN KEY (Account_ID) REFERENCES [Account].[Account](Account_ID),
     FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID)
-)
+);
 
 CREATE TABLE [Cart].[CartItem] (
     Cart_Item_ID INT PRIMARY KEY,
