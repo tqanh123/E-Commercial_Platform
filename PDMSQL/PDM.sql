@@ -16,7 +16,7 @@ CREATE TABLE [Cart].[Cart] (
     Customer_ID INT,
     Create_at DATETIME,
     Update_at DATETIME
-    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer],
+    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
 );
 
 CREATE TABLE [Product].[Category] (
@@ -85,7 +85,7 @@ CREATE TABLE [OrderManagement].[Order] (
     Order_Delivered_Carrier_Date DATETIME,
     Order_Delivered_Customer_Date DATETIME,
     Order_Estimated_Customer_Date DATETIME,
-    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer],
+    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
 );
 
 CREATE TABLE [OrderManagement].[Order_Items] (
