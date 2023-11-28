@@ -55,20 +55,12 @@ CREATE TABLE [Account].[Customer] (
 CREATE TABLE [Cart].[Cart] (
     Cart_ID INT PRIMARY KEY,
     Customer_ID INT,
+    Product_ID INT,
+    Cart_Item_Quantity INT,
+    Price DECIMAL(10, 2),
     Create_at DATETIME,
     Update_at DATETIME
     FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
-);
-
-CREATE TABLE [Cart].[CartItem] (
-    Cart_Item_ID INT PRIMARY KEY,
-    Cart_ID INT,
-    Product_ID INT,
-    Cart_Item_Quantity INT,
-    Cart_Item_Price DECIMAL(10, 2),
-    Create_at DATETIME,
-    Update_at DATETIME,
-    FOREIGN KEY (Cart_ID) REFERENCES [Cart].[Cart](Cart_ID),
     FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID)
 );
 
