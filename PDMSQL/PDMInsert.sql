@@ -43,8 +43,16 @@ VALUES
    (4, 4, 4),
    (5, 5, 5); 
 
-INSERT INTO [Cart].[Cart] (Cart_ID, Customer_ID, Product_ID, Cart_Item_Quantity, Price, Create_at, Update_at)
+INSERT INTO [Cart].[Cart] (Cart_ID, Customer_ID, Create_at, Update_at)
 VALUES 
+   (1, 1, '2023-11-10 14:00:00', '2023-11-10 14:30:00'),
+   (2, 2, '2023-11-11 15:00:00', '2023-11-11 15:30:00'),
+   (3, 3, '2023-11-12 16:00:00', '2023-11-12 16:30:00'),
+   (4, 4, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
+   (5, 5, '2023-11-14 18:00:00', '2023-11-14 18:30:00');
+
+INSERT INTO [Cart].[CartItem] (Cart_Item_ID, Cart_ID, Product_ID, Cart_Item_Quantity, Cart_Item_Price, Create_at, Update_at)
+VALUES
    (1, 1, 1, 1, 799.99, '2023-11-10 14:00:00', '2023-11-10 14:30:00'),
    (2, 2, 2, 2, 99.98, '2023-11-11 15:00:00', '2023-11-11 15:30:00'),
    (3, 3, 3, 3, 38.97, '2023-11-12 16:00:00', '2023-11-12 16:30:00'),
