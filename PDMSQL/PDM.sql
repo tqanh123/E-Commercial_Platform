@@ -55,7 +55,6 @@ CREATE TABLE [Account].[Customer] (
 CREATE TABLE [Cart].[Cart] (
     Cart_ID INT PRIMARY KEY,
     Customer_ID INT,
-    Price DECIMAL(10, 2),
     Create_at DATETIME,
     Update_at DATETIME
     FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
