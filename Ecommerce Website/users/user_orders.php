@@ -44,7 +44,7 @@
         </thead>
         <tbody class="bg-secondary text-light">
             <?php
-            $get_order_details = "SELECT * FROM ordermanagement.order WHERE Customer_ID='$user_id'";
+            $get_order_details = "SELECT * FROM order WHERE Customer_ID = $user_id";
             $result_orders = mysqli_query($conn, $get_order_details);
             $number = 1;
 
