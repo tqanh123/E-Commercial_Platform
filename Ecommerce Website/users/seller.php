@@ -1,10 +1,10 @@
 <?php
 session_start(); // Starting the session
 
-$servername = "127.0.0.1";
+$servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "product";
+$dbname = "e_commercial";
 
 // Establishing connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -49,8 +49,8 @@ function addProduct($product_name, $product_description, $price, $quantity, $sel
     VALUES ('$product_id', '$product_name', '$product_description', $price, $quantity, $category_id)";
 
     if ($conn->query($insert_product_query) === TRUE) {
-        // Linking the product to the seller in the Account.Seller table
-        $link_product_to_seller_query = "INSERT INTO Account.Seller (Account_ID, Product_ID) 
+        // Linking the product to the seller in the Seller table
+        $link_product_to_seller_query = "INSERT INTO Seller (Account_ID, Product_ID) 
         VALUES ($seller_id, '$product_id')";
 
         if ($conn->query($link_product_to_seller_query) === TRUE) {

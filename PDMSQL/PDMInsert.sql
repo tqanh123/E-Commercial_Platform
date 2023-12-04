@@ -59,7 +59,7 @@ VALUES
    (4, 4, 4, 2, 299.98, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
    (5, 5, 5, 4, 799.96, '2023-11-14 18:00:00', '2023-11-14 18:30:00');
 
-INSERT INTO [Order] (Order_ID, Customer_ID, Total_Order_Value, Order_Date, Order_Status, Shipping_Fee, Order_Purchase_TimeStamp, Order_Canceled, Order_Delivered_Carrier_Date, Order_Delivered_Customer_Date, Order_Estimated_Customer_Date)
+INSERT INTO Order (Order_ID, Customer_ID, Total_Order_Value, Order_Date, Order_Status, Shipping_Fee, Order_Purchase_TimeStamp, Order_Canceled, Order_Delivered_Carrier_Date, Order_Delivered_Customer_Date, Order_Estimated_Customer_Date)
 VALUES
    (1, 1, 799.99, '2023-11-10', 'Processing', 5.00, '2023-11-10 12:30:00', Null, '2023-11-11 11:30:00', '2023-11-13 12:30:00', '2023-11-13 12:30:00'),
    (2, 2, 99.98, '2023-11-11', 'Shipped', 7.50, '2023-11-11 13:30:00', Null, '2023-11-12 14:00:00', '2023-11-13 14:15:00', '2023-11-13 11:30:00'),

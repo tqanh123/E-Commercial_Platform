@@ -8,10 +8,10 @@
 </head>
 <body>
     <?php
-    $servername = "127.0.0.1";
+    $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "ordermanagement";
+    $dbname = "e_commercial";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -22,7 +22,7 @@
     }
     // $username = $_SESSION['username'];
     $username = 'Anh Khoa';
-    $get_user = "SELECT * FROM account.account JOIN account.customer WHERE Username='$username' AND account.account.Account_ID = account.customer.Account_ID";
+    $get_user = "SELECT * FROM account JOIN customer WHERE Username='$username' AND account.Account_ID = customer.Account_ID";
     $result = mysqli_query($conn, $get_user);
     $row_fetch = mysqli_fetch_assoc($result);
     $user_id = $row_fetch['Customer_ID'];

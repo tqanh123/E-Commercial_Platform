@@ -1,9 +1,9 @@
 <?php
 // Replace these variables with your actual database credentials
-    $servername = "127.0.0.1";
+    $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "cart";
+    $dbname = "e_commercial";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -11,8 +11,8 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $conn->prepare("SELECT c.Customer_ID, a.Username AS Buyer_Name 
-                            FROM Account.Customer c
-                            INNER JOIN Account.Account a ON c.Account_ID = a.Account_ID");
+                            FROM Customer c
+                            INNER JOIN Account a ON c.Account_ID = a.Account_ID");
     $stmt->execute();
     $buyers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

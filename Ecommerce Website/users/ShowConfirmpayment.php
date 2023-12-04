@@ -4,7 +4,7 @@ include ('../include/connect.php');
 
 if(isset ($_Get ['oder_id'])){
     $order_id=$_GET  ['oder_id'];
-    $selecct_data = "select * from ` user_orders` where order_id=$order_id";
+    $selecct_data = "select * from `user_orders` where order_id=$order_id";
     $result= mysqli_query($con,$select_data);
     $row_fetch=mysqli_fetch_assoc ($result);
     $invoice_number=$row_fetch ['invoice_number'];
