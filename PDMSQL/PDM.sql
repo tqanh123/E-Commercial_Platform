@@ -1,4 +1,4 @@
-CREATE TABLE [Account].[Account] (
+CREATE TABLE Account (
     Account_ID INT PRIMARY KEY,
     Username VARCHAR(255),
     BankName VARCHAR(255),
@@ -11,12 +11,12 @@ CREATE TABLE [Account].[Account] (
     Profile_Picture VARCHAR(255)
 ); 
 
-CREATE TABLE [Product].[Category] (
+CREATE TABLE Category (
     Category_ID INT PRIMARY KEY,
     Category_Name VARCHAR(255),
 ); 
 
-CREATE TABLE [Product].[Product] (
+CREATE TABLE Product (
     Product_ID INT PRIMARY KEY,
     Category_ID INT,
     Product_Name VARCHAR(255),
@@ -27,10 +27,10 @@ CREATE TABLE [Product].[Product] (
     Product_Sold INT,
     Product_Status VARCHAR(20),
     Product_Ratings DECIMAL(4, 2),
-    FOREIGN KEY (Category_ID) REFERENCES [Product].[Category](Category_ID)
+    FOREIGN KEY (Category_ID) REFERENCES [Category](Category_ID)
 ); 
 
-CREATE TABLE [Account].[Seller] (
+CREATE TABLE Seller (
     Seller_ID INT PRIMARY KEY,
     Account_ID INT,
     Product_ID INT,
@@ -39,28 +39,28 @@ CREATE TABLE [Account].[Seller] (
     Seller_Product_Categories TEXT,
     Seller_Ratings DECIMAL(4, 2),
     Transaction_History TEXT,
-    FOREIGN KEY (Account_ID) REFERENCES [Account].[Account](Account_ID),
-    FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID),
-    FOREIGN KEY (Category_ID) REFERENCES [Product].[Category](Category_ID)
+    FOREIGN KEY (Account_ID) REFERENCES [Account](Account_ID),
+    FOREIGN KEY (Product_ID) REFERENCES [Product](Product_ID),
+    FOREIGN KEY (Category_ID) REFERENCES [Category](Category_ID)
 ); 
 
-CREATE TABLE [Account].[Customer] (
+CREATE TABLE Customer (
     Customer_ID INT PRIMARY KEY,
     Account_ID INT,
     Product_ID INT,
-    FOREIGN KEY (Account_ID) REFERENCES [Account].[Account](Account_ID),
-    FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID)
+    FOREIGN KEY (Account_ID) REFERENCES [Account](Account_ID),
+    FOREIGN KEY (Product_ID) REFERENCES [Product](Product_ID)
 );
 
-CREATE TABLE [Cart].[Cart] (
+CREATE TABLE Cart (
     Cart_ID INT PRIMARY KEY,
     Customer_ID INT,
     Create_at DATETIME,
     Update_at DATETIME
-    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES [Customer](Customer_ID),
 );
 
-CREATE TABLE [Cart].[CartItem] (
+CREATE TABLE CartItem (
     Cart_Item_ID INT PRIMARY KEY,
     Cart_ID INT,
     Product_ID INT,
@@ -68,12 +68,12 @@ CREATE TABLE [Cart].[CartItem] (
     Cart_Item_Price DECIMAL(10, 2),
     Create_at DATETIME,
     Update_at DATETIME,
-    FOREIGN KEY (Cart_ID) REFERENCES [Cart].[Cart](Cart_ID),
-    FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID)
+    FOREIGN KEY (Cart_ID) REFERENCES [Cart](Cart_ID),
+    FOREIGN KEY (Product_ID) REFERENCES [Product](Product_ID)
 );
 
 
-CREATE TABLE [OrderManagement].[Order] (
+CREATE TABLE Order (
     Order_ID INT PRIMARY KEY,
     Customer_ID INT,
     Total_Order_Value DECIMAL(10, 2),
@@ -85,31 +85,31 @@ CREATE TABLE [OrderManagement].[Order] (
     Order_Delivered_Carrier_Date DATETIME,
     Order_Delivered_Customer_Date DATETIME,
     Order_Estimated_Customer_Date DATETIME,
-    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES [Customer](Customer_ID),
 );
 
-CREATE TABLE [OrderManagement].[Order_Items] (
+CREATE TABLE Order_Items (
     Order_Item_ID INT PRIMARY KEY,
     Order_ID INT,
     Product_ID INT,
     Product_Name VARCHAR(255),
     Price DECIMAL(10, 2),
     Product_Quantity INT,
-    FOREIGN KEY (Order_ID) REFERENCES [OrderManagement].[Order](Order_ID),
-    FOREIGN KEY (Product_ID) REFERENCES [Product].[Product](Product_ID)
+    FOREIGN KEY (Order_ID) REFERENCES [Order](Order_ID),
+    FOREIGN KEY (Product_ID) REFERENCES [Product](Product_ID)
 );
 
-CREATE TABLE [OrderManagement].[Payments] (
+CREATE TABLE Payments (
     Payment_ID INT PRIMARY KEY,
     Order_ID INT,
     Payment_Sequential INT,
     Payment_Type VARCHAR(20),
     Payment_Installments INT,
     Payment_Value DECIMAL(10, 2),
-    FOREIGN KEY (Order_ID) REFERENCES [OrderManagement].[Order](Order_ID)
+    FOREIGN KEY (Order_ID) REFERENCES [Order](Order_ID)
 );
 
-CREATE TABLE[OrderManagement].[Order_Review] (
+CREATE TABLE Order_Review (
     Review_ID INT PRIMARY KEY,
     Order_ID INT,
     Review_Score INT,
@@ -117,18 +117,18 @@ CREATE TABLE[OrderManagement].[Order_Review] (
     Review_Comment_Message TEXT,
     Review_Creation_Date DATETIME,
     Review_Answer_Timestamp DATETIME,
-    FOREIGN KEY (Order_ID) REFERENCES [OrderManagement].[Order](Order_ID)
+    FOREIGN KEY (Order_ID) REFERENCES [Order](Order_ID)
 );
 
-CREATE TABLE [HistoryManagement].[History] (
+CREATE TABLE History (
     History_ID INT PRIMARY KEY,
     Customer_ID INT,
     Seller_ID INT,
     Order_ID INT,
     TimeStamp DATETIME,
     Product_Name VARCHAR(255),
-    FOREIGN KEY (Customer_ID) REFERENCES [Account].[Customer](Customer_ID),
-    FOREIGN KEY (Seller_ID) REFERENCES [Account].[Seller](Seller_ID),
-    FOREIGN KEY (Order_ID) REFERENCES [OrderManagement].[Order](Order_ID) 
+    FOREIGN KEY (Customer_ID) REFERENCES [Customer](Customer_ID),
+    FOREIGN KEY (Seller_ID) REFERENCES [Seller](Seller_ID),
+    FOREIGN KEY (Order_ID) REFERENCES [Order](Order_ID) 
 );
 
