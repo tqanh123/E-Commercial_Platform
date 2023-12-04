@@ -19,14 +19,6 @@ VALUES
    (4, 'Home & Garden'),
    (5, 'Sports & Outdoors'); 
 
-INSERT INTO Product (Product_ID, Category_ID, Seller_ID, Customer_ID, Product_Name, Product_Description, Price, Product_Category, Product_Quantity, Product_Sold, Product_Status, Product_Ratings)
-VALUES
-   (1, 1, 6, 1, 'Smartphone', 'High-end smartphone with advanced features', 799.99, 'Electronics', 50, 20, 'In Stock', 4.5),
-   (2, 2, 7, 2, 'Denim Jeans', 'Classic blue denim jeans for everyday wear', 49.99, 'Clothing', 100, 50, 'In Stock', 4.0),
-   (3, 3, 8, 3, 'The Great Gatsby', 'Classic novel by F. Scott Fitzgerald', 12.99, 'Books', 75, 30, 'In Stock', 4.8),
-   (4, 4, 9, 4, 'Home Decor Set', 'Decorative items for home interior', 149.99, 'Home & Garden', 30, 10, 'In Stock', 4.2),
-   (5, 5, 10, 5, 'Outdoor Camping Tent', 'Spacious tent for outdoor camping adventures', 199.99, 'Sports & Outdoors', 20, 5, 'In Stock', 4.6); 
-
 INSERT INTO Seller (Seller_ID, Account_ID, Category_ID, Seller_Description, Seller_Product_Categories, Seller_Ratings, Transaction_History)
 VALUES
    (1, 6, 1, 'Experienced seller specializing in smartphones', 'Electronics', 4.7, 'Sold a smartphone'),
@@ -42,6 +34,14 @@ VALUES
    (3, 3),
    (4, 4),
    (5, 5); 
+
+INSERT INTO Product (Product_ID, Category_ID, Seller_ID, Customer_ID, Product_Name, Product_Description, Price, Product_Category, Product_Quantity, Product_Sold, Product_Status, Product_Ratings)
+VALUES
+   (1, 1, 6, 1, 'Smartphone', 'High-end smartphone with advanced features', 799.99, 'Electronics', 50, 20, 'In Stock', 4.5),
+   (2, 2, 7, 2, 'Denim Jeans', 'Classic blue denim jeans for everyday wear', 49.99, 'Clothing', 100, 50, 'In Stock', 4.0),
+   (3, 3, 8, 3, 'The Great Gatsby', 'Classic novel by F. Scott Fitzgerald', 12.99, 'Books', 75, 30, 'In Stock', 4.8),
+   (4, 4, 9, 4, 'Home Decor Set', 'Decorative items for home interior', 149.99, 'Home & Garden', 30, 10, 'In Stock', 4.2),
+   (5, 5, 10, 5, 'Outdoor Camping Tent', 'Spacious tent for outdoor camping adventures', 199.99, 'Sports & Outdoors', 20, 5, 'In Stock', 4.6); 
 
 INSERT INTO Cart (Cart_ID, Customer_ID, Create_at, Update_at)
 VALUES 
