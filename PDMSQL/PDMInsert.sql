@@ -1,4 +1,4 @@
-INSERT INTO [Account].[Account] (Account_ID, Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
+INSERT INTO Account (Account_ID, Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
 VALUES
  (1, 'Thanh Khiem', 'BIDV', '123456', 'password1', '123 Le Loi', 'Male', '0901998998', 'thanhkhiem14@gmail.com', 'profile_pic1.jpg'),
  (2, 'Quang Anh', 'VIETCOMBANK', '654321', 'password2', '45 Tan Lap', 'Male', '0913474747', 'anhden123@gmail.com', 'profile_pic2.jpg'),
@@ -11,7 +11,7 @@ VALUES
  (9, 'Ngoc Trinh', 'VIETCOMBANK', '111111', 'password9', '99 Le Loi', 'Female', '0988343434', 'ngoctrinh3@gmail.com', 'profile_pic9.jpg'),
  (10, 'Thuy Tien', 'AGRIBANK', '345345', 'password10', '1 Le Van Viet', 'Female', '0913567567', 'hhthuytien@gmail.com', 'profile_pic10.jpg');
 
-INSERT INTO [Product].[Category] (Category_ID, Category_Name)
+INSERT INTO Category (Category_ID, Category_Name)
 VALUES
    (1, 'Electronics'),
    (2, 'Clothing'),
@@ -19,7 +19,7 @@ VALUES
    (4, 'Home & Garden'),
    (5, 'Sports & Outdoors'); 
 
-INSERT INTO [Product].[Product] (Product_ID, Category_ID, Product_Name, Product_Description, Price, Product_Category, Product_Quantity, Product_Sold, Product_Status, Product_Ratings)
+INSERT INTO Product (Product_ID, Category_ID, Product_Name, Product_Description, Price, Product_Category, Product_Quantity, Product_Sold, Product_Status, Product_Ratings)
 VALUES
    (1, 1, 'Smartphone', 'High-end smartphone with advanced features', 799.99, 'Electronics', 50, 20, 'In Stock', 4.5),
    (2, 2, 'Denim Jeans', 'Classic blue denim jeans for everyday wear', 49.99, 'Clothing', 100, 50, 'In Stock', 4.0),
@@ -27,7 +27,7 @@ VALUES
    (4, 4, 'Home Decor Set', 'Decorative items for home interior', 149.99, 'Home & Garden', 30, 10, 'In Stock', 4.2),
    (5, 5, 'Outdoor Camping Tent', 'Spacious tent for outdoor camping adventures', 199.99, 'Sports & Outdoors', 20, 5, 'In Stock', 4.6); 
 
-INSERT INTO [Account].[Seller] (Seller_ID, Account_ID, Product_ID, Category_ID, Seller_Description, Seller_Product_Categories, Seller_Ratings, Transaction_History)
+INSERT INTO Seller (Seller_ID, Account_ID, Product_ID, Category_ID, Seller_Description, Seller_Product_Categories, Seller_Ratings, Transaction_History)
 VALUES
    (1, 6, 1, 1, 'Experienced seller specializing in smartphones', 'Electronics', 4.7, 'Sold a smartphone'),
    (2, 7, 2, 2, 'Fashion store with a focus on denim jeans', 'Clothing', 4.5, 'Sole a Denim Jean '),
@@ -35,7 +35,7 @@ VALUES
    (4, 9, 4, 4, 'Home and decor shop providing quality products', 'Home & Garden', 4.2, 'Sole a Home Decor Set'),
    (5, 10, 5, 5, 'Outdoor equipment supplier for camping enthusiasts', 'Sports & Outdoors', 4.6, 'Sold an Outdoor Camping Tent');
 
-INSERT INTO [Account].[Customer] (Customer_ID, Account_ID, Product_ID)
+INSERT INTO Customer (Customer_ID, Account_ID, Product_ID)
 VALUES
    (1, 1, 1),
    (2, 2, 2),
@@ -43,7 +43,7 @@ VALUES
    (4, 4, 4),
    (5, 5, 5); 
 
-INSERT INTO [Cart].[Cart] (Cart_ID, Customer_ID, Create_at, Update_at)
+INSERT INTO Cart (Cart_ID, Customer_ID, Create_at, Update_at)
 VALUES 
    (1, 1, '2023-11-10 14:00:00', '2023-11-10 14:30:00'),
    (2, 2, '2023-11-11 15:00:00', '2023-11-11 15:30:00'),
@@ -51,7 +51,7 @@ VALUES
    (4, 4, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
    (5, 5, '2023-11-14 18:00:00', '2023-11-14 18:30:00');
 
-INSERT INTO [Cart].[CartItem] (Cart_Item_ID, Cart_ID, Product_ID, Cart_Item_Quantity, Cart_Item_Price, Create_at, Update_at)
+INSERT INTO CartItem (Cart_Item_ID, Cart_ID, Product_ID, Cart_Item_Quantity, Cart_Item_Price, Create_at, Update_at)
 VALUES
    (1, 1, 1, 1, 799.99, '2023-11-10 14:00:00', '2023-11-10 14:30:00'),
    (2, 2, 2, 2, 99.98, '2023-11-11 15:00:00', '2023-11-11 15:30:00'),
@@ -59,7 +59,7 @@ VALUES
    (4, 4, 4, 2, 299.98, '2023-11-13 17:00:00', '2023-11-13 17:30:00'),
    (5, 5, 5, 4, 799.96, '2023-11-14 18:00:00', '2023-11-14 18:30:00');
 
-INSERT INTO [OrderManagement].[Order] (Order_ID, Customer_ID, Total_Order_Value, Order_Date, Order_Status, Shipping_Fee, Order_Purchase_TimeStamp, Order_Canceled, Order_Delivered_Carrier_Date, Order_Delivered_Customer_Date, Order_Estimated_Customer_Date)
+INSERT INTO [Order] (Order_ID, Customer_ID, Total_Order_Value, Order_Date, Order_Status, Shipping_Fee, Order_Purchase_TimeStamp, Order_Canceled, Order_Delivered_Carrier_Date, Order_Delivered_Customer_Date, Order_Estimated_Customer_Date)
 VALUES
    (1, 1, 799.99, '2023-11-10', 'Processing', 5.00, '2023-11-10 12:30:00', Null, '2023-11-11 11:30:00', '2023-11-13 12:30:00', '2023-11-13 12:30:00'),
    (2, 2, 99.98, '2023-11-11', 'Shipped', 7.50, '2023-11-11 13:30:00', Null, '2023-11-12 14:00:00', '2023-11-13 14:15:00', '2023-11-13 11:30:00'),
@@ -67,7 +67,7 @@ VALUES
    (4, 4, 299.98, '2023-11-13', 'Processing', 15.00, '2023-11-13 15:30:00', Null, '2023-11-14 16:00:00', '2023-11-17 16:15:00', '2023-11-17 16:30:00'),
    (5, 5, 799.96, '2023-11-14', 'Delivered', 8.00, '2023-11-14 16:30:00', Null, '2023-11-15 17:00:00', '2023-11-17 17:15:00', '2023-11-19 17:30:00');
 
-INSERT INTO [OrderManagement].[Order_Items] (Order_Item_ID, Order_ID, Product_ID, Product_Name, Price, Product_Quantity)
+INSERT INTO Order_Items (Order_Item_ID, Order_ID, Product_ID, Product_Name, Price, Product_Quantity)
 VALUES
    (1, 1, 1, 'Smartphone', 799.99, 1),
    (2, 2, 2, 'Denim Jeans', 49.99, 2),
@@ -83,7 +83,7 @@ VALUES
    (4, 4, 1, 'Banking', 4, 299.98),
    (5, 5, 1, 'Banking', 2, 799.96);
 
-INSERT INTO [OrderManagement].[Order_Review] (Review_ID, OrderID, Review_Score, Review_Comment_Title, Review_Comment_Message, Review_Creation_Date, Review_Answer_Timestamp)
+INSERT INTO Order_Review (Review_ID, OrderID, Review_Score, Review_Comment_Title, Review_Comment_Message, Review_Creation_Date, Review_Answer_Timestamp)
 VALUES
    (1, 1, 4, 'Great Experience', 'The order was processed quickly, and the product is fantastic!', '2023-11-14 12:45:00', '2023-11-14 13:00:00'),
    (2, 2, 5, 'Excellent Service', 'Smooth transaction and fast shipping. Highly recommended!', '2023-11-15 13:15:00', '2023-11-15 13:30:00'),
@@ -91,7 +91,7 @@ VALUES
    (4, 4, 3, 'Product Quality Concerns', 'The product received did not meet my expectations. Quality needs improvement.', '2023-11-18 15:00:00', '2023-11-18 18:00:00'),
    (5, 5, 5, 'Awesome Outdoor Gear', 'I love the camping gear! It arrived on time, and the quality is outstanding.', '2023-11-18 15:30:00', '2023-11-18 15:45:00');
 
-INSERT INTO [HistoryManagement].[History] (History_ID, Customer_ID, Seller_ID, Order_ID, TimeStamp, Product_Name)
+INSERT INTO History (History_ID, Customer_ID, Seller_ID, Order_ID, TimeStamp, Product_Name)
 VALUES
    (1, 1, 1, 1, '2023-11-10 14:30:00', 'Smartphone'),
    (2, 2, 2, 2, '2023-11-11 15:30:00', 'Denim Jeans'),
