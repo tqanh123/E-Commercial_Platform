@@ -75,7 +75,7 @@ VALUES
    (4, 4, 4, 'Home Decor Set', 149.99, 2),
    (5, 5, 5, 'Outdoor Camping Tent', 199.99, 4);
 
-INSERT INTO [OrderManagement].[Payments] (Payment_ID, Order_ID, Payment_Sequential, Payment_Type, Payment_Installments, Payment_Value)
+INSERT INTO Payments (Payment_ID, Order_ID, Payment_Sequential, Payment_Type, Payment_Installments, Payment_Value)
 VALUES
    (1, 1, 1, 'Banking', 3, 799.99),
    (2, 2, 1, 'Cash', 1, 99.98),
@@ -83,7 +83,7 @@ VALUES
    (4, 4, 1, 'Banking', 4, 299.98),
    (5, 5, 1, 'Banking', 2, 799.96);
 
-INSERT INTO Order_Review (Review_ID, OrderID, Review_Score, Review_Comment_Title, Review_Comment_Message, Review_Creation_Date, Review_Answer_Timestamp)
+INSERT INTO Order_Review (Review_ID, Order_ID, Review_Score, Review_Comment_Title, Review_Comment_Message, Review_Creation_Date, Review_Answer_Timestamp)
 VALUES
    (1, 1, 4, 'Great Experience', 'The order was processed quickly, and the product is fantastic!', '2023-11-14 12:45:00', '2023-11-14 13:00:00'),
    (2, 2, 5, 'Excellent Service', 'Smooth transaction and fast shipping. Highly recommended!', '2023-11-15 13:15:00', '2023-11-15 13:30:00'),
