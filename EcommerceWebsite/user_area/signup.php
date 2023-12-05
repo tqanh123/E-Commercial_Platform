@@ -6,10 +6,10 @@
     if(isset($_POST['user_register']))
     {
         $Username = $_POST['name'];
-        $BankName = $_POST['bank'];
-        $BankAccountNumber = $_POST['accNum'];
-        $Address = $_POST['address'];
-        $Gender = $_POST['gender'];
+        // $BankName = $_POST['bank'];
+        // $BankAccountNumber = $_POST['accNum'];
+        // $Address = $_POST['address'];
+        // $Gender = $_POST['gender'];
         $Phone_Number = $_POST['number'];
         $Email = $_POST['mail'];
         $password = $_POST['pass'];
@@ -30,21 +30,25 @@
                 // $ID = "Select Account_ID from account where Account_ID >= (select Account_ID from account)";
                 // $ID++;
                 $query = "insert into `account` (Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
-                values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', '$Gender', '$Phone_Number', '$Email', NULL)";
+                values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', 'male', '$Phone_Number', '$Email', NULL)";
+                //values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', '$Gender', '$Phone_Number', '$Email', NULL)";
                 
                 $insert_acc = mysqli_query($conn, $query);
                 if($insert_acc) {
                     
                     $count = 1;
-                    $cus = "Select Account_ID from account where Username = '$username'";
-                    $ID = mysqli_query($conn, $cus);
+                    $acc = "Select Account_ID from account where Username = '$Username'";
+                    $accq = $conn -> query($acc);
+                    $ID = $accq -> fetch_array()[0];
+                    echo"<script type='text/javascript'> alert('$ID')</script>";
                     $cus_query = "insert into `customer` (Account_ID) values('$ID')"; 
                     $insert_cus = mysqli_query($conn, $cus_query);
                     if($insert_cus) $count++;
 
-                    $cart ="Select Customer_ID from customer where Customer_ID = '$ID'";
-                    $cus_ID = mysqli_query($conn, $cart);
-                    $time = mysqli_query($conn ,"Select CURRENT_TIMESTAMP AS 'CURRENTTIMESTAMP'");
+                    $cart ="Select Customer_ID from customer where Account_ID = '$ID'";
+                    $cus= $conn -> query($cart);
+                    $cus_ID = $cus -> fetch_array()[0];
+                    $time = "Select NOW()";
                     $cart_query = "insert into cart (Customer_ID, Create_at, update_at) values('$cus_ID', '$time', '$time')"; 
                     $insert_cart = mysqli_query($conn, $cart_query);
                     if ($insert_cart) $count++;
@@ -99,23 +103,23 @@
         <input type="text" 
         placeholder="Enter your user name" autocomplete="off" 
         name="name" required>
-        <label>Gender</label>
+        <!-- <label>Gender</label>
         <input type="text"
         placeholder="Choose between Male or Female" autocomplete="off"  
-        name="gender" required>
+        name="gender" required> -->
         <label>Contact</label>
         <input type="tel" 
         placeholder="Enter your mobile number" autocomplete="off" 
         name="number" required>
-        <label>Address</label>
+        <!-- <label>Address</label>
         <input type="text"
-        placeholder="Enter your Address" autocomplete="off" name="address" required>
-        <label>Bank</label>
+        placeholder="Enter your Address" autocomplete="off" name="address" required> -->
+        <!-- <label>Bank</label>
         <input type="text"
         placeholder="Enter your Bank" autocomplete="off" name="bank" required>
         <label>Account number</label>
         <input type="text"
-        placeholder="Enter your Bank account number" autocomplete="off" name="accNum" required>
+        placeholder="Enter your Bank account number" autocomplete="off" name="accNum" required> -->
         <label>Email</label>
         <input type="email" 
         placeholder="Enter your email" autocomplete="off" 

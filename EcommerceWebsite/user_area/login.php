@@ -59,7 +59,7 @@
         <label>Password</label>
         <input type="password"
         placeholder="Enter your password" autocomplete="off" name="pass" required>
-        <input type="submit" name="" value="Submit">
+        <input type="submit" name="user login" value="Submit">
     </form>
     <p>Not have account? <a href="signup.php">Sign up here</a></p>
     </div>
@@ -73,25 +73,27 @@
         $result=mysqli_query($conn,$select_query);
         $row_count=mysqli_num_rows($result);
         $row_data=mysqli_fetch_assoc($result);
-        $user_ip=getIPAddress();
+        // $user_ip=getIPAddress();
 
 
-        // cart item
-        $select_query_cart="Select * from `cart_details`where address='$user_ip'";
-        $select_cart=mysqli_query($conn,$select_query_cart);
-        $row_count_cart=mysqli_num_rows($result_count_cart);
+        // // cart item
+        // $select_query_cart="Select * from `cart`where address='$user_ip'";
+        // $select_cart=mysqli_query($conn,$select_query_cart);
+        // $row_count_cart=mysqli_num_rows($result_count_cart);
 
         
         if($row_count>0){
-            if(passwoed_verify($password,$row_data['pass'])){
+            if(password_verify($password,$row_data['pass'])){
+                echo"<script>alert('Login successful!')</scipt>";
+                echo"<script>window.open('../index.php','_self')</script>";                
                 // echo"<script>alert('Login successful!')</scipt>"
-                if($row_count==1 and $row_count_cart==0){
-                    echo"<script>alert('Login successful!')</scipt>";
-                    echo"<script>window.open('profile.php','_self')</script>";
-                }else{
-                    echo"<script>alert('Login successful!')</scipt>";
-                    echo"<script>window.open('payment.php','_self')</script>";
-                }
+                // if($row_count==1 and $row_count_cart==0){
+                //     echo"<script>alert('Login successful!')</scipt>";
+                //     echo"<script>window.open('profile.php','_self')</script>";
+                // }else{
+                //     echo"<script>alert('Login successful!')</scipt>";
+                //     echo"<script>window.open('payment.php','_self')</script>";
+                // }
             }else{
                 echo"<script>alert('Invalid Credentials')</scipt>";
             }

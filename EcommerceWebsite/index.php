@@ -1,5 +1,5 @@
 <?php 
-include ('../includes/connect.php');
+include ('../EcommerceWebsite/includes/connect.php');
 ?>
 
 <!DOCTYPE html>
@@ -60,18 +60,19 @@ include ('../includes/connect.php');
    
 <!-- Second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-<ul class="navbar-nav me-auto"></ul>
-<li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Welcome</a>
-        </li>
-        <li class="nav-item">
+  <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Welcome Guest</a>
+      </li>
+      <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Login</a>
-        </li>
-        </nav>
-        <!-- Third child-->
-        <div class="bg-light"></div>
-        <h3 class="text-center">Hidden Store</h3>
-        <p class="text-center">Communication is at the heart of e-commerce and community</p>
+      </li>
+  </ul>
+</nav>
+<!-- Third child-->
+<div class="bg-light"></div>
+<h3 class="text-center">Hidden Store</h3>
+<p class="text-center">Communication is at the heart of e-commerce and community</p>
 <!--last child-->
 <div class="bg-info p-3 text-center">
   <p>Together we make differences in 20 years || 2003-2023<p>
