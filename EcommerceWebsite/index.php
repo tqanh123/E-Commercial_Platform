@@ -43,7 +43,7 @@ include ('../includes/connect.php');
           <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Price:500/-</a>

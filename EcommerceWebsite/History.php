@@ -1,16 +1,18 @@
 <?php
-$servername = "127.0.0.1:3307";
-$username = "root";
-$password = "1234";
-$dbname = "e_commercial";
+// $servername = "127.0.0.1:3307";
+// $username = "root";
+// $password = "1234";
+// $dbname = "e_commercial";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// // Create connection
+// $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// // Check connection
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
+
+require_once '../EcommerceWebsite/includes/connect.php';
 
 // Function to record history
 function recordHistory($customerID, $sellerID, $orderID, $productName) {

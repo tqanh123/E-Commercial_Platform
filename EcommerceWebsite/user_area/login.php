@@ -1,7 +1,8 @@
 <?php
     session_start();
 
-    include("db.php");
+    include("../includes/connect.php");
+
     if($_SERVER['REQUEST_METHOD']=="POST")
     {
         $gmail = $_POST['mail'];
@@ -10,7 +11,7 @@
         if(!empty($gmail) && !empty($password) && !is_numeric($gmail))
         {
             $query = "select * from form where email ='$gmail' limit 1";
-            $result =mysqli_query($con, $query);
+            $result =mysqli_query($conn, $query);
 
             if($result)
             {
@@ -69,7 +70,7 @@
         $gmail =$_POST['mail'];
         $password=$_POST['pass'];
         $select_query="Select * from `register`where gmail='$gmail'";
-        $result=mysqli_query($con,$select_query);
+        $result=mysqli_query($conn,$select_query);
         $row_count=mysqli_num_rows($result);
         $row_data=mysqli_fetch_assoc($result);
         $user_ip=getIPAddress();
@@ -77,7 +78,7 @@
 
         // cart item
         $select_query_cart="Select * from `cart_details`where address='$user_ip'";
-        $select_cart=mysqli_query($con,$select_query_cart);
+        $select_cart=mysqli_query($conn,$select_query_cart);
         $row_count_cart=mysqli_num_rows($result_count_cart);
 
         

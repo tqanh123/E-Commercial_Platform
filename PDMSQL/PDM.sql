@@ -1,6 +1,5 @@
-
 CREATE TABLE `Account` (
-    Account_ID INT PRIMARY KEY,
+    Account_ID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(255),
     BankName VARCHAR(255),
     BankAccountNumber VARCHAR(20),
@@ -10,17 +9,16 @@ CREATE TABLE `Account` (
     Phone_Number VARCHAR(15),
     Email VARCHAR(255),
     Profile_Picture VARCHAR(255)
-); 
+);  
+
 
 CREATE TABLE `Category` (
-    Category_ID INT PRIMARY KEY,
-    Product_ID INT,
-    Category_Name VARCHAR(255),
-    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID)
-); 
+    Category_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Category_Name VARCHAR(255)
+);
 
 CREATE TABLE `Product` (
-    Product_ID INT PRIMARY KEY,
+    Product_ID INT AUTO_INCREMENT PRIMARY KEY,
     Category_ID INT,
     Product_Name VARCHAR(255),
     Product_Description TEXT,
@@ -34,7 +32,7 @@ CREATE TABLE `Product` (
 ); 
 
 CREATE TABLE `Seller` (
-    Seller_ID INT PRIMARY KEY,
+    Seller_ID INT AUTO_INCREMENT PRIMARY KEY,
     Account_ID INT,
     Seller_Description TEXT,
     Seller_Ratings DECIMAL(4, 2),
@@ -42,13 +40,13 @@ CREATE TABLE `Seller` (
 ); 
 
 CREATE TABLE `Customer` (
-    Customer_ID INT PRIMARY KEY,
+    Customer_ID INT AUTO_INCREMENT PRIMARY KEY,
     Account_ID INT,
     FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID)
 );
 
 CREATE TABLE `Cart` (
-    Cart_ID INT PRIMARY KEY,
+    Cart_ID INT AUTO_INCREMENT PRIMARY KEY,
     Customer_ID INT,
     Create_at DATETIME,
     Update_at DATETIME,
@@ -56,7 +54,7 @@ CREATE TABLE `Cart` (
 );
 
 CREATE TABLE `CartItem` (
-    Cart_Item_ID INT PRIMARY KEY,
+    Cart_Item_ID INT AUTO_INCREMENT PRIMARY KEY,
     Cart_ID INT,
     Product_ID INT,
     Cart_Item_Quantity INT,
@@ -69,7 +67,7 @@ CREATE TABLE `CartItem` (
 
 
 CREATE TABLE `Order` (
-    Order_ID INT PRIMARY KEY,
+    Order_ID INT AUTO_INCREMENT PRIMARY KEY,
     Customer_ID INT,
     Total_Order_Value DECIMAL(10, 2),
     Order_Date DATE,
@@ -84,7 +82,7 @@ CREATE TABLE `Order` (
 );
 
 CREATE TABLE `Order_Items` (
-    Order_Item_ID INT PRIMARY KEY,
+    Order_Item_ID INT AUTO_INCREMENT PRIMARY KEY,
     Order_ID INT,
     Product_ID INT,
     Product_Name VARCHAR(255),
@@ -95,7 +93,7 @@ CREATE TABLE `Order_Items` (
 );
 
 CREATE TABLE `Payments` (
-    Payment_ID INT PRIMARY KEY,
+    Payment_ID INT AUTO_INCREMENT PRIMARY KEY,
     Order_ID INT,
     Payment_Sequential INT,
     Payment_Type VARCHAR(20),
@@ -105,7 +103,7 @@ CREATE TABLE `Payments` (
 );
 
 CREATE TABLE`Order_Review` (
-    Review_ID INT PRIMARY KEY,
+    Review_ID INT AUTO_INCREMENT PRIMARY KEY,
     Order_ID INT,
     Review_Score INT,
     Review_Comment_Title VARCHAR(255),
@@ -116,7 +114,7 @@ CREATE TABLE`Order_Review` (
 );
 
 CREATE TABLE `History` (
-    History_ID INT PRIMARY KEY,
+    History_ID INT AUTO_INCREMENT PRIMARY KEY,
     Customer_ID INT,
     Seller_ID INT,
     Order_ID INT,

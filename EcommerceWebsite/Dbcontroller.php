@@ -3,13 +3,13 @@
 class DBController
 {
 
-    private $host = "127.0.0.1:3307";
+    private $host = "localhost";
 
     private $user = "root";
 
-    private $password = "1234";
+    private $password = "";
 
-    private $database = "cart";
+    private $database = "ecommercial";
 
     private static $conn;
 
