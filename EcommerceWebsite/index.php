@@ -72,6 +72,10 @@ include ('../includes/connect.php');
         <div class="bg-light"></div>
         <h3 class="text-center">Hidden Store</h3>
         <p class="text-center">Communication is at the heart of e-commerce and community</p>
+        <!-- Category button -->
+<div class="text-center">
+    <a href="category.php" class="btn btn-primary">Browse Categories</a>
+</div>
 <!--last child-->
 <div class="bg-info p-3 text-center">
   <p>Together we make differences in 20 years || 2003-2023<p>
