@@ -1,8 +1,7 @@
 <?php
     session_start();
 
-    include("../includes/connect.php");
-
+    include("db.php");
     if($_SERVER['REQUEST_METHOD']=="POST")
     {
         $gmail = $_POST['mail'];

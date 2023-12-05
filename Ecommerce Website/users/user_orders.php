@@ -8,9 +8,9 @@
 </head>
 <body>
     <?php
-    $servername = "localhost";
+    $servername = "127.0.0.1:3307";
     $username = "root";
-    $password = "";
+    $password = "1234";
     $dbname = "e_commercial";
 
     // Create connection
@@ -44,7 +44,7 @@
         </thead>
         <tbody class="bg-secondary text-light">
             <?php
-            $get_order_details = "SELECT * FROM order WHERE Customer_ID = $user_id";
+            $get_order_details = "SELECT * FROM `order` WHERE Customer_ID='$user_id'";
             $result_orders = mysqli_query($conn, $get_order_details);
             $number = 1;
 
