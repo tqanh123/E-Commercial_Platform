@@ -14,7 +14,9 @@ CREATE TABLE `Account` (
 
 CREATE TABLE `Category` (
     Category_ID INT PRIMARY KEY,
-    Category_Name VARCHAR(255)
+    Product_ID INT,
+    Category_Name VARCHAR(255),
+    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID)
 ); 
 
 CREATE TABLE `Product` (
@@ -34,23 +36,15 @@ CREATE TABLE `Product` (
 CREATE TABLE `Seller` (
     Seller_ID INT PRIMARY KEY,
     Account_ID INT,
-    Product_ID INT,
-    Category_ID INT,
     Seller_Description TEXT,
-    Seller_Product_Categories TEXT,
     Seller_Ratings DECIMAL(4, 2),
-    Transaction_History TEXT,
-    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID),
-    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID),
-    FOREIGN KEY (Category_ID) REFERENCES `Category`(Category_ID)
+    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID)
 ); 
 
 CREATE TABLE `Customer` (
     Customer_ID INT PRIMARY KEY,
     Account_ID INT,
-    Product_ID INT,
-    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID),
-    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID)
+    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID)
 );
 
 CREATE TABLE `Cart` (

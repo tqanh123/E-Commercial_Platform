@@ -1,7 +1,8 @@
 <?php
     session_start();
 
-    include("db.php");
+    include("../includes/connect.php");
+
     if($_SERVER['REQUEST_METHOD']=="POST")
     {
         $gmail = $_POST['mail'];
@@ -85,17 +86,17 @@
             if(passwoed_verify($password,$row_data['pass'])){
                 // echo"<script>alert('Login successful!')</scipt>"
                 if($row_count==1 and $row_count_cart==0){
-                    echo"<script>alert('Login successful!')</scipt>"
-                    echo"<script>window.open('profile.php','_self')</script>"
+                    echo"<script>alert('Login successful!')</scipt>";
+                    echo"<script>window.open('profile.php','_self')</script>";
                 }else{
-                    echo"<script>alert('Login successful!')</scipt>"
-                    echo"<script>window.open('payment.php','_self')</script>"
+                    echo"<script>alert('Login successful!')</scipt>";
+                    echo"<script>window.open('payment.php','_self')</script>";
                 }
             }else{
-                echo"<script>alert('Invalid Credentials')</scipt>"
+                echo"<script>alert('Invalid Credentials')</scipt>";
             }
         }else{
-                echo"<script>alert('Invalid Credentials')</scipt>"
+                echo"<script>alert('Invalid Credentials')</scipt>";
         }
 
     }
