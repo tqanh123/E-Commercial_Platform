@@ -25,7 +25,8 @@ if ($result->num_rows > 0) {
     echo "<p class='product-price'>Price: ".$row['Price']."</p>";
     echo "<form method=\"post\" action=\"cart.php\">";
     echo "<input type=\"hidden\" name=\"product_id\" value=\"".$row['Product_ID']."\">";
-    echo "<input type=\"submit\" name=\"add_to_cart\" value=\"Add to Cart\">";
+    echo "<input type=\"hidden\" name=\"action\" value=\"add_to_cart\">";
+    echo "<input type=\"submit\" name=\"AddToCart\" value=\"add to cart\">";
     echo "</form>";
     echo "</div>";
     }

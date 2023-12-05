@@ -37,16 +37,36 @@ if ($productsInCart->num_rows === 0) {
         echo "<td>" . $row['Name'] . "</td>";
         echo "<td>$" . $row['Price'] . "</td>";
         echo "<td>" . $row['Total_Quantity'] . "</td>";
-        echo "<td><form method='post' action=''>
-                    <input type='hidden' name='product_id' value='" . $row['Product_ID'] . "'>
-                    <button type='submit' name='remove_product'>Remove</button>
-                </form></td>";
-        echo "</tr>";
+        echo "<td>
+            <form method='post' action=''>
+                <input type='hidden' name='product_id' value='" . $row['Product_ID'] . "'>
+                <button type='submit' name='remove_product'>Remove</button>
+            </form>
+          </td>";
+    // Increase quantity button
+    echo "<td>
+            <form method='post' action=''>
+                <input type='hidden' name='product_id' value='" . $row['Product_ID'] . "'>
+                <button type='submit' name='increase_quantity'>+</button>
+            </form>
+          </td>";
+    // Decrease quantity button
+    echo "<td>
+            <form method='post' action=''>
+                <input type='hidden' name='product_id' value='" . $row['Product_ID'] . "'>
+                <button type='submit' name='decrease_quantity'>-</button>
+            </form>
+          </td>";
+    echo "</tr>";
     $total_price += $row['Price'] * $row['Total_Quantity'];
 }
-        echo "<a class='buy-button' href='users/ShowPayment.php'>Checkout</a>";
-        echo "<br>";
-        echo "<a class='buy-button' href='index.php'>Continue Shopping</a>";
+    echo "</table>"; // Close the table started in the loop
+
+    echo "<div class='cart-options'>";
+    echo "<a class='buy-button' href='users/ShowPayment.php'>Checkout</a>";
+    echo "</div>";
+    echo "<a class='buy-button' href='index.php'>Continue Shopping</a>";
+    echo "</div>";
 
 
     if (isset($_POST['remove_product'])) {
@@ -55,63 +75,64 @@ if ($productsInCart->num_rows === 0) {
         header("Location: cart.php");
         exit();
     }
-}
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $product_id = $_POST['product_id'];
-    $cart_id = 1;
-    addProductToCart($cart_id ,$product_id);
-    header("Location: cart.php");
-    exit();
-}
+    if (isset($_POST['increase_quantity'])) {
+        $product_id = $_POST['product_id'];
+        updateQuantity($specificCartId, $product_id, 'increase');
+        header("Location: cart.php");
+        exit();
+    }
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     if (isset($_POST['increase_quantity'])) {
-//         $cart_item_id = $_POST['cart_item_id']; 
-//         updateQuantity($cart_item_id, 'increase');
-//     }
-//     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//         if (isset($_POST['decrease_quantity'])) {
-//             $cart_item_id = $_POST['cart_item_id']; 
-//             updateQuantity($cart_item_id, 'decrease');
-//         }
-//     }
-// }
+    if (isset($_POST['decrease_quantity'])) {
+        $product_id = $_POST['product_id'];
+        updateQuantity($specificCartId, $product_id, 'decrease');
+        header("Location: cart.php");
+        exit();
+    }
+}
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
-    // Perform the corresponding action
     switch ($action) {
-        case 'addToCart':
+        case 'add_to_cart':
             $cart_id = 1;
+            $product_id = $_POST['product_id'];
             addProductToCart($cart_id ,$product_id);
+            header("Location: cart.php");
             break;
-        case 'removeFromCart':
-            $product_id_to_remove = $_POST['product_id'];
-            removeProductFromCart($specificCartId, $product_id_to_remove);
-            break;
-        // case 'updateQuantity':
-        //     updateQuantity($productId, $_POST['quantity']);
-        //     break;
     }
 }
 
 function addProductToCart($cart_id, $product_id) {
     global $conn;
 
-    $sql = "INSERT INTO cartitem (Cart_ID, Product_ID, Cart_Item_Quantity) 
-            VALUES (?, ?, 1)
-            ON DUPLICATE KEY UPDATE Cart_Item_Quantity = Cart_Item_Quantity + 1";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $cart_id, $product_id);
-    $stmt->execute();
+    $check_sql = "SELECT Cart_Item_ID FROM cartitem WHERE Cart_ID = ? AND Product_ID = ?";
+    $check_stmt = $conn->prepare($check_sql);
+    $check_stmt->bind_param("ss", $cart_id, $product_id);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
 
-    $cart_item_id = $stmt->insert_id;
+    if ($check_result->num_rows > 0) {
+        
+        $update_sql = "UPDATE cartitem SET Cart_Item_Quantity = Cart_Item_Quantity + 1 WHERE Cart_ID = ? AND Product_ID = ?";
+        $update_stmt = $conn->prepare($update_sql);
+        $update_stmt->bind_param("ss", $cart_id, $product_id);
+        $update_stmt->execute();
+        $update_stmt->close();
+    } else {
+        
+        $insert_sql = "INSERT INTO cartitem (Cart_ID, Product_ID, Cart_Item_Quantity) VALUES (?, ?, 1)";
+        $insert_stmt = $conn->prepare($insert_sql);
+        $insert_stmt->bind_param("ss", $cart_id, $product_id);
+        $insert_stmt->execute();
 
-    $stmt->close();
+        $cart_item_id = $insert_stmt->insert_id;
 
-    return $cart_item_id;
+        $insert_stmt->close();
+
+        return $cart_item_id;
+    }
 }
 
 function removeProductFromCart($cart_id, $product_id) {
@@ -151,10 +172,10 @@ function getProductsInCart($cart_id) {
     return $result;
 }
 
-function updateQuantity($cart_item_id, $action) {
+function updateQuantity($cart_id, $product_id, $action) {
     global $conn;
 
-    $currentQuantity = getProductQuantityByCartItemID($cart_item_id);
+    $currentQuantity = getProductQuantity($cart_id, $product_id);
 
     if ($currentQuantity !== null) {
         if ($action === 'increase') {
@@ -163,20 +184,20 @@ function updateQuantity($cart_item_id, $action) {
             $newQuantity = $currentQuantity - 1;
         }   
 
-        $updateSql = "UPDATE CartItem SET Cart_Item_Quantity = ? WHERE Cart_item_ID = ?";
+        $updateSql = "UPDATE CartItem SET Cart_Item_Quantity = ? WHERE Cart_ID = ? AND Product_ID = ?";
         $updateStmt = $conn->prepare($updateSql);
-        $updateStmt->bind_param("is", $newQuantity, $cart_item_id);
+        $updateStmt->bind_param("iss", $newQuantity, $cart_id, $product_id);
         $updateStmt->execute();
         $updateStmt->close();
     }
 }
 
-function getProductQuantityByCartItemID($cart_item_id) {
+function getProductQuantity($cart_id, $product_id) {
     global $conn;
 
-    $sql = "SELECT Cart_Item_Quantity FROM CartItem WHERE Cart_item_ID = ?";
+    $sql = "SELECT Cart_Item_Quantity FROM CartItem WHERE Cart_ID = ? AND Product_ID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $cart_item_id);
+    $stmt->bind_param("is", $cart_id, $product_id);
     $stmt->execute();
     $result = $stmt->get_result();
 
