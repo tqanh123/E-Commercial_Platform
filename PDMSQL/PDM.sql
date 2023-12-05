@@ -17,9 +17,29 @@ CREATE TABLE `Category` (
     Category_Name VARCHAR(255)
 ); 
 
+CREATE TABLE `Seller` (
+    Seller_ID INT PRIMARY KEY,
+    Account_ID INT,
+    Category_ID INT,
+    Seller_Description TEXT,
+    Seller_Product_Categories TEXT,
+    Seller_Ratings DECIMAL(4, 2),
+    Transaction_History TEXT,
+    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID),
+    FOREIGN KEY (Category_ID) REFERENCES `Category`(Category_ID)
+); 
+
+CREATE TABLE `Customer` (
+    Customer_ID INT PRIMARY KEY,
+    Account_ID INT,
+    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID),
+);
+
 CREATE TABLE `Product` (
     Product_ID INT PRIMARY KEY,
     Category_ID INT,
+    Seller_ID INT,
+    Customer_ID INT,
     Product_Name VARCHAR(255),
     Product_Description TEXT,
     Price DECIMAL(10, 2),
@@ -28,30 +48,10 @@ CREATE TABLE `Product` (
     Product_Sold INT,
     Product_Status VARCHAR(20),
     Product_Ratings DECIMAL(4, 2),
-    FOREIGN KEY (Category_ID) REFERENCES `Category`(Category_ID)
+    FOREIGN KEY (Category_ID) REFERENCES `Category`(Category_ID),
+    FOREIGN KEY (Seller_ID) REFERENCES `Seller`(Seller_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES `Customer`(Customer_ID)
 ); 
-
-CREATE TABLE `Seller` (
-    Seller_ID INT PRIMARY KEY,
-    Account_ID INT,
-    Product_ID INT,
-    Category_ID INT,
-    Seller_Description TEXT,
-    Seller_Product_Categories TEXT,
-    Seller_Ratings DECIMAL(4, 2),
-    Transaction_History TEXT,
-    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID),
-    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID),
-    FOREIGN KEY (Category_ID) REFERENCES `Category`(Category_ID)
-); 
-
-CREATE TABLE `Customer` (
-    Customer_ID INT PRIMARY KEY,
-    Account_ID INT,
-    Product_ID INT,
-    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID),
-    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID)
-);
 
 CREATE TABLE `Cart` (
     Cart_ID INT PRIMARY KEY,
