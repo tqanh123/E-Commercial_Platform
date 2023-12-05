@@ -19,13 +19,13 @@ VALUES
    (4, 'Home & Garden'),
    (5, 'Sports & Outdoors'); 
 
-INSERT INTO Seller (Seller_ID, Account_ID, Category_ID, Seller_Description, Seller_Product_Categories, Seller_Ratings, Transaction_History)
+INSERT INTO Seller (Seller_ID, Account_ID, Seller_Description, Seller_Ratings)
 VALUES
-   (1, 6, 1, 'Experienced seller specializing in smartphones', 'Electronics', 4.7, 'Sold a smartphone'),
-   (2, 7, 2, 'Fashion store with a focus on denim jeans', 'Clothing', 4.5, 'Sole a Denim Jean '),
-   (3, 8, 3, 'Bookstore offering a wide range of literary works', 'Books', 4.8, 'Sole a novel named The Great Gatsby'),
-   (4, 9, 4, 'Home and decor shop providing quality products', 'Home & Garden', 4.2, 'Sole a Home Decor Set'),
-   (5, 10, 5, 'Outdoor equipment supplier for camping enthusiasts', 'Sports & Outdoors', 4.6, 'Sold an Outdoor Camping Tent');
+   (1, 6, 'Experienced seller specializing in smartphones', 4.7),
+   (2, 7, 'Fashion store with a focus on denim jeans',  4.5),
+   (3, 8, 'Bookstore offering a wide range of literary works',  4.8),
+   (4, 9, 'Home and decor shop providing quality products', 4.2),
+   (5, 10, 'Outdoor equipment supplier for camping enthusiasts', 4.6);
 
 INSERT INTO Customer (Customer_ID, Account_ID)
 VALUES

@@ -20,6 +20,7 @@ CREATE TABLE `Category` (
 CREATE TABLE `Product` (
     Product_ID INT AUTO_INCREMENT PRIMARY KEY,
     Category_ID INT,
+    Seller_ID INT,
     Product_Name VARCHAR(255),
     Product_Description TEXT,
     Price DECIMAL(10, 2),
@@ -28,6 +29,7 @@ CREATE TABLE `Product` (
     Product_Sold INT,
     Product_Status VARCHAR(20),
     Product_Ratings DECIMAL(4, 2),
+    FOREIGN KEY (Seller_ID) REFERENCES `Seller`(Seller_ID),
     FOREIGN KEY (Category_ID) REFERENCES `Category`(Category_ID)
 ); 
 

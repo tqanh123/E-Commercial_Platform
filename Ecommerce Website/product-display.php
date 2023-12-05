@@ -1,16 +1,5 @@
 <?php
-$host_name = "127.0.0.1:3307";
-$username = "root";
-$password = "1234";
-$db_name = "e_commercial";
-
-// create connection
-$conn = new mysqli($host_name, $username, $password, $db_name);
-
-// check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include('./EcommerceWebsite/includes/connect.php');
 
 // select all product data from database
 $sql = "SELECT Product.Product_ID, Product.Product_Name, Product.Price FROM Product";
