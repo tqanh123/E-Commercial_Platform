@@ -3,7 +3,7 @@
 
     include("../includes/connect.php");
 
-    if(isset($_POST['user_register']))
+    if(isset($_POST['suplier_register']))
     {
         $Username = $_POST['name'];
         // $BankName = $_POST['bank'];
@@ -23,34 +23,27 @@
             $rows_count=mysqli_num_rows($result);
             
             if($rows_count>0){
-                echo "<script>alert('User name, Email or phone number already exist')</script>";
+                echo "<script>alert('Shop name, Email or phone number already exist')</script>";
             }
             else if ($password === $repassword) {
                 
                 // $ID = "Select Account_ID from account where Account_ID >= (select Account_ID from account)";
                 // $ID++;
                 $query = "insert into `account` (Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
-                values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', 'male', '$Phone_Number', '$Email', NULL)";
-                //values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', '$Gender', '$Phone_Number', '$Email', NULL)";
+                values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', NULL, '$Phone_Number', '$Email', NULL)";
+                //values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', NULL, '$Phone_Number', '$Email', NULL)";
                 
                 $insert_acc = mysqli_query($conn, $query);
                 if($insert_acc) {
-                    
+
                     $acc = "Select Account_ID from account where Username = '$Username'";
                     $accq = $conn -> query($acc);
                     $ID = $accq -> fetch_array()[0];
-                    $cus_query = "insert into `customer` (Account_ID) values('$ID')"; 
+                    $cus_query = "insert into `seller` (Account_ID, Seller_Ratings) values('$ID', 0)"; 
                     $insert_cus = mysqli_query($conn, $cus_query);
 
-                    $cart ="Select Customer_ID from customer where Account_ID = '$ID'";
-                    $cus= $conn -> query($cart);
-                    $cus_ID = $cus -> fetch_array()[0];
-                    $time = "Select NOW()";
-                    $cart_query = "insert into cart (Customer_ID, Create_at, update_at) values('$cus_ID', '$time', '$time')"; 
-                    $insert_cart = mysqli_query($conn, $cart_query);
-                    
-                    echo"<script type='text/javascript'> alert('Password Matched!Successfully Register ')</script>";
-                    echo "<script>window.open('../index.php','_self')</script>";
+                    echo"<script type='text/javascript'> alert('Password Matched! Successfully Register!!')</script>";
+                    echo "<script>window.open('shop.php','_self')</script>";
                 }
                 
             } else {
@@ -61,24 +54,6 @@
         {
             echo"<script type='text/javascript'> alert('Please enter some Valid Information')</script>";
         }
-        // selecting cart items
-
-        
-
-        // $select_cart_items="Select * from `cart` where addrees='$address'";
-        // $result_cart=mysqli_query($conn,$select_cart_items);
-        // $rows_count=mysqli_num_rows($result_cart);
-
-
-        // if($rows_count>0){
-
-        //     $_SESSION['gmail']=$Email;
-        //     echo "<script>alert('You have itmes in your cart')</script>";
-        //     echo "<script>window.open('checkout.php','_self')</script>";
-        // }
-        // else{
-            // echo "<script>window.open('../index.php','_self')</script>";
-        // }
 
     }
 ?>
@@ -88,21 +63,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form login and register</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../user_area/style.css">
 </head>
 <body>
     <div class="signup">
-    <h1>User sign up</h1>
+    <h1>Suplier sign up</h1>
     <h4>Welcome to our E-Commerce Website</h4>
     <form method="POST" action = "">
-        <label>User name</label>
+        <label>Shop name</label>
         <input type="text" 
-        placeholder="Enter your user name" autocomplete="off" 
+        placeholder="Enter your shop name" autocomplete="off" 
         name="name" required>
-        <!-- <label>Gender</label>
-        <input type="text"
-        placeholder="Choose between Male or Female" autocomplete="off"  
-        name="gender" required> -->
         <label>Contact</label>
         <input type="tel" 
         placeholder="Enter your mobile number" autocomplete="off" 
@@ -128,14 +99,14 @@
         <input type="password"
         placeholder="Confirm Password" autocomplete="off" 
         name="confirm" required>
-        <input type="submit" name="user_register" value="Submit">
+        <input type="submit" name="suplier_register" value="Submit">
     </form>
     <p>By clicking the Submit button, you argee to our<br>
         <a href="">Terms and Condition</a> and <a href="#">Policy Privacy</a>
     </p>
-    <p>Already have an account? <a href="login.php">Login Here</a></p>
+    <p>Already have an account? <a href="../user_area/login.php">Login Here</a></p>
     </p>
-    <p>You are suplier? <a href="../Seller/suplier_signup.php">Click here</a></p>
+    <p>You are a customer? <a href="../user_area/signup.php">Click here</a></p>
     </div>
 </body>
 </html>

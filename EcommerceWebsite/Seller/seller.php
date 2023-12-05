@@ -1,26 +1,7 @@
 <?php
 session_start(); // Starting the session
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "e_commercial";
-
-// Establishing connection to the database
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Checking connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Check if the user is logged in
-// if (!isset($_SESSION['username'])) {
-//     header("Location: login.php"); // Redirect to login page if not logged in
-//     exit();
-// }
-
-
+require_once '../includes/connect.php';
 
 // Function to add a product for buyers
 // function addProduct($product_name, $product_description, $price, $quantity, $seller_id, $category_id)
@@ -41,28 +22,31 @@ function addProduct($product_name, $product_description, $price, $quantity, $sel
 {
     global $conn;
 
-    // Generating a unique Product ID
-    $product_id = uniqid('prod_', true);
-
     // Inserting the product into the Product table
-    $insert_product_query = "INSERT INTO `Product` (Product_ID, Product_Name, Product_Description, Price, Product_Quantity, Category_ID) 
-    VALUES ('$product_id', '$product_name', '$product_description', $price, $quantity, $category_id)";
+    $insert_product_query = "INSERT INTO `Product` (Product_Description, Price, Product_Quantity, Product_Sold, Category_ID, Product_Ratings, Product_Status) 
+    VALUES ('$product_description', $price, $quantity, 0, $category_id, 0, 'available')";                                                                                                  
 
-    if ($conn->query($insert_product_query) === TRUE) {
-        // Linking the product to the seller in the Seller table
-        $link_product_to_seller_query = "INSERT INTO Seller (Account_ID, Product_ID) 
-        VALUES ($seller_id, '$product_id')";
+    // if ($conn->query($insert_product_query) === TRUE) {
 
-        if ($conn->query($link_product_to_seller_query) === TRUE) {
-            return "Product added successfully and linked to the seller!";
-        } else {
-            // If linking to the seller fails, remove the previously added product to prevent duplicates
-            $conn->query("DELETE FROM Product WHERE Product_ID = '$product_id'");
-            return "Error linking product to the seller: " . $conn->error;
-        }
-    } else {
-        return "Error adding product: " . $conn->error;
-    }
+    //     // take product_ID
+    //     $acc = "Select Product_ID from product where Username = '$Username'";
+    //     $accq = $conn -> query($acc);
+    //     $ID = $accq -> fetch_array()[0];
+
+    //     // Linking the product to the seller in the Seller table
+    //     $link_product_to_seller_query = "INSERT INTO Seller (Account_ID, Product_ID) 
+    //     VALUES ($seller_id, '$product_id')";
+
+    //     if ($conn->query($link_product_to_seller_query) === TRUE) {
+    //         return "Product added successfully and linked to the seller!";
+    //     } else {
+    //         // If linking to the seller fails, remove the previously added product to prevent duplicates
+    //         $conn->query("DELETE FROM Product WHERE Product_ID = '$product_id'");
+    //         return "Error linking product to the seller: " . $conn->error;
+    //     }
+    // } else {
+    //     return "Error adding product: " . $conn->error;
+    // }
 }
 
 // If form is submitted to add a product
