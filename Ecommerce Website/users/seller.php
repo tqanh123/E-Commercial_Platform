@@ -65,9 +65,6 @@ function addProduct($product_name, $product_description, $price, $quantity, $sel
     }
 }
 
-
-
-
 // If form is submitted to add a product
 if (isset($_POST['add_product'])) {
     $product_name = $_POST['product_name'];

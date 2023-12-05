@@ -6,6 +6,7 @@ include ('../includes/connect.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecommerce Website</title>
@@ -44,7 +45,7 @@ include ('../includes/connect.php');
           <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link active" aria-current="page" href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a> 
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Price:500/-</a>
@@ -72,7 +73,7 @@ include ('../includes/connect.php');
         <!-- Third child-->
         <div class="bg-light"></div>
         <h3 class="text-center">Hidden Store</h3>
-        <p class="text-center">Communication is at the heart of e-commerce and comm unity</p>
+        <p class="text-center">Communication is at the heart of e-commerce and community</p>
 <!--last child-->
 <div class="bg-info p-3 text-center">
   <p>Together we make differences in 20 years || 2003-2023<p>
@@ -84,3 +85,4 @@ include ('../includes/connect.php');
 
 </body>
 </html>
+<?php include 'product-display.php'; ?>
