@@ -1,20 +1,8 @@
 <?php
-// $host_name = "localhost";
-// $username = "root";
-// $password = "";
-// $db_name = "e_commercial";
-
-// // create connection
-// $conn = new mysqli($host_name, $username, $password, $db_name);
-
-// // check connection
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-// }
-require_once '../EcommerceWebsite/includes/connect.php';
+include('../EcommerceWebsite/includes/connect.php');
 
 // select all product data from database
-$sql = "SELECT Product.Product_ID, Product.Product_Name, Product.Price FROM Product";
+$sql = "SELECT Product_ID, Product_Name, Price FROM Product";
 $result = $conn->query($sql);
 
 // generate HTML code to display products
@@ -26,7 +14,8 @@ if ($result->num_rows > 0) {
     echo "<p class='product-price'>Price: ".$row['Price']."</p>";
     echo "<form method=\"post\" action=\"cart.php\">";
     echo "<input type=\"hidden\" name=\"product_id\" value=\"".$row['Product_ID']."\">";
-    echo "<input type=\"submit\" name=\"add_to_cart\" value=\"Add to Cart\">";
+    echo "<input type=\"hidden\" name=\"action\" value=\"add_to_cart\">";
+    echo "<input type=\"submit\" name=\"AddToCart\" value=\"add to cart\">";
     echo "</form>";
     echo "</div>";
     }

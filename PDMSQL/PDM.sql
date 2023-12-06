@@ -16,7 +16,13 @@ CREATE TABLE `Category` (
     Category_ID INT AUTO_INCREMENT PRIMARY KEY,
     Category_Name VARCHAR(255)
 );
-
+CREATE TABLE `Seller` (
+    Seller_ID INT AUTO_INCREMENT PRIMARY KEY,
+    Account_ID INT,
+    Seller_Description TEXT,
+    Seller_Ratings DECIMAL(4, 2),
+    FOREIGN KEY (Account_ID) REFERENCES Account(Account_ID)
+); 
 CREATE TABLE `Product` (
     Product_ID INT AUTO_INCREMENT PRIMARY KEY,
     Category_ID INT,
@@ -29,22 +35,16 @@ CREATE TABLE `Product` (
     Product_Sold INT,
     Product_Status VARCHAR(20),
     Product_Ratings DECIMAL(4, 2),
-    FOREIGN KEY (Seller_ID) REFERENCES `Seller`(Seller_ID),
-    FOREIGN KEY (Category_ID) REFERENCES `Category`(Category_ID)
+    FOREIGN KEY (Seller_ID) REFERENCES Seller(Seller_ID),
+    FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID)
 ); 
 
-CREATE TABLE `Seller` (
-    Seller_ID INT AUTO_INCREMENT PRIMARY KEY,
-    Account_ID INT,
-    Seller_Description TEXT,
-    Seller_Ratings DECIMAL(4, 2),
-    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID)
-); 
+
 
 CREATE TABLE `Customer` (
     Customer_ID INT AUTO_INCREMENT PRIMARY KEY,
     Account_ID INT,
-    FOREIGN KEY (Account_ID) REFERENCES `Account`(Account_ID)
+    FOREIGN KEY (Account_ID) REFERENCES Account(Account_ID)
 );
 
 CREATE TABLE `Cart` (
@@ -52,7 +52,7 @@ CREATE TABLE `Cart` (
     Customer_ID INT,
     Create_at DATETIME,
     Update_at DATETIME,
-    FOREIGN KEY (Customer_ID) REFERENCES `Customer`(Customer_ID)
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 );
 
 CREATE TABLE `CartItem` (
@@ -63,8 +63,8 @@ CREATE TABLE `CartItem` (
     Cart_Item_Price DECIMAL(10, 2),
     Create_at DATETIME,
     Update_at DATETIME,
-    FOREIGN KEY (Cart_ID) REFERENCES `Cart`(Cart_ID),
-    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID)
+    FOREIGN KEY (Cart_ID) REFERENCES Cart(Cart_ID),
+    FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
 );
 
 
@@ -80,7 +80,7 @@ CREATE TABLE `Order` (
     Order_Delivered_Carrier_Date DATETIME,
     Order_Delivered_Customer_Date DATETIME,
     Order_Estimated_Customer_Date DATETIME,
-    FOREIGN KEY (Customer_ID) REFERENCES `Customer`(Customer_ID)
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 );
 
 CREATE TABLE `Order_Items` (
@@ -91,7 +91,7 @@ CREATE TABLE `Order_Items` (
     Price DECIMAL(10, 2),
     Product_Quantity INT,
     FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID),
-    FOREIGN KEY (Product_ID) REFERENCES `Product`(Product_ID)
+    FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
 );
 
 CREATE TABLE `Payments` (
@@ -104,7 +104,7 @@ CREATE TABLE `Payments` (
     FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID)
 );
 
-CREATE TABLE`Order_Review` (
+CREATE TABLE `Order_Review` (
     Review_ID INT AUTO_INCREMENT PRIMARY KEY,
     Order_ID INT,
     Review_Score INT,
@@ -122,7 +122,7 @@ CREATE TABLE `History` (
     Order_ID INT,
     TimeStamp DATETIME,
     Product_Name VARCHAR(255),
-    FOREIGN KEY (Customer_ID) REFERENCES `Customer`(Customer_ID),
-    FOREIGN KEY (Seller_ID) REFERENCES `Seller`(Seller_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
+    FOREIGN KEY (Seller_ID) REFERENCES Seller(Seller_ID),
     FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID) 
 );

@@ -45,9 +45,6 @@ include ('../EcommerceWebsite/includes/connect.php');
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Price:500/-</a>
-        </li>
        
       </ul>
       <form class="d-flex" role="search">
@@ -65,20 +62,24 @@ include ('../EcommerceWebsite/includes/connect.php');
           <a class="nav-link active" aria-current="page" href="#">Welcome Guest</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Login</a>
+          <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/user_area/login.php">Login</a>
       </li>
   </ul>
 </nav>
 <!-- Third child-->
-<div class="bg-light"></div>
-<h3 class="text-center">Hidden Store</h3>
-<p class="text-center">Communication is at the heart of e-commerce and community</p>
+<div class="bg-light">
+  <h3 class="text-center">Hidden Store</h3>
+  <p class="text-center">Communication is at the heart of e-commerce and community</p>
+</div>
         <!-- Category button -->
 <div class="text-center">
-    <a href="category.php" class="btn btn-primary">Browse Categories</a>
+  <a href="category.php" class="btn btn-primary">Browse Categories</a>
 </div>
+
+<?php include 'product-display.php'; ?>
+
 <!--last child-->
-<div class="bg-info p-3 text-center">
+<div class="bg-info p-3 text-center footer">
   <p>Together we make differences in 20 years || 2003-2023<p>
 </div>
 <!-- bootstrap js link-->
@@ -88,4 +89,3 @@ include ('../EcommerceWebsite/includes/connect.php');
 
 </body>
 </html>
-<?php include 'product-display.php'; ?>

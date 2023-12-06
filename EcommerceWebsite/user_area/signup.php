@@ -27,8 +27,6 @@
             }
             else if ($password === $repassword) {
                 
-                // $ID = "Select Account_ID from account where Account_ID >= (select Account_ID from account)";
-                // $ID++;
                 $query = "insert into `account` (Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
                 values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', 'male', '$Phone_Number', '$Email', NULL)";
                 //values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', '$Gender', '$Phone_Number', '$Email', NULL)";
@@ -50,7 +48,7 @@
                     $insert_cart = mysqli_query($conn, $cart_query);
                     
                     echo"<script type='text/javascript'> alert('Password Matched!Successfully Register ')</script>";
-                    echo "<script>window.open('../index.php','_self')</script>";
+                    echo "<script>window.open('login.php','_self')</script>";
                 }
                 
             } else {
@@ -88,7 +86,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form login and register</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./acc.css">
 </head>
 <body>
     <div class="signup">

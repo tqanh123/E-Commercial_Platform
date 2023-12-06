@@ -1,7 +1,7 @@
 <?php
-    session_start();
 
-    include("../includes/connect.php");
+include("../includes/connect.php");
+session_start();
 
     if(isset($_POST['suplier_register']))
     {
@@ -27,8 +27,6 @@
             }
             else if ($password === $repassword) {
                 
-                // $ID = "Select Account_ID from account where Account_ID >= (select Account_ID from account)";
-                // $ID++;
                 $query = "insert into `account` (Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
                 values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', NULL, '$Phone_Number', '$Email', NULL)";
                 //values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', NULL, '$Phone_Number', '$Email', NULL)";
@@ -43,7 +41,7 @@
                     $insert_cus = mysqli_query($conn, $cus_query);
 
                     echo"<script type='text/javascript'> alert('Password Matched! Successfully Register!!')</script>";
-                    echo "<script>window.open('shop.php','_self')</script>";
+                    echo "<script>window.open('../user_area/login.php','_self')</script>";
                 }
                 
             } else {
@@ -63,7 +61,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form login and register</title>
-    <link rel="stylesheet" href="../user_area/style.css">
+    <link rel="stylesheet" href="../user_area/acc.css">
 </head>
 <body>
     <div class="signup">

@@ -1,6 +1,6 @@
 <?php 
 include ('../includes/connect.php');
-session_start();
+@session_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,17 +35,23 @@ session_start();
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="add_product.php">Inset Product</a>
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">View Product</a>
+          <a class="nav-link active" aria-current="page" href="#">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Insert Category</a>
+          <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">View Category</a>
+          <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>
+       
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
   </div>
 </nav>
@@ -53,37 +59,39 @@ session_start();
 <!-- Second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <ul class="navbar-nav me-auto">
-      <?php
+  <?php
+  // echo session_id(); 
+  // echo $_SESSION['username'];
           if (!isset($_SESSION['username'])) {
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom Guest</a></li>";
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='../user_area/login.php'>Login</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='login.php'>Login</a></li>";
           }
           else {
             $name = $_SESSION['username'];
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom $name</a></li>";
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='../user_area/logout.php'>Logout</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='logout.php'>Logout</a></li>";
           }
       ?>
-      
   </ul>
 </nav>
 <!-- Third child-->
 <div class="bg-light">
-<h3 class="text-center">Hidden Store</h3>
-<p class="text-center">Communication is at the heart of e-commerce and community</p>
+    <h3 class="text-center">Hidden Store</h3>
+    <p class="text-center">Communication is at the heart of e-commerce and community</p>
 </div>
-
+        <!-- Category button
+<div class="text-center">
+    <a href="category.php" class="btn btn-primary">Browse Categories</a>
+</div> -->
+<!-- <?php include 'product-display.php'; ?> -->
 <!--last child-->
 <div class="bg-info p-3 text-center">
   <p>Together we make differences in 20 years || 2003-2023<p>
-</div>
-
-<!-- <?php include '../product-display.php'; ?> -->
-
-
+      </div>
 <!-- bootstrap js link-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

@@ -1,19 +1,8 @@
 <?php
 // Function to handle payment process
 function makePayment($customerID, $orderID, $paymentType, $paymentInstallments, $paymentValue) {
-    // Database connection parameters
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "e_commercial";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    // Connection
+    include('../includes/connect.php');
 
     // Prepare and execute INSERT query for Payments table
     $insertPaymentQuery = "INSERT INTO Payments (Order_ID, Payment_Type, Payment_Installments, Payment_Value)

@@ -2,3 +2,9 @@
     width: 5%;
     height: 5%;
 }
+
+.footer {
+    position:fixed;
+    bottom: 0;
+    width: 100%
+}
