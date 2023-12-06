@@ -11,7 +11,6 @@ CREATE TABLE `Account` (
     Profile_Picture VARCHAR(255)
 );  
 
-
 CREATE TABLE `Category` (
     Category_ID INT AUTO_INCREMENT PRIMARY KEY,
     Category_Name VARCHAR(255)
