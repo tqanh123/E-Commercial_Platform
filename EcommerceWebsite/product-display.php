@@ -1,5 +1,5 @@
 <?php
-include('../EcommerceWebsite/includes/connect.php');
+include('../includes/connect.php');
 
 // select all product data from database
 $sql = "SELECT Product_ID, Product_Name, Price FROM Product";

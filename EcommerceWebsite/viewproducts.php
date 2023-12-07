@@ -27,16 +27,11 @@
         <h3>Products</h3>
         <div class="row">
             <?php
+
+            include('../EcommerceWebsite/includes/connect.php');
+
             // Retrieve the selected category from the URL query parameter
             $category = $_GET['category'] ?? '';
-
-            // Create a connection to the database
-            $host_name = "localhost";
-            $username = "root";
-            $password = "";
-            $db_name = "e_commercial";
-
-            $conn = new mysqli($host_name, $username, $password, $db_name);
 
             // Check the connection
             if ($conn->connect_error) {
@@ -44,7 +39,7 @@
             }
 
             // Query to fetch products based on the selected category
-            $sql = "SELECT Product.Product_ID, Product.Product_Name, Product.Price, Product.Product_Category FROM Product WHERE Product.Product_Category = '$category' ";
+            $sql = "SELECT Product_ID, Product_Name, Price, Product_Category FROM Product WHERE Product_Category = '$category' ";
             $result = $conn->query($sql);
 
             // Display products
