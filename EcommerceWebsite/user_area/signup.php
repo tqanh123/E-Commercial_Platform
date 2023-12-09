@@ -43,8 +43,7 @@
                     $cart ="Select Customer_ID from customer where Account_ID = '$ID'";
                     $cus= $conn -> query($cart);
                     $cus_ID = $cus -> fetch_array()[0];
-                    $time = "Select NOW()";
-                    $cart_query = "insert into cart (Customer_ID, Create_at, update_at) values('$cus_ID', '$time', '$time')"; 
+                    $cart_query = "insert into cart (Customer_ID, Create_at, update_at) values('$cus_ID', NOW(), NOW())"; 
                     $insert_cart = mysqli_query($conn, $cart_query);
                     
                     echo"<script type='text/javascript'> alert('Password Matched!Successfully Register ')</script>";

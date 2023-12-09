@@ -54,6 +54,8 @@ if (isset($_POST['user_login'])) {
 
             if ($row_cuss > 0) {
 
+                $row = mysqli_fetch_assoc($res);
+                $_SESSION['Cart_ID'] = $row['Customer_ID'];
                 $_SESSION['username'] = $username;
                 echo "<script>window.open('checkout.php','_self')</script>";
                 // echo $_SESSION['username'];

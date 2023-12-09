@@ -49,7 +49,7 @@
                     echo "<div class='product-item'>";
                     echo "<h3 class='product-name'>".$row['Product_Name']."</h3>";
                     echo "<p class='product-price'>Price: ".$row['Price']."</p>";
-                    echo "<form method=\"post\" action=\"cart.php\">";
+                    echo "<form method=\"post\" action=\"\">";
                     echo "<input type=\"hidden\" name=\"product_id\" value=\"".$row['Product_ID']."\">";
                     echo "<input type=\"hidden\" name=\"action\" value=\"add_to_cart\">";
                     echo "<input type=\"submit\" name=\"AddToCart\" value=\"add to cart\" class=\"btn btn-primary\">";

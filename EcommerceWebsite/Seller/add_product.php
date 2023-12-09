@@ -3,15 +3,6 @@
 require_once '../includes/connect.php';
 session_start(); // Starting the session
 
-function addProduct($product_name, $product_description, $price, $quantity, $seller_id, $category_id)
-{
-
-    // Inserting the product into the Product table
-                                                                                                     
-
-
-}
-
 // If form is submitted to add a product
 if (isset($_POST['add_product'])) {
     $product_name = $_POST['product_name'];
@@ -26,8 +17,9 @@ if (isset($_POST['add_product'])) {
     $row = mysqli_fetch_assoc($res);
     $seller_id = $row['Seller_ID'];
 
-    $add_product_result = "INSERT INTO `Product` (Seller_Id, Product_Description, Price, Product_Quantity, Product_Sold, Category_ID, Product_Ratings, Product_Status) 
-                           VALUES ('$seller_id', '$product_description', $price, $quantity, 0, $category_id, 0, 'available')";
+    echo "<script>alert($category_id)</script>";
+    $add_product_result = "INSERT INTO `Product` (Seller_Id, Product_name, Product_Description, Price,  Category_ID,Product_Quantity, Product_Sold, Product_Ratings, Product_Status) 
+                           VALUES ('$seller_id', '$product_name', '$product_description', '$price', '$category_id', '$quantity', 0, 0, 'available')";
     $done = mysqli_query($conn, $add_product_result);
 
     if ($done) {

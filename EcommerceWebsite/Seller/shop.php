@@ -20,7 +20,7 @@ session_start();
      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
      <!--CSS file-->
-     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="../style.css">
     </head>
 <body>
 <!--navbar-->
@@ -73,12 +73,13 @@ session_start();
 <p class="text-center">Communication is at the heart of e-commerce and community</p>
 </div>
 
+<!-- <?php include '../product-display.php'; ?> -->
+
 <!--last child-->
-<div class="bg-info p-3 text-center">
+<div class="bg-info p-3 text-center footer">
   <p>Together we make differences in 20 years || 2003-2023<p>
 </div>
 
-<!-- <?php include '../product-display.php'; ?> -->
 
 
 <!-- bootstrap js link-->

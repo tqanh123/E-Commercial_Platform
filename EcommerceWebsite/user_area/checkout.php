@@ -1,6 +1,9 @@
 <?php 
 include ('../includes/connect.php');
-@session_start();
+session_start();
+
+$sql = "select * from `Product`";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -44,9 +47,8 @@ include ('../includes/connect.php');
           <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link active" aria-current="page" href="/EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge">3</span></a>
         </li>
-       
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -79,11 +81,24 @@ include ('../includes/connect.php');
     <h3 class="text-center">Hidden Store</h3>
     <p class="text-center">Communication is at the heart of e-commerce and community</p>
 </div>
-        <!-- Category button
-<div class="text-center">
-    <a href="category.php" class="btn btn-primary">Browse Categories</a>
-</div> -->
-<?php include '../product-display.php'; ?>
+
+<div class='container-fluid list_product'>
+  <?php
+  // generate HTML code to display products
+    while ($row = $result->fetch_assoc()) { ?>
+      <div class="card">
+        <div class="caption">
+            <p class="product Name"><?php echo $row["Product_Name"]; ?></p>
+            <p class="price">Rate: <b>4</b></p>
+            <p class="price">Price: <b>$<?php echo $row["Price"]; ?></b></p>
+            <p class="description">Description:<?php echo $row["Product_Description"]; ?></p>
+            <button class="add" cart-id = "<?php echo $_SESSION["Cart_ID"]; ?>" data-id ="<?php echo $row["Product_ID"]; ?>"> Add to cart </button>
+        </div>
+      </div>
+<?php
+    }           
+?>
+</div>
 <!--last child-->
 <div class="bg-info p-3 text-center footer">
   <p>Together we make differences in 20 years || 2003-2023<p>
@@ -95,3 +110,28 @@ include ('../includes/connect.php');
 
 </body>
 </html>
+
+<script> 
+    var product_id = document.getElementsByClassName("add");
+    for (var i = 0; i < product_id.length; i++) {
+      product_id[i].addEventListener("click", function(event){
+        var target  = event.target;
+        var id = target.getAttribute("data-id");
+        var cid = target.getAttribute('cart-id');
+
+        // alert(cid);
+            var xml = new XMLHttpRequest();
+            xml.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    // alert(this.responseText);
+                    var data = JSON.parse(this.responseText);
+                    target.innerHTML = data.in_cart;
+                    document.getElementById("badge").innerHTML = data.num_cart;
+                }
+            }
+
+            xml.open("GET", "../includes/connect.php?p_id="+id+"&c_id="+cid, true);
+            xml.send();
+      })
+    }
+</script>
