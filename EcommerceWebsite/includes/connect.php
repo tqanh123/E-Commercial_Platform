@@ -44,15 +44,16 @@ if (isset($_GET['p_id'])){
     } 
 
 }
-// echo $_GET['cart_id'];
-// die ('successfull');
+
 if (isset($_GET['ci_id']) ){
     $cartitem_id = $_GET['ci_id'];
     $sql = "DELETE FROM `cartitem` WHERE Cart_Item_ID = '$cartitem_id'";
-
+    
     if ($conn -> query($sql) === true) {
-        echo "Remove from cart";
-        echo json_encode(["num_cart" => -1]);
+        // $select = "SELECT * FROM `cartitem WHERE "
+        // $num = mysqli_num_rows($sql);
+        $incart = "Remove from cart";
+        echo json_encode(["num_cart" => -1, "in_cart" => $incart]);
     }
 
 }

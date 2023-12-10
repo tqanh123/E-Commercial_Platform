@@ -4,6 +4,11 @@ session_start();
 
 $sql = "select * from `Product`";
 $result = $conn->query($sql);
+
+$cart_id = $_SESSION['Cart_ID'];
+$sql_cart = "SELECT * FROM `cartitem` WHERE Cart_ID = '$cart_id'";
+$res_cart = mysqli_query($conn, $sql_cart);
+$num_row = mysqli_num_rows($res_cart);
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +52,7 @@ $result = $conn->query($sql);
           <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge">3</span></a>
+          <a class="nav-link active" aria-current="page" href="/EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge"><?php echo "$num_row" ?> </span></a>
         </li>
       </ul>
       <form class="d-flex" role="search">

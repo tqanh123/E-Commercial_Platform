@@ -10,6 +10,8 @@ session_start();
     $sql = "SELECT * FROM cartitem NATURAL JOIN Product WHERE Cart_ID = '$cart_id'";
     $res = mysqli_query($conn, $sql);
 
+    $num_item = mysqli_num_rows($res);
+    $total = 0;
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +46,7 @@ session_start();
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/EcommerceWebsite/user_area/checkout.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="/EcommerceWebsite/user_area/home.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Products</a>
@@ -53,7 +55,7 @@ session_start();
           <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge"><?php echo "$num_item" ?> </span></a>
         </li>
        
       </ul>
@@ -89,30 +91,39 @@ session_start();
 
 <div class="container cart">
     <?php
-        $num_row = mysqli_num_rows($res);
-        if ($num_row === 0) {
+        if ($num_item === 0) {
             ?>
-
+        <div class="bg-light">
+            <h3 class="text-center">There is no item here!!</h3>
+        </div>
     <?php
         } 
         else {
             while ($row = $res -> fetch_assoc()) {
+              $quantity = $row["Cart_Item_Quantity"];
+              $price = $row["Price"];
+              $total += $quantity * $price;
     ?>
             <div class="card">
                 <div class="caption">
                     <p class="product Name"> <?php echo $row["Product_Name"]; ?></p>
-                    <p class="price">Price: <b>$<?php echo $row["Price"]; ?></b></p>
+                    <p class="price">Price: <b>$<?php echo $price ?></b></p>
                     <p class="description">Description: <?php echo $row["Product_Description"]; ?></p>
-                    <p class="description"> quantity: <?php echo $row["Cart_Item_Quantity"]; ?></p>
+                    <p class="description"> quantity: <?php echo $quantity ?></p>
                     <button class="remove" data-citem = " <?php echo $row["Cart_Item_ID"]; ?> " 
-                                           data-cart = "<?php echo $_SESSION["Cart_ID"]; ?>"> Remove from cart </button>
+                                           data-price = "<?php echo ($quantity * $price) ?>"> Remove from cart </button>
                 </div>
             </div>
-    <?php
-            }
-        }
-    ?>
-</div>
+        <?php } ?>
+        <div>
+
+          <form method ="POST" action="">
+            <p name = "total" id = "total">Total Price: <?php echo $total ?></p>
+            <button name ="Checkout">Check out</button>
+          </form>
+        </div>
+    <?php } ?>
+  </div>
 
 <!--last child-->
 <div class="bg-info p-3 text-center footer">
@@ -131,15 +142,18 @@ session_start();
     for (var i = 0; i < cartitem_id.length; i++) {
       cartitem_id[i].addEventListener("click", function(event){
         var target  = event.target;
-        var cart = target.getAttribute('data-cart');
         var citem = target.getAttribute('data-citem');
+        var iprice = target.getAttribute('data-price');
+
 
         var xml = new XMLHttpRequest();
         xml.onreadystatechange = function(){
           if (this.readyState == 4 && this.status == 200) {
-    
-            target.innerHTML = this.responeText;
+            var data = JSON.parse(this.responseText);
             target.style.opacity = .3;
+            target.innerHTML = data.in_cart;
+            document.getElementById('badge').innerHTML--;
+            document.getElementById('total').innerHTML -= iprice;
           }
         }        
         

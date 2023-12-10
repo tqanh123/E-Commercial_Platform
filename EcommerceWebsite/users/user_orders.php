@@ -8,20 +8,11 @@
 </head>
 <body>
     <?php
-    $servername = "127.0.0.1:3307";
-    $username = "root";
-    $password = "1234";
-    $dbname = "e_commercial";
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    include('../includes/connect.php');
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    // $username = $_SESSION['username'];
-    $username = 'Anh Khoa';
+    $username = $_SESSION['username'];
+    // $username = 'Anh Khoa';
     $get_user = "SELECT * FROM account JOIN customer WHERE Username='$username' AND account.Account_ID = customer.Account_ID";
     $result = mysqli_query($conn, $get_user);
     $row_fetch = mysqli_fetch_assoc($result);

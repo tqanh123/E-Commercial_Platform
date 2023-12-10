@@ -57,7 +57,7 @@ if (isset($_POST['user_login'])) {
                 $row = mysqli_fetch_assoc($res);
                 $_SESSION['Cart_ID'] = $row['Customer_ID'];
                 $_SESSION['username'] = $username;
-                echo "<script>window.open('checkout.php','_self')</script>";
+                echo "<script>window.open('home.php','_self')</script>";
                 // echo $_SESSION['username'];
 
                 // echo"<script>alert('Login successful!')</scipt>"
