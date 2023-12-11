@@ -64,11 +64,14 @@
     width: 100%;
     display: flex;
     text-align: center;
+
 }
 
 .cart .card .caption p {
-    line-height: 58px;
+    line-height: 40px;
     padding-left: 12px;
+    width: 250px;
+    text-align: center;
 }
 
 .cart .card .caption {
@@ -78,6 +81,8 @@
     flex-direction: row;
     justify-content: left;
     align-content: center;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .cart .card .caption button {
@@ -91,5 +96,16 @@
 	border-radius: 3px;
 	margin-top: 2px;
 	font-weight: bold;
-	width: 30%;
+	/* width: 30%; */
+}
+
+.cart .quantity {
+	width: 24px;
+	height: 24px;
+	padding: 0 10px;
+    font-weight: 100;
+    font-size: large;
+    text-align: center;
+    align-items: center;
+    padding: 0;
 }
