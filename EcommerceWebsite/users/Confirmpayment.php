@@ -1,9 +1,5 @@
 <?php
-// Replace these variables with your actual database credentials
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "e_commercial";
+include ('../includes/connect.php');
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

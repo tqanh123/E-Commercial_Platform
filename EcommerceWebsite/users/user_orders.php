@@ -10,7 +10,7 @@
     <?php
 
     include('../includes/connect.php');
-
+    session_start();
     $username = $_SESSION['username'];
     // $username = 'Anh Khoa';
     $get_user = "SELECT * FROM account JOIN customer WHERE Username='$username' AND account.Account_ID = customer.Account_ID";

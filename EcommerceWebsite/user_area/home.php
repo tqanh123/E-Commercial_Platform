@@ -52,7 +52,7 @@ $num_row = mysqli_num_rows($res_cart);
           <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/EcommerceWebsite/cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge"><?php echo "$num_row" ?> </span></a>
+          <a class="nav-link active" aria-current="page" href="../cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge"><?php echo "$num_row" ?> </span></a>
         </li>
       </ul>
       <form class="d-flex" role="search">
