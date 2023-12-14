@@ -1,32 +1,60 @@
-
 <?php
-include('../includes/connect.php'); 
-if(isset($_POST['insert_cat'])){
-$category_title=$_POST['cat_title'];
-// select data from database
-$select_query="Select * from `categories` where category_title='$category_title'"; 
-$result_select=mysqli_query($con, $select_query); 
-$number=mysqli_num_rows($result_select);
-if($number>0){
-    echo "<script> alert(' this category is present inside the database')</script>";
-}
-$insert_query="insert into `categories` (category_title) values ('$category_title')"; 
-$result=mysqli_query($con, $insert_query);
-if($result) {
-    echo "<script> alert('Category has been inserted successfully')</script>";
-}
+require_once '../includes/connect.php';
+
+// Function to add a new category
+function addCategory($category_name)
+{
+    global $conn;
+
+    // Inserting the category into the Category table
+    $insert_category_query = "INSERT INTO `Category` (Category_Name) VALUES ('$category_name')";
+
+    if ($conn->query($insert_category_query) === TRUE) {
+        return "Category added successfully!";
+    } else {
+        return "Error adding category: " . $conn->error;
+    }
 }
 
+// If form is submitted to add a category
+if (isset($_POST['add_category'])) {
+    $category_name = $_POST['category_name'];
+
+    $add_category_result = addCategory($category_name);
+    echo "<script>alert('$add_category_result');</script>";
+}
+$category_query = "SELECT Category_Name FROM Category";
+$category_result = $conn->query($category_query);
 ?>
-<form action="" method="post" class="mb-2"> 
-<div class="input-group w-90 mb-2">
-<span class="input-group-text bg-info" id="basic-addon1">
-    <i class="fa-solid fa-receipt"></i></span>
-<input type="text" class="form-control" name="cat_title" placeholder="Insert categories" aria-label="Categories"
-aria-describedby="basic-addon1">    
-</div>
-<div class="input-group w-10 mb-2 m-auto">
-<!-- <input type="submit" class="form-control bg-info" name="insert_cat" value="Insert Categories"> -->
-<button class="bg-info p-2 my-3 border-0">Insert Categories</button>
-</div>
-</form>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content goes here -->
+</head>
+<body>
+    <!-- Category add form -->
+    <h2>Add New Category</h2>
+    <form action="" method="POST">
+        <label for="category_name">Category Name:</label>
+        <input type="text" id="category_name" name="category_name" required><br><br>
+
+        <input type="submit" name="add_category" value="Add Category">
+    </form>
+    <div class="container">
+        <h3 class="mt-4">Select a Category</h3>
+        <div class="list-group mt-3">
+            <?php
+            // Display fetched categories as links
+            if ($category_result->num_rows > 0) {
+                while ($row = $category_result->fetch_assoc()) {
+                    echo "<div><a href='ViewProducts.php?category=".urlencode($row['Category_Name'])."' class='list-group-item list-group-item-action'>".$row['Category_Name']."</a></div>";
+                }
+            } else {
+                echo "No categories found.";
+            }
+            ?>
+        </div>
+    </div>
+</body>
+</html>

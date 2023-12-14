@@ -38,13 +38,13 @@ session_start();
           <a class="nav-link active" aria-current="page" href="add_product.php">Insert Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">View Product</a>
+        <a class="nav-link active" aria-current="page" href="viewproduct.php">View Product</a>
         </li>
         <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="insertcategory.php">Insert category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">View Category</a>
+        <a class="nav-link active" aria-current="page" href="viewcategory.php">View Category</a>
         </li>
     </div>
   </div>
