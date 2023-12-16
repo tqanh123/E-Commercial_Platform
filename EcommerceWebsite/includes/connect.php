@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 }
 
 if (isset($_GET['p_id'])){
+    // echo "<script> alert('ok'); </script> ";
     $product_ID = $_GET['p_id'];
     $cart_id = $_GET['c_id'];
     $sql = "SELECT * FROM `cartitem` WHERE cart_ID = '$cart_id' and product_id = '$product_ID'";
