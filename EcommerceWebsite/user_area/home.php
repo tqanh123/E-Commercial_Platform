@@ -73,12 +73,12 @@ $num_row = mysqli_num_rows($res_cart);
   // echo session_id(); 
   // echo $_SESSION['username'];
           if (!isset($_SESSION['username'])) {
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom Guest</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome Guest</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='login.php'>Login</a></li>";
           }
           else {
             $name = $_SESSION['username'];
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom $name</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome $name</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='logout.php'>Logout</a></li>";
           }
       ?>
@@ -92,12 +92,11 @@ $num_row = mysqli_num_rows($res_cart);
 
 <div class='container-fluid list_product'>
   <?php
-  // generate HTML code to display products
+ 
     while ($row = $result->fetch_assoc()) { ?>
       <div class="card">
         <div class="caption">
             <p class="product Name"><?php echo $row["Product_Name"]; ?></p>
-            <p class="price">Rate: <b>4</b></p>
             <p class="price">Price: <b>$<?php echo $row["Price"]; ?></b></p>
             <p class="description">Description:<?php echo $row["Product_Description"]; ?></p>
             <button class="add" cart-id = "<?php echo $_SESSION["Cart_ID"]; ?>" data-id ="<?php echo $row["Product_ID"]; ?>"> Add to cart </button>

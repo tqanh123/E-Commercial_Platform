@@ -1,4 +1,5 @@
 <?php 
+require_once '../History.php';
 include ('../includes/connect.php');
 session_start();
 
@@ -16,6 +17,9 @@ session_start();
         $quantity = $row_fetch['Cart_Item_Quantity'];
         $customer_id = $row_fetch['Customer_ID'];
         $total_price_per_item += $item_price * $quantity;
+
+        $product_name = $row_fetch['Product_Name'];
+        $seller_id = $row_fetch['Seller_ID'];
     }
 
 if(isset ($_POST['confirm_payment'])){
@@ -33,7 +37,7 @@ if(isset ($_POST['confirm_payment'])){
     if ($result) {
         echo "<h3 class=' text-center text-light'>Successfully completed the payment </h3>";
         FinishPayment($cart_id, $order_id);
-        echo "<script>window.open('../user_area/home.php','_self')</script>";
+        recordHistory($customer_id, $seller_id, $order_id, $product_name);
     }
 }
 

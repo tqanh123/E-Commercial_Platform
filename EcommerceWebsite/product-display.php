@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
         echo "<div class='card'>
                 <div class='caption'>
                     <p class='product Name'> $name </p>
-                    <p class='price'>Rate: <b>4</b></p>
+                    <p class='price'>Rate: <b>6</b></p>
                     <p class='price'>Price: <b>$ $price </b></p>
                     <p class='description'>Description: $description</p>
                     <button class='add' data-id = ' <?php echo $product_ID ?> '> add to cart </button>

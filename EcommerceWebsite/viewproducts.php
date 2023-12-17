@@ -30,15 +30,12 @@
 
             include('../EcommerceWebsite/includes/connect.php');
 
-            // Retrieve the selected category from the URL query parameter
             $category = $_GET['category'] ?? '';
 
             // Check the connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-
-            // Query to fetch products based on the selected category
             $sql = "SELECT Product_ID, Product_Name, Price, Product_Category FROM Product WHERE Product_Category = '$category' ";
             $result = $conn->query($sql);
 
@@ -61,7 +58,6 @@
                 echo "No products found for this category.";
             }
 
-            // Close the database connection
             $conn->close();
             ?>
         </div>

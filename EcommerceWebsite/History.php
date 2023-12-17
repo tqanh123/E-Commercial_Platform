@@ -1,6 +1,6 @@
 <?php
 
-require_once '../EcommerceWebsite/includes/connect.php';
+require_once '../includes/connect.php';
 
 // Function to record history
 function recordHistory($customerID, $sellerID, $orderID, $productName) {
@@ -11,11 +11,11 @@ function recordHistory($customerID, $sellerID, $orderID, $productName) {
     $sql = "INSERT INTO history (Customer_ID, Seller_ID, Order_ID, TimeStamp, Product_Name)
     VALUES ('$customerID', '$sellerID', '$orderID', '$timestamp', '$productName')";
     
-    if ($conn->query($sql) === TRUE) {
-        echo "History recorded successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    // if ($conn->query($sql) === TRUE) {
+    //     echo "History recorded successfully";
+    // } else {
+    //     echo "Error: " . $sql . "<br>" . $conn->error;
+    // }
 }
 
 function displayHistory() {
