@@ -1,9 +1,9 @@
 
 <?php
 
-$servername = "127.0.0.1:3307";
+$servername = "localhost";
 $username = "root";
-$password = "1234";
+$password = "";
 $dbname = "e_commercial";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 if (isset($_GET['p_id'])){
-    // echo "ok";
+    // echo "<script> alert('ok'); </script> ";
     $product_ID = $_GET['p_id'];
     $cart_id = $_GET['c_id'];
     $sql = "SELECT * FROM `cartitem` WHERE cart_ID = '$cart_id' and product_id = '$product_ID'";
