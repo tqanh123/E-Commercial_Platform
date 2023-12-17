@@ -46,6 +46,9 @@ session_start();
         <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="viewcategory.php">View Category</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="statistics.php">View Statistics</a>
+        </li>
     </div>
   </div>
 </nav>
@@ -55,12 +58,12 @@ session_start();
   <ul class="navbar-nav me-auto">
       <?php
           if (!isset($_SESSION['username'])) {
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom Guest</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome Guest</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='../user_area/login.php'>Login</a></li>";
           }
           else {
             $name = $_SESSION['username'];
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom $name</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome $name</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='../user_area/logout.php'>Logout</a></li>";
           }
       ?>

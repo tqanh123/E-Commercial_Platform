@@ -71,6 +71,7 @@ if (isset($_POST['user_login'])) {
             } else {
                 echo "<script>alert('go to shop')</script>";
                 $_SESSION['username'] = $username;
+                // $_SESSION['seller_id'] = $seller_id;
                 echo "<script>window.open('../Seller/shop.php','_self')</script>";
             }
         } else {

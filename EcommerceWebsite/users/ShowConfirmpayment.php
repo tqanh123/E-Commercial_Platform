@@ -1,20 +1,25 @@
 <?php 
+require_once '../History.php';
 include ('../includes/connect.php');
 session_start();
 
     $name = $_SESSION['username'];
     $cart_id = $_SESSION['Cart_ID'];
 
-    $select_data ="    SELECT ci.*, c.Customer_ID 
-                                FROM `cartitem` ci
-                                JOIN `cart` c ON ci.cart_id = c.cart_id
-                                WHERE ci.cart_id = $cart_id";
+    $select_data = "SELECT ci.*, c.Customer_ID, p.Product_Name, p.Seller_ID
+                            FROM `cartitem` ci
+                            JOIN `cart` c ON ci.cart_id = c.cart_id
+                            JOIN `Product` p ON ci.Product_ID = p.Product_ID
+                            WHERE ci.cart_id = $cart_id";
     $result= mysqli_query($conn,$select_data);
     while($row_fetch = mysqli_fetch_assoc($result)) {
         $item_price = $row_fetch['Cart_Item_Price'];
         $quantity = $row_fetch['Cart_Item_Quantity'];
         $customer_id = $row_fetch['Customer_ID'];
         $total_price_per_item = $item_price * $quantity;
+
+        $product_name = $row_fetch['Product_Name'];
+        $seller_id = $row_fetch['Seller_ID'];
     }
 
 if(isset ($_POST['confirm_payment'])){
@@ -32,7 +37,7 @@ if(isset ($_POST['confirm_payment'])){
     if ($result) {
         echo "<h3 class=' text-center text-light'>Successfully completed the payment </h3>";
         FinishPayment($cart_id, $order_id);
-
+        recordHistory($customer_id, $seller_id, $order_id, $product_name);
     }
 }
 
