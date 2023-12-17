@@ -45,7 +45,7 @@ if (isset($_POST['user_login'])) {
         if ($row_count === 0) {
             echo "<script>alert('username does not exist')</script>";
         } else if (password_verify($password, $row_data['Password'])) {
-
+            // verify password
             $select = "Select * 
                            from `customer` c, `account` a 
                            where c.account_id = a.account_id and a.username = '$username'";
@@ -56,18 +56,9 @@ if (isset($_POST['user_login'])) {
 
                 $row = mysqli_fetch_assoc($res);
                 $_SESSION['Cart_ID'] = $row['Customer_ID'];
+                $_SESSION['account_id'] = $row['Account_ID'];
                 $_SESSION['username'] = $username;
                 echo "<script>window.open('home.php','_self')</script>";
-                // echo $_SESSION['username'];
-
-                // echo"<script>alert('Login successful!')</scipt>"
-                // if($row_count==1 and $row_count_cart==0){
-                //     echo"<script>alert('Login successful!')</scipt>";
-                //     echo"<script>window.open('profile.php','_self')</script>";
-                // }else{
-                //     echo"<script>alert('Login successful!')</scipt>";
-                //     echo"<script>window.open('payment.php','_self')</script>";
-                // }
             } else {
                 echo "<script>alert('go to shop')</script>";
                 $_SESSION['username'] = $username;

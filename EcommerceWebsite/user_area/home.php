@@ -49,6 +49,9 @@ $num_row = mysqli_num_rows($res_cart);
           <a class="nav-link active" aria-current="page" href="#">Products</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="profile.php">Profile</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Contact</a>
         </li>
         <li class="nav-item">
