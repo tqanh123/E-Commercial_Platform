@@ -114,7 +114,7 @@ session_start();
           <p class="product Name"> <?php echo $row["Product_Name"]; ?></p>
           <p class="price">Price: <b>$<?php echo $price ?></b></p>
           <p>Description: <?php echo $row["Product_Description"]; ?></p>
-          <button class="quantity" data=-1>-</button>
+          <button class="quantity " data=-1>-</button>
           <p class="description"> quantity: <?php echo $quantity ?></p>
           <button class="quantity" data=1>+</button>
           <button class="remove" data-citem=" <?php echo $row["Cart_Item_ID"]; ?> "
@@ -164,6 +164,8 @@ session_start();
           target.style.opacity = .3;
           target.innerHTML = data.in_cart;
           document.getElementById('badge').innerHTML--;
+          // var total = document.getElementById('total');
+          // var c = total - iprice;
           document.getElementById('total').innerHTML -= iprice;
         }
       }
@@ -173,22 +175,22 @@ session_start();
     })
   }
 
-  var quantity = document.getElementsByClassName("quantity");
-  for (var i = 0; i < quantity.length; i++) {
-    quantity[i].addEventListener("click", function (event) {
-      var target = event.target;
-      var change = target.getAttribute('data');
+  // var quantity = document.getElementsByClassName("quantity");
+  // for (var i = 0; i < quantity.length; i++) {
+  //   quantity[i].addEventListener("click", function (event) {
+  //     var target = event.target;
+  //     var change = target.getAttribute('data');
 
-    })
+  //   })
 
-    var xml = new XMLHttpRequest();
-    xml.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
+  //   var xml = new XMLHttpRequest();
+  //   xml.onreadystatechange = function () {
+  //     if (this.readyState == 4 && this.status == 200) {
 
-      }
-    }
+  //     }
+  //   }
 
-    xml.open("GET", "includes/connect.php?", true);
-    xml.send();
-  }
+  //   xml.open("GET", "includes/connect.php?", true);
+  //   xml.send();
+  // }
 </script>

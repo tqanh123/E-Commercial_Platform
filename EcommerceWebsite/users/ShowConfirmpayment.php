@@ -5,7 +5,8 @@ session_start();
     $name = $_SESSION['username'];
     $cart_id = $_SESSION['Cart_ID'];
 
-    $select_data ="    SELECT ci.*, c.Customer_ID 
+    $total_price_per_item = 0;
+    $select_data =" SELECT ci.Cart_Item_Price, ci.Cart_Item_Quantity, c.Customer_ID 
                                 FROM `cartitem` ci
                                 JOIN `cart` c ON ci.cart_id = c.cart_id
                                 WHERE ci.cart_id = $cart_id";
@@ -14,25 +15,25 @@ session_start();
         $item_price = $row_fetch['Cart_Item_Price'];
         $quantity = $row_fetch['Cart_Item_Quantity'];
         $customer_id = $row_fetch['Customer_ID'];
-        $total_price_per_item = $item_price * $quantity;
+        $total_price_per_item += $item_price * $quantity;
     }
 
 if(isset ($_POST['confirm_payment'])){
     $payment_type = $_POST ['payment_type'];
 
     $update_orders="INSERT INTO `order` (Customer_ID, Total_Order_Value, Order_Date, Order_Status)
-    VALUES ($customer_id, $total_price_per_item, NOW(), NOW())";
+    VALUES ('$customer_id', '$total_price_per_item', NOW(), 'shipping')";
 
     $result_orders= mysqli_query($conn, $update_orders);
     $order_id = mysqli_insert_id($conn);
 
     $insert_query="INSERT INTO `payments` (Order_ID, Payment_Type, Payment_Value)
-                                VALUES  ($cart_id, '$payment_type', $total_price_per_item)";
+                                VALUES  ($order_id, '$payment_type', $total_price_per_item)";
     $result= mysqli_query($conn, $insert_query);
     if ($result) {
         echo "<h3 class=' text-center text-light'>Successfully completed the payment </h3>";
         FinishPayment($cart_id, $order_id);
-
+        echo "<script>window.open('../user_area/home.php','_self')</script>";
     }
 }
 
