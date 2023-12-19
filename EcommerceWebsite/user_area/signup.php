@@ -6,10 +6,10 @@
     if(isset($_POST['user_register']))
     {
         $Username = $_POST['name'];
-        // $BankName = $_POST['bank'];
-        // $BankAccountNumber = $_POST['accNum'];
-        // $Address = $_POST['address'];
-        // $Gender = $_POST['gender'];
+        $BankName = $_POST['bank'];
+        $BankAccountNumber = $_POST['accNum'];
+        $Address = $_POST['address'];
+        $Gender = $_POST['gender'];
         $Phone_Number = $_POST['number'];
         $Email = $_POST['mail'];
         $password = $_POST['pass'];
@@ -29,7 +29,6 @@
                 
                 $query = "insert into `account` (Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
                 values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', 'male', '$Phone_Number', '$Email', NULL)";
-                //values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', '$Gender', '$Phone_Number', '$Email', NULL)";
                 
                 $insert_acc = mysqli_query($conn, $query);
                 if($insert_acc) {

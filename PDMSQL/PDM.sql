@@ -62,7 +62,6 @@ CREATE TABLE `CartItem` (
     FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
 );
 
-
 CREATE TABLE `Order` (
     Order_ID INT AUTO_INCREMENT PRIMARY KEY,
     Customer_ID INT,
@@ -85,6 +84,7 @@ CREATE TABLE `Order_Items` (
     Product_Name VARCHAR(255),
     Price DECIMAL(10, 2),
     Product_Quantity INT,
+    Update_at DATETIME,
     FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID),
     FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
 );
