@@ -29,7 +29,6 @@ CREATE TABLE `Product` (
     Product_Name VARCHAR(255),
     Product_Description TEXT,
     Price DECIMAL(10, 2),
-    Product_Category VARCHAR(255),
     Product_Quantity INT,
     Product_Sold INT,
     Product_Status VARCHAR(20),
@@ -66,14 +65,9 @@ CREATE TABLE `Order` (
     Order_ID INT AUTO_INCREMENT PRIMARY KEY,
     Customer_ID INT,
     Total_Order_Value DECIMAL(10, 2),
-    Order_Date DATE,
     Order_Status VARCHAR(20),
     Shipping_Fee DECIMAL(10, 2),
-    Order_Purchase_TimeStamp DATETIME,
-    Order_Canceled DATETIME,
-    Order_Delivered_Carrier_Date DATETIME,
-    Order_Delivered_Customer_Date DATETIME,
-    Order_Estimated_Customer_Date DATETIME,
+    Update_at DATETIME,
     FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 );
 
