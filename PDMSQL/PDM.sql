@@ -38,8 +38,6 @@ CREATE TABLE `Product` (
     FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID)
 ); 
 
-
-
 CREATE TABLE `Customer` (
     Customer_ID INT AUTO_INCREMENT PRIMARY KEY,
     Account_ID INT,
@@ -49,7 +47,6 @@ CREATE TABLE `Customer` (
 CREATE TABLE `Cart` (
     Cart_ID INT AUTO_INCREMENT PRIMARY KEY,
     Customer_ID INT,
-    Create_at DATETIME,
     Update_at DATETIME,
     FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
 );
@@ -60,7 +57,6 @@ CREATE TABLE `CartItem` (
     Product_ID INT,
     Cart_Item_Quantity INT,
     Cart_Item_Price DECIMAL(10, 2),
-    Create_at DATETIME,
     Update_at DATETIME,
     FOREIGN KEY (Cart_ID) REFERENCES Cart(Cart_ID),
     FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
@@ -112,16 +108,4 @@ CREATE TABLE `Order_Review` (
     Review_Creation_Date DATETIME,
     Review_Answer_Timestamp DATETIME,
     FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID)
-);
-
-CREATE TABLE `History` (
-    History_ID INT AUTO_INCREMENT PRIMARY KEY,
-    Customer_ID INT,
-    Seller_ID INT,
-    Order_ID INT,
-    TimeStamp DATETIME,
-    Product_Name VARCHAR(255),
-    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
-    FOREIGN KEY (Seller_ID) REFERENCES Seller(Seller_ID),
-    FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID) 
 );
