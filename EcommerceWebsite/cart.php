@@ -79,12 +79,12 @@ session_start();
   // echo session_id(); 
   // echo $_SESSION['username'];
           if (!isset($_SESSION['username'])) {
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom Guest</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome Guest</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='./user_area/login.php'>Login</a></li>";
           }
           else {
             $name = $_SESSION['username'];
-            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcom $name</a></li>";
+            echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome $name</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='./user_area/logout.php'>Logout</a></li>";
           }
       ?>
@@ -127,7 +127,7 @@ session_start();
         <form method="GET" action="../EcommerceWebsite/users/ShowConfirmpayment.php">
           <!-- <input type="hidden" name="total" value="<?php echo htmlspecialchars($total); ?>"> -->
           <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($cart_id); ?>">
-          <p name="total" id="total">Total Price: <?php echo $total ?></p>
+          <p name="total" id="total">Total Price: $<?php echo $total ?></p>
           <button type="submit">Checkout</button>
         </form>
       </div>

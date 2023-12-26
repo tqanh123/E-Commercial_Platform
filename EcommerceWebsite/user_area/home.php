@@ -57,6 +57,9 @@ $num_row = mysqli_num_rows($res_cart);
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge"><?php echo "$num_row" ?> </span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../History.php">History</a>
+        </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
