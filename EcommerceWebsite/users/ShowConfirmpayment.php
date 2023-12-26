@@ -5,6 +5,7 @@ session_start();
 
     $name = $_SESSION['username'];
     $cart_id = $_SESSION['Cart_ID'];
+    $total_price = 0;
 
     $total_price_per_item = 0;
     $select_data =" SELECT ci.Cart_Item_Price, ci.Cart_Item_Quantity, c.Customer_ID 
@@ -18,6 +19,8 @@ session_start();
         $customer_id = $row_fetch['Customer_ID'];
         $total_price_per_item += $item_price * $quantity;
 
+        $total_price += $total_price_per_item;
+        
         $product_name = $row_fetch['Product_Name'];
         $seller_id = $row_fetch['Seller_ID'];
     }
@@ -37,7 +40,7 @@ if(isset ($_POST['confirm_payment'])){
     if ($result) {
         echo "<h3 class=' text-center text-light'>Successfully completed the payment </h3>";
         FinishPayment($cart_id, $order_id);
-        recordHistory($customer_id, $seller_id, $order_id, $product_name);
+        
     }
 }
 
@@ -74,6 +77,8 @@ if(isset ($_POST['confirm_payment'])){
                     throw new Exception("Error deleting cart items");
                 }
                 mysqli_commit($conn);
+
+                recordHistory($customer_id, $seller_id, $order_id, $product_name);
             }
             catch (Exception $e) {
                 // Rollback transaction on any error
@@ -138,7 +143,7 @@ if(isset ($_POST['confirm_payment'])){
                 Customer Name: <?php echo $name; ?>
             </div>
             <div class="form-group my-4">
-                Total Price: <?php echo $total_price_per_item; ?>
+                Total Price: <?php echo $total_price; ?>
             </div>
             <div class="form-group my-4">
                 <select name="payment_type" class="form-select">

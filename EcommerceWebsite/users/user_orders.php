@@ -12,7 +12,6 @@
     include('../includes/connect.php');
     session_start();
     $username = $_SESSION['username'];
-    // $username = 'Anh Khoa';
     $get_user = "SELECT * FROM account JOIN customer WHERE Username='$username' AND account.Account_ID = customer.Account_ID";
     $result = mysqli_query($conn, $get_user);
     $row_fetch = mysqli_fetch_assoc($result);
@@ -25,8 +24,6 @@
             <tr>
                 <th>Sr. No</th>
                 <th>Amount Value</th>
-                <!-- <th>Total Products</th> -->
-                <!-- <th>Invoice Number</th> -->
                 <th>Date</th>
                 <!-- <th>Complete/Incomplete</th> -->
                 <th>Status</th>
@@ -42,8 +39,6 @@
             while ($row_data = mysqli_fetch_assoc($result_orders)) {
                 $order_id = $row_data['Order_ID'];
                 $amount_value = $row_data['Total_Order_Value'];
-                // $total_products = $row_data['total_products'];
-                // $invoice_number = $row_data['invoice_number'];
                 $order_status = ($row_data['Order_Status'] == 'Processing') ? 'Shipped' : 'Delivered';
                 $order_date = $row_data['Order_Purchase_TimeStamp'];
 
