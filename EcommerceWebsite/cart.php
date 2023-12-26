@@ -114,9 +114,9 @@ session_start();
           <p class="product Name"> <?php echo $row["Product_Name"]; ?></p>
           <p class="price">Price: <b>$<?php echo $price ?></b></p>
           <p>Description: <?php echo $row["Product_Description"]; ?></p>
-          <button class="quantity " data=-1>-</button>
-          <p class="description"> quantity: <?php echo $quantity ?></p>
-          <button class="quantity" data=1>+</button>
+          <!-- <button class="quantity " data="-1"citem=" <?php echo $row["Cart_Item_ID"]; ?> ">-</button> -->
+          <p class="description quantity" data = "0"citem=" <?php echo $row["Cart_Item_ID"]; ?> "> quantity: <?php echo $quantity ?></p>
+          <!-- <button class="quantity" data="1"citem=" <?php echo $row["Cart_Item_ID"]; ?> ">+</button> -->
           <button class="remove" data-citem=" <?php echo $row["Cart_Item_ID"]; ?> "
             data-price="<?php echo ($quantity * $price) ?>"> Remove from cart </button>
         </div>
@@ -127,7 +127,7 @@ session_start();
         <form method="GET" action="../EcommerceWebsite/users/ShowConfirmpayment.php">
           <!-- <input type="hidden" name="total" value="<?php echo htmlspecialchars($total); ?>"> -->
           <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($cart_id); ?>">
-          <p name="total" id="total">Total Price: <?php echo $total ?></p>
+          <!-- <p name="total" id="total">Total Price: <?php echo $total ?></p> -->
           <button type="submit">Checkout</button>
         </form>
       </div>
@@ -155,7 +155,7 @@ session_start();
       var target = event.target;
       var citem = target.getAttribute('data-citem');
       var iprice = target.getAttribute('data-price');
-
+      // const  = int.Parse(i);
 
       var xml = new XMLHttpRequest();
       xml.onreadystatechange = function () {
@@ -164,9 +164,6 @@ session_start();
           target.style.opacity = .3;
           target.innerHTML = data.in_cart;
           document.getElementById('badge').innerHTML--;
-          // var total = document.getElementById('total');
-          // var c = total - iprice;
-          document.getElementById('total').innerHTML -= iprice;
         }
       }
 
@@ -175,22 +172,4 @@ session_start();
     })
   }
 
-  // var quantity = document.getElementsByClassName("quantity");
-  // for (var i = 0; i < quantity.length; i++) {
-  //   quantity[i].addEventListener("click", function (event) {
-  //     var target = event.target;
-  //     var change = target.getAttribute('data');
-
-  //   })
-
-  //   var xml = new XMLHttpRequest();
-  //   xml.onreadystatechange = function () {
-  //     if (this.readyState == 4 && this.status == 200) {
-
-  //     }
-  //   }
-
-  //   xml.open("GET", "includes/connect.php?", true);
-  //   xml.send();
-  // }
 </script>

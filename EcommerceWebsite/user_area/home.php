@@ -129,7 +129,7 @@ $num_row = mysqli_num_rows($res_cart);
         // alert(cid);
             var xml = new XMLHttpRequest();
             xml.onreadystatechange = function(){
-                if (this.readyState == 4 && this.status == 200) {
+                if (this.readyState == 4 && this.status == 200) { 
                     // alert(this.responseText);
                     var data = JSON.parse(this.responseText);
                     target.innerHTML = data.in_cart;

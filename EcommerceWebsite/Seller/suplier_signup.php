@@ -6,10 +6,10 @@ session_start();
     if(isset($_POST['suplier_register']))
     {
         $Username = $_POST['name'];
-        // $BankName = $_POST['bank'];
-        // $BankAccountNumber = $_POST['accNum'];
-        // $Address = $_POST['address'];
-        // $Gender = $_POST['gender'];
+        $BankName = $_POST['bank'];
+        $BankAccountNumber = $_POST['accNum'];
+        $Address = $_POST['address'];
+        $Gender = $_POST['gender'];
         $Phone_Number = $_POST['number'];
         $Email = $_POST['mail'];
         $password = $_POST['pass'];
@@ -28,8 +28,8 @@ session_start();
             else if ($password === $repassword) {
                 
                 $query = "insert into `account` (Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
-                values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', NULL, '$Phone_Number', '$Email', NULL)";
-                //values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', NULL, '$Phone_Number', '$Email', NULL)";
+                values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', NULL, '$Phone_Number', '$Email', NULL)";
+                // values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', NULL, '$Phone_Number', '$Email', NULL)";
                 
                 $insert_acc = mysqli_query($conn, $query);
                 if($insert_acc) {
