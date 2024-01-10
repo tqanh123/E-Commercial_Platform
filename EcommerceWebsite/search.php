@@ -2,6 +2,8 @@
 include('includes/connect.php');
 session_start();
 
+$cart_id = $_SESSION['Cart_ID'];
+
 if (isset($_GET['search_button'])) {
     $searchQuery = $_GET['search_query'];
 
@@ -10,7 +12,7 @@ if (isset($_GET['search_button'])) {
                             JOIN account a ON s.Account_ID = a.Account_ID 
                             WHERE Seller_Description LIKE '%$searchQuery%' OR a.Username LIKE '%$searchQuery%' ";
     
-    $sqlProducts = "SELECT p.Product_ID, p.Product_Name, p.Product_Description AS Description, a.Username
+    $sqlProducts = "SELECT p.Product_ID, p.Product_Name, p.Product_Description AS Description, p.Price, a.Username
                                 FROM Product p 
                                 JOIN seller s ON p.Seller_ID = s.Seller_ID 
                                 JOIN account a ON s.Account_ID = a.Account_ID
@@ -33,13 +35,13 @@ if (isset($_GET['search_button'])) {
     }
     $searchResults = array_merge($sellerResults, $productResults);
 
-    foreach ($searchResults as $result) {
-        if (isset($result['Seller_ID'])) {
-            echo "Seller ID: " . $result['Seller_ID'] . ", Description: " . $result['Description'] . "<br>";
-        } else {
-            echo "Product ID: " . $result['Product_ID'] . ", Name: " . $result['Product_Name'] . ", Seller: ". $result['Username']."<br>";
-        }
-    }
+    // foreach ($searchResults as $result) {
+    //     if (isset($result['Seller_ID'])) {
+    //         echo "Seller ID: " . $result['Seller_ID'] . ", Description: " . $result['Description'] . "<br>";
+    //     } else {
+    //         echo "Product ID: " . $result['Product_ID'] . ", Name: " . $result['Product_Name'] . ", Seller: ". $result['Username']."<br>";
+    //     }
+    // }
 }
 ?>
 
@@ -71,7 +73,7 @@ if (isset($_GET['search_button'])) {
     <!-- first child -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
       <div class="container-fluid">
-        <img src="../image/ghost_logo.png" alt="" class="logo">
+        <img src="image/ghost_logo.png" alt="" class="logo">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -93,10 +95,10 @@ if (isset($_GET['search_button'])) {
             </li>
 
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <form class="d-flex" role="search" method="GET" action="search.php">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_query">
+          <button class="btn btn-outline-success" type="submit" name="search_button">Search</button>
+      </form>
         </div>
       </div>
     </nav>
@@ -120,44 +122,38 @@ if (isset($_GET['search_button'])) {
       </ul>
     </nav>
     <div class="container cart">
-      <?php
-        if ($$searchQuery === 0) {
-            ?>
-      <div class="bg-light">
-        <h3 class="text-center">Item not found</h3>
-      </div>
-      <?php
-        } 
-        else {
-            while ($row = $res -> fetch_assoc()) {
-              $quantity = $row["Cart_Item_Quantity"];
-              $price = $row["Price"];
-              $total += $quantity * $price;
-    ?>
-      <div class="card">
-        <div class="caption">
-          <p class="product Name"> <?php echo $row["Product_Name"]; ?></p>
-          <p class="price">Price: <b>$<?php echo $price ?></b></p>
-          <p>Description: <?php echo $row["Product_Description"]; ?></p>
-          <!-- <button class="quantity " data="-1"citem=" <?php echo $row["Cart_Item_ID"]; ?> ">-</button> -->
-          <p class="description quantity" data = "0"citem=" <?php echo $row["Cart_Item_ID"]; ?> "> quantity: <?php echo $quantity ?></p>
-          <!-- <button class="quantity" data="1"citem=" <?php echo $row["Cart_Item_ID"]; ?> ">+</button> -->
-          <button class="remove" data-citem=" <?php echo $row["Cart_Item_ID"]; ?> "
-            data-price="<?php echo ($quantity * $price) ?>"> Remove from cart </button>
+    <?php
+    if ($resultSellers->num_rows === 0 && $resultProducts->num_rows === 0) {
+        ?>
+        <div class="bg-light">
+            <h3 class="text-center">Items not found</h3>
         </div>
-      </div>
-      <?php } ?>
-      <div>
-
-        <form method="GET" action="../EcommerceWebsite/users/ShowConfirmpayment.php">
-          <!-- <input type="hidden" name="total" value="<?php echo htmlspecialchars($total); ?>"> -->
-          <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($cart_id); ?>">
-          <!-- <p name="total" id="total">Total Price: <?php echo $total ?></p> -->
-          <button type="submit">Checkout</button>
-        </form>
-      </div>
-      <?php } ?>
-    </div>
+        <?php
+    } else {
+        foreach ($searchResults as $result) {
+            if (isset($result['Seller_ID'])) {
+                echo "<a href='view_seller_product.php?seller_id=" . $result['Seller_ID'] . "' class='seller-card'>";
+                echo "<div class='card'>";
+                echo "<div class='caption'>";
+                echo "<p class='product Name'>Seller: " . $result['Username'] . "</p>";
+                echo "<p class='description'>Description: " . $result['Description'] . "</p>";
+                echo "</div>";
+                echo "</div>";
+            } else {
+                echo "<div class='card'>";
+                echo "<div class='caption'>";
+                echo "<p class='product Name'>" . $result['Product_Name'] . "</p>";
+                echo "<p class='price'>Price: <b>$" . $result['Price'] . "</b></p>";
+                echo "<p>Description: " . $result['Description'] . "</p>";
+                echo "<p>Seller: " . $result['Username'] . "</p>";
+                echo "<button class='add' cart-id='" . $_SESSION["Cart_ID"] . "' data-id='" . $result['Product_ID'] . "'>Add to cart</button>";
+                echo "</div>";
+                echo "</div>";
+            }
+        }
+    }
+    ?>
+</div>
 
     <!--last child-->
     <div class="bg-info p-3 text-center footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px;">
@@ -172,3 +168,29 @@ if (isset($_GET['search_button'])) {
 </body>
 
 </html>
+
+
+<script> 
+    var product_id = document.getElementsByClassName("add");
+    for (var i = 0; i < product_id.length; i++) {
+      product_id[i].addEventListener("click", function(event){
+        var target  = event.target;
+        var id = target.getAttribute("data-id");
+        var cid = target.getAttribute('cart-id');
+
+        // alert(cid);
+            var xml = new XMLHttpRequest();
+            xml.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200) { 
+                    // alert(this.responseText);
+                    var data = JSON.parse(this.responseText);
+                    target.innerHTML = data.in_cart;
+                    document.getElementById("badge").innerHTML = data.num_cart;
+                }
+            }
+
+            xml.open("GET", "includes/connect.php?p_id="+id+"&c_id="+cid, true);
+            xml.send();
+      })
+    }
+</script>

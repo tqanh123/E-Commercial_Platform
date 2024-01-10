@@ -88,7 +88,7 @@ $num_row = mysqli_num_rows($res_cart);
 <!-- Third child-->
 <div class="bg-light">
 </div>
-
+      <h3 class="text-center">Home Page</h3>
 <div class='container-fluid list_product'>
   <?php
  
@@ -129,10 +129,10 @@ $num_row = mysqli_num_rows($res_cart);
             var xml = new XMLHttpRequest();
             xml.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200) { 
-                    alert(this.responseText);
-                    // var data = JSON.parse(this.responseText);
-                    // target.innerHTML = data.in_cart;
-                    // document.getElementById("badge").innerHTML = data.num_cart;
+                    // alert(this.responseText);
+                    var data = JSON.parse(this.responseText);
+                    target.innerHTML = data.in_cart;
+                    document.getElementById("badge").innerHTML = data.num_cart;
                 }
             }
 
