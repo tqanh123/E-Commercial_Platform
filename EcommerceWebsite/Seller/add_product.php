@@ -12,13 +12,14 @@ if (isset($_POST['add_product'])) {
     // $seller_id = $_SESSION['seller_id']; 
     $category_id = $_POST['category_id'];
     $name = $_SESSION['username'];
-    $select_seller = "Select Seller_ID from `account` a, `seller` s where a.account_id = s.account_id and a.username = '$name'";
+    $select_seller = "SELECT Seller_ID FROM `Account` a, `eller` s 
+                      WHERE a.Account_ID = s.Account_ID and a.Username = '$name'";
     $res = mysqli_query($conn, $select_seller);
-    $row = mysqli_fetch_assoc($res);
+    $row = mysqli_fetch_array($res);
     $seller_id = $row['Seller_ID'];
     
     // echo "<script>alert($category_id)</script>";
-    $add_product_result = "INSERT INTO `Product` (Seller_ID, Product_name, Product_Description, Price,  Category_ID,Product_Quantity, Product_Sold, Product_Ratings, Product_Status) 
+   $add_product_result = "INSERT INTO `Product` (Seller_ID, Product_name, Product_Description, Price,  Category_ID,Product_Quantity, Product_Sold, Product_Ratings, Product_Status) 
                            VALUES ('$seller_id', '$product_name', '$product_description', '$price', '$category_id', '$quantity', 0, 0, 'available')";
     $done = mysqli_query($conn, $add_product_result);
 
@@ -141,10 +142,11 @@ if (isset($_POST['add_product'])) {
                     $category_query = "SELECT Category_Name, Category_ID FROM Category";
                     $res = $conn->query($category_query);
                     while ($row = $res->fetch_object()) {
-                        echo "<option class='form-control' value='" . $row->Category_ID . "'>";
-                        echo  " $row->Category_Name";
-                        echo "</option>";
-                    } ?>
+                    ?>
+                        <option class="form-control" value=" <?php echo $row->Category_ID ?> ">;
+                            <?php echo $row->Category_Name;?>
+                        </option>;
+                    <?php } ?>
                 </select>
                     <!-- <option selected>Choose...</option>
                     <option>...</option>
