@@ -12,6 +12,7 @@ session_start();
 
     $num_item = mysqli_num_rows($res);
     $total = 0;
+
 ?>
 
 <!DOCTYPE html>
@@ -76,8 +77,6 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <ul class="navbar-nav me-auto">
         <?php
-  // echo session_id(); 
-  // echo $_SESSION['username'];
           if (!isset($_SESSION['username'])) {
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome Guest</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='./user_area/login.php'>Login</a></li>";
@@ -90,8 +89,9 @@ session_start();
       ?>
       </ul>
     </nav>
+
     <div class="bg-light">
-      <h3 class="text-center">Cart</h3>
+      <h3 class="text-center" style="padding: 10px;">Cart</h3>
     </div>
 
     <div class="container cart">
@@ -103,30 +103,70 @@ session_start();
       </div>
       <?php
         } 
-        else {
-            while ($row = $res -> fetch_assoc()) {
+        else { $cnt = 0 ?>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Description</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Update</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <form action="" method="post">
+            <?php  while ($row = $res -> fetch_assoc()) {
               $quantity = $row["Cart_Item_Quantity"];
               $price = $row["Price"];
               $total += $quantity * $price;
-    ?>
-      <div class="card">
-        <div class="caption">
-          <p class="product Name"> <?php echo $row["Product_Name"]; ?></p>
-          <p class="price">Price: <b>$<?php echo $price ?></b></p>
-          <p>Description: <?php echo $row["Product_Description"]; ?></p>
-          <!-- <button class="quantity " data="-1"citem=" <?php echo $row["Cart_Item_ID"]; ?> ">-</button> -->
-          <p class="description quantity" data = "0"citem=" <?php echo $row["Cart_Item_ID"]; ?> "> quantity: <?php echo $quantity ?></p>
-          <!-- <button class="quantity" data="1"citem=" <?php echo $row["Cart_Item_ID"]; ?> ">+</button> -->
-          <button class="remove" data-citem=" <?php echo $row["Cart_Item_ID"]; ?> "
-            data-price="<?php echo ($quantity * $price) ?>"> Remove from cart </button>
-        </div>
-      </div>
-      <?php } ?>
+              $cnt += 1;
+            ?>
+            <tr>
+              <th scope="row"><?php echo $cnt ?></th>
+              <td><?php echo $row["Product_Name"]; ?></td>
+              <td>$<?php echo $price ?></td>
+              <td><?php echo $row["Product_Description"]; ?></td>
+                <td>
+                  <input type="number" name="quantity" min="1" max="<?php echo $row["Product_Quantity"]; ?>" value="<?php echo $row["Cart_Item_Quantity"]; ?>" required>
+                  <div style="display:none">
+                    <input type="number" name="ci_id" value="<?php echo $row["Cart_Item_ID"]; ?>">
+                  </div>
+                </td>
+                <td>
+                  <!-- <button type="submit" name="update-quantity"> Update item </button> -->
+                  <input type="submit" name="update" value="Update Item">
+                </td>
+                <?php 
+                  if (isset($POST_['update'])){
+                    echo"<script> alert('Update')</script>";
+                    $quantity = $POST_['quantity'];
+                    $cartitem_id = $POST_['ci_id'];
+              
+                    $update = "UPDATE CartItem SET Cart_Item_Quantity = '$quantity' WHERE Cart_Item_ID = '$cartitem_id'";
+                    $res = mysqli_query($conn, $update);
+              
+                    if ($res) {
+                      echo"<script> alert('Successfully Update')</script>";
+                    }
+                  }
+                ?>
+                <td>
+                  <button class="remove" data-citem=" <?php echo $row["Cart_Item_ID"]; ?> "
+                  data-price="<?php echo ($quantity * $price) ?>"> Remove from cart </button>
+                </td>
+              </tr>
+              <?php } ?>
+            </form>
+          </tbody>
+        </table>
       <div>
 
         <form method="GET" action="../EcommerceWebsite/users/ShowConfirmpayment.php">
-          <!-- <input type="hidden" name="total" value="<?php echo htmlspecialchars($total); ?>"> -->
-          <input type="hidden" name="cart_id" value="<?php echo htmlspecialchars($cart_id); ?>">
+          <!-- <input type="hidden" name="total" value="<?php echo $total; ?>"> -->
+          <input type="hidden" name="cart_id" value="<?php echo $cart_id; ?>">
           <!-- <p name="total" id="total">Total Price: <?php echo $total ?></p> -->
           <button type="submit">Checkout</button>
         </form>

@@ -102,6 +102,7 @@ $num_row = mysqli_num_rows($res_cart);
             <p class="product Name"><?php echo $row["Product_Name"]; ?></p>
             <p class="price">Price: <b>$<?php echo $row["Price"]; ?></b></p>
             <p class="description">Description:<?php echo $row["Product_Description"]; ?></p>
+            <!-- <p>Quantity: <input type="Number" min = "1"></p> -->
             <button class="add" cart-id = "<?php echo $_SESSION["Cart_ID"]; ?>" data-id ="<?php echo $row["Product_ID"]; ?>"> Add to cart </button>
         </div>
       </div>
