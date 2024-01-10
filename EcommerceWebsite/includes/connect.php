@@ -1,9 +1,9 @@
 
 <?php
 
-$servername = "localhost";
+$servername = "127.0.0.1:3307";
 $username = "root";
-$password = "";
+$password = "1234";
 $dbname = "e_commercial";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -36,8 +36,8 @@ if (isset($_GET['p_id'])){
     else {
         
         $price = $row['Price'];
-        $insert = "INSERT INTO `cartitem`(Cart_ID, Product_ID, Cart_Item_Quantity, Cart_Item_Price, Create_At, Update_At)
-                    VALUES('$cart_id', '$product_ID', 1, '$price', NOW(), NOW())"; 
+        $insert = "INSERT INTO `cartitem`(Cart_ID, Product_ID, Cart_Item_Quantity, Cart_Item_Price, Update_At)
+                    VALUES('$cart_id', '$product_ID', 1, '$price', NOW())"; 
         $update_product = "UPDATE Product SET Product_Quantity = Product_Quantity - 1
                             WHERE Product_ID = '$product_ID'";
         $update = mysqli_query($conn, $update_product);

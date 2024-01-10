@@ -43,7 +43,7 @@ $num_row = mysqli_num_rows($res_cart);
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="home.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Products</a>
@@ -57,13 +57,10 @@ $num_row = mysqli_num_rows($res_cart);
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge"><?php echo "$num_row" ?> </span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../History.php">History</a>
-        </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex" role="search" method="GET" action="../search.php">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_query">
+          <button class="btn btn-outline-success" type="submit" name="search_button">Search</button>
       </form>
     </div>
   </div>
@@ -75,6 +72,7 @@ $num_row = mysqli_num_rows($res_cart);
   <?php
   // echo session_id(); 
   // echo $_SESSION['username'];
+          // echo $cart_id
           if (!isset($_SESSION['username'])) {
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome Guest</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='login.php'>Login</a></li>";
@@ -89,8 +87,6 @@ $num_row = mysqli_num_rows($res_cart);
 </nav>
 <!-- Third child-->
 <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Communication is at the heart of e-commerce and community</p>
 </div>
 
 <div class='container-fluid list_product'>
@@ -110,9 +106,9 @@ $num_row = mysqli_num_rows($res_cart);
 ?>
 </div>
 <!--last child-->
-<div class="bg-info p-3 text-center footer">
-  <p>Together we make differences in 20 years || 2003-2023<p>
-      </div>
+<div class="bg-info p-3 text-center footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px;">
+    <p>Together we make differences in 20 years || 2003-2023<p>
+    </div>
 <!-- bootstrap js link-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -133,10 +129,10 @@ $num_row = mysqli_num_rows($res_cart);
             var xml = new XMLHttpRequest();
             xml.onreadystatechange = function(){
                 if (this.readyState == 4 && this.status == 200) { 
-                    // alert(this.responseText);
-                    var data = JSON.parse(this.responseText);
-                    target.innerHTML = data.in_cart;
-                    document.getElementById("badge").innerHTML = data.num_cart;
+                    alert(this.responseText);
+                    // var data = JSON.parse(this.responseText);
+                    // target.innerHTML = data.in_cart;
+                    // document.getElementById("badge").innerHTML = data.num_cart;
                 }
             }
 

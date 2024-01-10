@@ -9,16 +9,16 @@ if (isset($_POST['add_product'])) {
     $product_description = $_POST['product_description'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
-    // $seller_id = $_SESSION['seller_id']; // Get the seller's ID from the session
+    // $seller_id = $_SESSION['seller_id']; 
     $category_id = $_POST['category_id'];
     $name = $_SESSION['username'];
     $select_seller = "Select Seller_ID from `account` a, `seller` s where a.account_id = s.account_id and a.username = '$name'";
     $res = mysqli_query($conn, $select_seller);
     $row = mysqli_fetch_assoc($res);
     $seller_id = $row['Seller_ID'];
-
-    echo "<script>alert($category_id)</script>";
-    $add_product_result = "INSERT INTO `Product` (Seller_Id, Product_name, Product_Description, Price,  Category_ID,Product_Quantity, Product_Sold, Product_Ratings, Product_Status) 
+    
+    // echo "<script>alert($category_id)</script>";
+    $add_product_result = "INSERT INTO `Product` (Seller_ID, Product_name, Product_Description, Price,  Category_ID,Product_Quantity, Product_Sold, Product_Ratings, Product_Status) 
                            VALUES ('$seller_id', '$product_name', '$product_description', '$price', '$category_id', '$quantity', 0, 0, 'available')";
     $done = mysqli_query($conn, $add_product_result);
 
@@ -52,14 +52,17 @@ if (isset($_POST['add_product'])) {
 <!--navbar-->
 <div class="container-fluid p-0">
     <!-- first child -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
     <div class="container-fluid">
-      <img src="./image/ghost_logo.png" alt="" class="logo">
+      <img src="../image/ghost_logo.png" alt="" class="logo">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="shop.php">Home</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="add_product.php">Insert Product</a>
           </li>
@@ -135,7 +138,7 @@ if (isset($_POST['add_product'])) {
                     <option>Select Categories</option>
                     <?php
                     //fetch all categories
-                    $category_query = "SELECT Category_Name FROM Category";
+                    $category_query = "SELECT Category_Name, Category_ID FROM Category";
                     $res = $conn->query($category_query);
                     while ($row = $res->fetch_object()) {
                         echo "<option class='form-control' value='" . $row->Category_ID . "'>";
@@ -152,8 +155,8 @@ if (isset($_POST['add_product'])) {
     </div>
   </div>
     <!-- last child -->
-    <div class="bg-info p-3 text-center footer">
-        <p>Together we make differences in 20 years || 2003-2023<p>
+    <div class="bg-info p-3 text-center footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px;">
+    <p>Together we make differences in 20 years || 2003-2023<p>
     </div>
 </body>
 </html>

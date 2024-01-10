@@ -91,33 +91,34 @@ if ($result_sellerid && $row = mysqli_fetch_assoc($result_sellerid)) {
 <div class="container-fluid p-0">
     <!-- first child -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
-  <div class="container-fluid">
-    <img src="../image/ghost_logo.png" alt="" class="logo">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div class="container-fluid">
+      <img src="../image/ghost_logo.png" alt="" class="logo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+            <a class="nav-link active" aria-current="page" href="shop.php">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="add_product.php">Insert Product</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="viewproduct.php">View Product</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="insertcategory.php">Insert category</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="viewcategory.php">View Category</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="statistics.php">View Statistics</a>
+          </li>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
    
 <!-- Second child-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
@@ -139,8 +140,6 @@ if ($result_sellerid && $row = mysqli_fetch_assoc($result_sellerid)) {
 </nav>
 <!-- Third child-->
 <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Communication is at the heart of e-commerce and community</p>
     <div>
             <?php
                 echo "<h2>Total products bought from this seller: $total_products_bought</h2>";
@@ -178,9 +177,9 @@ if ($result_sellerid && $row = mysqli_fetch_assoc($result_sellerid)) {
             ?>
         </div>
 <!--last child-->
-<div class="bg-info p-3 text-center footer">
-  <p>Together we make differences in 20 years || 2003-2023<p>
-      </div>
+<div class="bg-info p-3 text-center footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px;">
+    <p>Together we make differences in 20 years || 2003-2023<p>
+    </div>
 <!-- bootstrap js link-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

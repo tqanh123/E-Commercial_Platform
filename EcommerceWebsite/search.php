@@ -1,17 +1,46 @@
 <?php
-
-// Database connection
-include('./includes/connect.php');
+include('includes/connect.php');
 session_start();
 
-    $name = $_SESSION['username'];
-    $cart_id = $_SESSION['Cart_ID'];
+if (isset($_GET['search_button'])) {
+    $searchQuery = $_GET['search_query'];
 
-    $sql = "SELECT * FROM cartitem NATURAL JOIN Product WHERE Cart_ID = '$cart_id'";
-    $res = mysqli_query($conn, $sql);
+    $sqlSellers = "SELECT s.Seller_ID, s.Seller_Description AS Description, a.Username  
+                            FROM Seller s 
+                            JOIN account a ON s.Account_ID = a.Account_ID 
+                            WHERE Seller_Description LIKE '%$searchQuery%' OR a.Username LIKE '%$searchQuery%' ";
+    
+    $sqlProducts = "SELECT p.Product_ID, p.Product_Name, p.Product_Description AS Description, a.Username
+                                FROM Product p 
+                                JOIN seller s ON p.Seller_ID = s.Seller_ID 
+                                JOIN account a ON s.Account_ID = a.Account_ID
+                                WHERE Product_Name LIKE '%$searchQuery%'";
+    $resultSellers = $conn->query($sqlSellers);
+    $resultProducts = $conn->query($sqlProducts);
 
-    $num_item = mysqli_num_rows($res);
-    $total = 0;
+    $sellerResults = [];
+    if ($resultSellers->num_rows > 0) {
+        while ($row = $resultSellers->fetch_assoc()) {
+            $sellerResults[] = $row;
+        }
+    }
+
+    $productResults = [];
+    if ($resultProducts->num_rows > 0) {
+        while ($row = $resultProducts->fetch_assoc()) {
+            $productResults[] = $row;
+        }
+    }
+    $searchResults = array_merge($sellerResults, $productResults);
+
+    foreach ($searchResults as $result) {
+        if (isset($result['Seller_ID'])) {
+            echo "Seller ID: " . $result['Seller_ID'] . ", Description: " . $result['Description'] . "<br>";
+        } else {
+            echo "Product ID: " . $result['Product_ID'] . ", Name: " . $result['Product_Name'] . ", Seller: ". $result['Username']."<br>";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +71,7 @@ session_start();
     <!-- first child -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
       <div class="container-fluid">
-        <img src="./image/ghost_logo.png" alt="" class="logo">
+        <img src="../image/ghost_logo.png" alt="" class="logo">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -60,7 +89,7 @@ session_start();
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i
-                  class="fa-solid fa-cart-shopping"></i><span id="badge"><?php echo "$num_item" ?> </span></a>
+                  class="fa-solid fa-cart-shopping"></i></a>
             </li>
 
           </ul>
@@ -90,16 +119,12 @@ session_start();
       ?>
       </ul>
     </nav>
-    <div class="bg-light">
-      <h3 class="text-center">Cart</h3>
-    </div>
-
     <div class="container cart">
       <?php
-        if ($num_item === 0) {
+        if ($$searchQuery === 0) {
             ?>
       <div class="bg-light">
-        <h3 class="text-center">There is no item here!!</h3>
+        <h3 class="text-center">Item not found</h3>
       </div>
       <?php
         } 
@@ -147,29 +172,3 @@ session_start();
 </body>
 
 </html>
-
-<script>
-  var cartitem_id = document.getElementsByClassName("remove");
-  for (var i = 0; i < cartitem_id.length; i++) {
-    cartitem_id[i].addEventListener("click", function (event) {
-      var target = event.target;
-      var citem = target.getAttribute('data-citem');
-      var iprice = target.getAttribute('data-price');
-      // const  = int.Parse(i);
-
-      var xml = new XMLHttpRequest();
-      xml.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          var data = JSON.parse(this.responseText);
-          target.style.opacity = .3;
-          target.innerHTML = data.in_cart;
-          document.getElementById('badge').innerHTML--;
-        }
-      }
-
-      xml.open("GET", "includes/connect.php?ci_id=" + citem, true);
-      xml.send();
-    })
-  }
-
-</script>

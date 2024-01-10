@@ -26,14 +26,17 @@ session_start();
 <!--navbar-->
 <div class="container-fluid p-0">
     <!-- first child -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
     <div class="container-fluid">
-      <img src="./image/ghost_logo.png" alt="" class="logo">
+      <img src="../image/ghost_logo.png" alt="" class="logo">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="shop.php">Home</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="add_product.php">Insert Product</a>
           </li>
@@ -72,16 +75,32 @@ session_start();
   </nav>
 <!-- Third child-->
   <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Communication is at the heart of e-commerce and community</p>
   </div>
+
+  <div class='container-fluid list_product'>
+  <?php
+    $sql = "SELECT * FROM `Product` p JOIN seller s, account a WHERE s.Seller_ID = p.Seller_ID AND a.Account_ID = s.Account_ID ";
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) { ?>
+      <div class="card">
+        <div class="caption">
+            <p class="Product Name"><?php echo $row["Product_Name"]; ?></p>
+            <p class="Price">Price: <b>$<?php echo $row["Price"]; ?></b></p>
+            <p class="Description">Description:<?php echo $row["Product_Description"]; ?></p>
+            <p class="Seller Name">Seller: <?php echo $row["Username"]; ?></p>
+        </div>
+      </div>
+<?php
+    }           
+?>
+</div>
 
 <!-- <?php include '../product-display.php'; ?> -->
 
 <!--last child-->
-  <div class="bg-info p-3 text-center footer">
+<div class="bg-info p-3 text-center footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px;">
     <p>Together we make differences in 20 years || 2003-2023<p>
-  </div>
+    </div>
 
 
 
