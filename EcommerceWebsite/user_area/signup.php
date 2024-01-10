@@ -42,7 +42,7 @@
                     $cart ="Select Customer_ID from customer where Account_ID = '$ID'";
                     $cus= $conn -> query($cart);
                     $cus_ID = $cus -> fetch_array()[0];
-                    $cart_query = "insert into cart (Customer_ID, Create_at, update_at) values('$cus_ID', NOW(), NOW())"; 
+                    $cart_query = "insert into cart (Customer_ID, update_at) values('$cus_ID', NOW())"; 
                     $insert_cart = mysqli_query($conn, $cart_query);
                     
                     echo"<script type='text/javascript'> alert('Password Matched!Successfully Register ')</script>";
@@ -95,23 +95,23 @@
         <input type="text" 
         placeholder="Enter your user name" autocomplete="off" 
         name="name" required>
-        <!-- <label>Gender</label>
+        <label>Gender</label>
         <input type="text"
         placeholder="Choose between Male or Female" autocomplete="off"  
-        name="gender" required> -->
+        name="gender" required>
         <label>Contact</label>
         <input type="tel" 
         placeholder="Enter your mobile number" autocomplete="off" 
         name="number" required>
-        <!-- <label>Address</label>
+        <label>Address</label>
         <input type="text"
-        placeholder="Enter your Address" autocomplete="off" name="address" required> -->
-        <!-- <label>Bank</label>
+        placeholder="Enter your Address" autocomplete="off" name="address" required> 
+        <label>Bank</label>
         <input type="text"
         placeholder="Enter your Bank" autocomplete="off" name="bank" required>
         <label>Account number</label>
         <input type="text"
-        placeholder="Enter your Bank account number" autocomplete="off" name="accNum" required> -->
+        placeholder="Enter your Bank account number" autocomplete="off" name="accNum" required>
         <label>Email</label>
         <input type="email" 
         placeholder="Enter your email" autocomplete="off" 

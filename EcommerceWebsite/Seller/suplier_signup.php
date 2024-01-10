@@ -28,7 +28,7 @@ session_start();
             else if ($password === $repassword) {
                 
                 $query = "insert into `account` (Username, BankName, BankAccountNumber, Password, Address, Gender, Phone_Number, Email, Profile_Picture)
-                values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', NULL, '$Phone_Number', '$Email', NULL)";
+                values('$Username', '$BankName', '$BankAccountNumber', '$hash_pass', '$Address', '$Gender', '$Phone_Number', '$Email', NULL)";
                 // values('$Username', 'BIDV', 12, '$hash_pass', 'ktx', NULL, '$Phone_Number', '$Email', NULL)";
                 
                 $insert_acc = mysqli_query($conn, $query);
@@ -76,15 +76,15 @@ session_start();
         <input type="tel" 
         placeholder="Enter your mobile number" autocomplete="off" 
         name="number" required>
-        <!-- <label>Address</label>
+        <label>Address</label>
         <input type="text"
-        placeholder="Enter your Address" autocomplete="off" name="address" required> -->
-        <!-- <label>Bank</label>
+        placeholder="Enter your Address" autocomplete="off" name="address" required>
+        <label>Bank</label>
         <input type="text"
         placeholder="Enter your Bank" autocomplete="off" name="bank" required>
         <label>Account number</label>
         <input type="text"
-        placeholder="Enter your Bank account number" autocomplete="off" name="accNum" required> -->
+        placeholder="Enter your Bank account number" autocomplete="off" name="accNum" required>
         <label>Email</label>
         <input type="email" 
         placeholder="Enter your email" autocomplete="off" 
