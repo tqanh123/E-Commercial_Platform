@@ -219,7 +219,7 @@ if (isset($_POST['change_client_password'])) {
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <!-- / Update Profile -->
-                                        <div class="tab-pane" id="update_Profile">
+                                        <div class="tab-pane active" id="update_Profile">
                                             <form method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="form-group row">
                                                     <label for="inputName2" class="col-sm-2 col-form-label">Customer ID</label>
@@ -265,10 +265,10 @@ if (isset($_POST['change_client_password'])) {
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="inputName2" class="col-sm-2 col-form-label">Profile Picture</label>
-                                                    <div class="input-group col-sm-10">
+                                                    <div class="input-group col-sm-8">
                                                         <div class="custom-file">
                                                             <input type="file" name="profile_pic" class=" form-control custom-file-input" id="exampleInputFile">
-                                                            <label class="custom-file-label  col-form-label" for="exampleInputFile">Choose file</label>
+                                                            <label class="custom-file-label col-form-label" for="exampleInputFile">Choose file</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,10 +277,10 @@ if (isset($_POST['change_client_password'])) {
                                                         <button name="update_client_account" type="submit" class="btn btn-outline-success">Update Account</button>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </form> 
                                         </div>
                                         <!-- /Change Password -->
-                                        <div class="tab-pane active" id="Change_Password">
+                                        <div class="tab-pane" id="Change_Password">
                                             <form method="post" class="form-horizontal">
                                         
                                                 <div class="form-group row">
@@ -334,3 +334,41 @@ if (isset($_POST['change_client_password'])) {
 
 </body>
 </html>
+
+<script>
+    // Select all nav items
+    var navItems = document.querySelectorAll('.nav-item .nav-link');
+
+    // Add click event listener to each nav item
+    navItems.forEach(function(navItem) {
+        navItem.addEventListener('click', function(event) {
+            // Remove active class from all nav items
+            navItems.forEach(function(navItem) {
+                navItem.classList.remove('active');
+            });
+
+            // Add active class to clicked nav item
+            event.target.classList.add('active');
+        });
+    });
+
+    window.addEventListener( 'popstate', function(event) {
+        var tabPanes = document.querySelectorAll('.tab-pane');
+
+        // Remove active class from all nav items
+        tabPanes.forEach(function(tab) {
+            tab.classList.remove('active');
+        });
+
+        // select element with id
+        if (window.location.hash === '#update_Profile') {
+            var specificTab = document.getElementById('update_Profile');
+        }
+        if (window.location.hash === '#Change_Password') {
+            var specificTab = document.getElementById('Change_Password');
+        }
+
+        // add active class for specific element
+        specificTab.classList.add('active');
+    });                                         
+</script>
