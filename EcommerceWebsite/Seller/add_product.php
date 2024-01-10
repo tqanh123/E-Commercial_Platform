@@ -12,8 +12,7 @@ if (isset($_POST['add_product'])) {
     // $seller_id = $_SESSION['seller_id']; 
     $category_id = $_POST['category_id'];
     $name = $_SESSION['username'];
-    $select_seller = "SELECT Seller_ID FROM `Account` a, `eller` s 
-                      WHERE a.Account_ID = s.Account_ID and a.Username = '$name'";
+    $select_seller = "Select Seller_ID from `account` a, `seller` s where a.account_id = s.account_id and a.username = '$name'";
     $res = mysqli_query($conn, $select_seller);
     $row = mysqli_fetch_array($res);
     $seller_id = $row['Seller_ID'];
