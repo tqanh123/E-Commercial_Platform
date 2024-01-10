@@ -65,10 +65,10 @@ session_start();
             </li>
 
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <form class="d-flex" role="search" method="GET" action="search.php">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_query">
+          <button class="btn btn-outline-success" type="submit" name="search_button">Search</button>
+      </form>
         </div>
       </div>
     </nav>
@@ -175,8 +175,8 @@ session_start();
     </div>
 
     <!--last child-->
-    <div class="bg-info p-3 text-center footer">
-      <p>Together we make differences in 20 years || 2003-2023<p>
+    <div class="bg-info p-3 text-center footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px;">
+    <p>Together we make differences in 20 years || 2003-2023<p>
     </div>
     <!-- bootstrap js link-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

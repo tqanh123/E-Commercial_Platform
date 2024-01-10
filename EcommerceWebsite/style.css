@@ -3,12 +3,15 @@
     height: 5%;
 }
 
-/* .footer {
-    margin-top: 30px;
-    position:fixed;
+.footer {
+    position: fixed;
+    left: 0;
     bottom: 0;
-    width: 100%
-} */
+    width: 50%;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px; 
+}
 
 .list_product {
     display: flex;
@@ -108,4 +111,13 @@
     text-align: center;
     align-items: center;
     padding: 0;
+}
+
+.message-box {
+    border: 1px solid #000; /* Border style */
+    padding: 15px; /* Padding inside the box */
+    width: 70%; /* Set width of the box */
+    margin: 0 auto; /* Center the box horizontally */
+    text-align: center; /* Center text inside the box */
+    background-color: #f0f0f0; /* Background color */
 }
