@@ -87,7 +87,7 @@ if (isset($_GET['search_button'])) {
               <a class="nav-link active" aria-current="page" href="#">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Contact</a>
+              <a class="nav-link active" aria-current="page" href="users/user_orders.php">Orders</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i

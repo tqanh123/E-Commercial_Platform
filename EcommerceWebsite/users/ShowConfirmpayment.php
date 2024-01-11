@@ -48,7 +48,7 @@ if(isset ($_POST['confirm_payment'])){
 
     Function FinishPayment($cart_id, $order_id) {
         global $conn;
-        $select_cart_items_query = "SELECT * FROM `cartitem` WHERE cart_id = $cart_id";
+        $select_cart_items_query = "SELECT * FROM cartitem c JOIN product p ON c.Product_ID = p.Product_ID WHERE cart_id = $cart_id";
         $cart_items_result = mysqli_query($conn, $select_cart_items_query);
 
         if ($cart_items_result && mysqli_num_rows($cart_items_result) > 0) {
@@ -61,10 +61,10 @@ if(isset ($_POST['confirm_payment'])){
                     $product_id = $row['Product_ID'];
                     $quantity = $row['Cart_Item_Quantity'];
                     $price = $row['Cart_Item_Price'];
+                    $name = $row['Product_Name'];
     
-                    // Insert into order_item table
-                    $insert_order_item_query = "INSERT INTO `order_items` (Order_ID, Product_ID, Product_Quantity, Price)
-                                               VALUES ($order_id, $product_id, $quantity, $price)";
+                    $insert_order_item_query = "INSERT INTO `order_items` (Order_ID, Product_ID, Product_Name, Product_Quantity, Price)
+                                               VALUES ($order_id, $product_id, '$name' ,$quantity, $price)";
                     $insert_result = mysqli_query($conn, $insert_order_item_query);
     
                     if (!$insert_result) {
@@ -82,7 +82,6 @@ if(isset ($_POST['confirm_payment'])){
 
             }
             catch (Exception $e) {
-                // Rollback transaction on any error
                 mysqli_rollback($conn);
                 echo "Transaction failed: " . $e->getMessage();
             }

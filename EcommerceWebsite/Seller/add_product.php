@@ -140,7 +140,7 @@ if (isset($_POST['add_product'])) {
                     while ($row = $res->fetch_object()) {
                     ?>
                         <option class="form-control" value=" <?php echo $row->Category_ID ?> ">;
-                            <?php echo $row->Category_Name;?>
+                            <?php echo $row->Category_Name ?>
                         </option>;
                     <?php } ?>
                 </select>

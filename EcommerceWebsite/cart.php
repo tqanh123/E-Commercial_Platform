@@ -57,7 +57,7 @@ session_start();
               <a class="nav-link active" aria-current="page" href="#">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Contact</a>
+              <a class="nav-link active" aria-current="page" href="users/user_orders.php">Orders</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/cart.php"><i
@@ -65,10 +65,10 @@ session_start();
             </li>
 
           </ul>
-          <form class="d-flex" role="search" method="GET" action="search.php">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_query">
-          <button class="btn btn-outline-success" type="submit" name="search_button">Search</button>
-      </form>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </div>
       </div>
     </nav>
@@ -117,7 +117,7 @@ session_start();
             </tr>
           </thead>
           <tbody>
-            
+            <form action="" method="post">
             <?php  while ($row = $res -> fetch_assoc()) {
               $quantity = $row["Cart_Item_Quantity"];
               $price = $row["Price"];
@@ -129,7 +129,6 @@ session_start();
               <td><?php echo $row["Product_Name"]; ?></td>
               <td>$<?php echo $price ?></td>
               <td><?php echo $row["Product_Description"]; ?></td>
-              <form action="" method="post">
                 <td>
                   <input type="number" name="quantity" min="1" max="<?php echo $row["Product_Quantity"]; ?>" value="<?php echo $row["Cart_Item_Quantity"]; ?>" required>
                   <div style="display:none">
@@ -142,7 +141,7 @@ session_start();
                 </td>
                 <?php 
                   if (isset($_POST['update'])){
-                    // echo"<script> alert('Update')</script>";
+                    echo"<script> alert('Update')</script>";
                     $quantity = $_POST['quantity'];
                     $cartitem_id = $_POST['ci_id'];
               
@@ -151,17 +150,17 @@ session_start();
               
                     if ($res) {
                       echo"<script> alert('Successfully Update')</script>";
-                      echo "<script>window.open('cart.php','_self')</script>";
+                      echo"<script> window.open('cart.php', '_self'); </script>";
                     }
                   }
                 ?>
-                </form>
                 <td>
                   <button class="remove" data-citem=" <?php echo $row["Cart_Item_ID"]; ?> "
                   data-price="<?php echo ($quantity * $price) ?>"> Remove from cart </button>
                 </td>
-            </tr>
-            <?php } ?>
+              </tr>
+              <?php } ?>
+            </form>
           </tbody>
         </table>
       <div>

@@ -74,8 +74,8 @@ if(isset($_GET['seller_id'])) {
           <a class="nav-link active" aria-current="page" href="profile.php">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Contact</a>
-        </li>
+              <a class="nav-link active" aria-current="page" href="users/user_orders.php">Orders</a>
+            </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
         </li>

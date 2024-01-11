@@ -1,13 +1,17 @@
 <?php
-    include('../includes/connect.php');
-    session_start();
+include('../includes/connect.php');
+session_start();
 
+$username = $_SESSION['username'];
 
-    $username = $_SESSION['username'];
-    $get_user = "SELECT * FROM account JOIN customer WHERE Username='$username' AND account.Account_ID = customer.Account_ID";
-    $result = mysqli_query($conn, $get_user);
-    $row_fetch = mysqli_fetch_assoc($result);
-    $user_id = $row_fetch['Customer_ID'];
+if (isset($_GET['order_id'])) {
+  $order_id = $_GET['order_id'];
+    
+  $get_order_items_query = "SELECT * FROM order_items WHERE Order_ID = '$order_id'";
+
+  $order_items_result = mysqli_query($conn, $get_order_items_query);
+}
+if ($order_items_result) {
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="../user_area/home.php">Home</a>
+              <a class="nav-link active" aria-current="page" href="../EcommerceWebsite/user_area/home.php">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Products</a>
@@ -94,35 +98,25 @@
   <table class="table table-bordered mt-5">
     <thead class="bg-info">
       <tr>
-        <th>Sr. No</th>
-        <th>Amount Value</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Action</th>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
       </tr>
     </thead>
     <tbody class="bg-secondary text-light">
       <?php
-      $get_order_details = "SELECT * FROM `order` WHERE Customer_ID='$user_id'";
-      $result_orders = mysqli_query($conn, $get_order_details);
-      $number = 1;
 
-      while ($row_data = mysqli_fetch_assoc($result_orders)) {
-          $order_id = $row_data['Order_ID'];
-          $amount_value = $row_data['Total_Order_Value'];
-          $order_status =$row_data['Order_Status'];
-          $order_date = $row_data['Update_at'];
-
-          echo "<tr>
-                    <td>$number</td>
-                    <td>$amount_value</td>
-                    <td>$order_date</td>
-                    <td>$order_status</td>
-                    <td>
-                    <a href='user_order_items.php?order_id=$order_id' class='btn btn-success'>View Detail</a>
-                    </td>
-                </tr>";
-          $number++;
+        while ($row = mysqli_fetch_assoc($order_items_result)) {
+          ?>
+          <tr>
+          <td><?php echo $row['Product_ID'] ?></td>
+          <td><?php echo $row['Product_Name'] ?></td>
+          <td><?php echo $row['Product_Quantity'] ?></td>
+          <td><?php echo $row['Price'] ?></td>
+          </tr>
+          <?php
+        }
       }
       ?>
     </tbody>
@@ -140,7 +134,6 @@
 
 
 </body>
-
 
 </html>
 

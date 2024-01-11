@@ -55,8 +55,8 @@ $num_row = mysqli_num_rows($res_cart);
           <a class="nav-link active" aria-current="page" href="../category.php">Category</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Contact</a>
-        </li>
+              <a class="nav-link active" aria-current="page" href="../users/user_orders.php">Orders</a>
+            </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../cart.php"><i class="fa-solid fa-cart-shopping"></i><span id ="badge"><?php echo "$num_row" ?> </span></a>
         </li>

@@ -68,12 +68,10 @@ include ('../EcommerceWebsite/includes/connect.php');
 </nav>
 <!-- Third child-->
 <div class="bg-light">
-  <h3 class="text-center">Hidden Store</h3>
-  <p class="text-center">Communication is at the heart of e-commerce and community</p>
+
 </div>
         <!-- Category button -->
 <div class="text-center">
-  <a href="category.php" class="btn btn-primary">Browse Categories</a>
 </div>
 
 <?php include 'product-display.php'; ?>
