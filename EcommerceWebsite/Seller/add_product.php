@@ -67,9 +67,6 @@ if (isset($_POST['add_product'])) {
             <a class="nav-link active" aria-current="page" href="add_product.php">Insert Product</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="viewproduct.php">View Product</a>
-          </li>
-          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="insertcategory.php">Insert category</a>
           </li>
           <li class="nav-item">

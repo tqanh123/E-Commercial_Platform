@@ -67,9 +67,6 @@ $category_result = $conn->query($category_query);
             <a class="nav-link active" aria-current="page" href="add_product.php">Insert Product</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="viewproduct.php">View Product</a>
-          </li>
-          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="insertcategory.php">Insert category</a>
           </li>
           <li class="nav-item">
@@ -111,7 +108,7 @@ $category_result = $conn->query($category_query);
         <form action="" method="POST" class="center" style="display:block; width: 70%; margin:auto">
             <div class="form-group">
                 <div class="form-group">
-                    <label for="inputEmail4">Product Name</label>
+                    <label for="inputEmail4">Category Name</label>
                     <input type="text" id="category_name" name="category_name" required><br><br>
                 </div>
             <button type="submit" name="add_category" class="btn btn-primary" style="margin-top: 10px;">Add Product</button>

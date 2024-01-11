@@ -41,9 +41,6 @@ session_start();
             <a class="nav-link active" aria-current="page" href="add_product.php">Insert Product</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="viewproduct.php">View Product</a>
-          </li>
-          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="insertcategory.php">Insert category</a>
           </li>
           <li class="nav-item">
@@ -77,25 +74,37 @@ session_start();
   <div class="bg-light">
   </div>
 
-  <div class='container-fluid list_product'>
+  
   <?php
-    $sql = "SELECT * FROM `Product` p JOIN seller s, account a WHERE s.Seller_ID = p.Seller_ID AND a.Account_ID = s.Account_ID ";
+    $sql = "SELECT * FROM `Product` p, seller s, Account a 
+            WHERE s.Seller_ID = p.Seller_ID AND a.Account_ID = s.Account_ID AND a.Username = '". $_SESSION['username'] ."'";
     $result = $conn->query($sql);
-    while ($row = $result->fetch_assoc()) { ?>
-      <div class="card">
-        <div class="caption">
-            <p class="Product Name"><?php echo $row["Product_Name"]; ?></p>
-            <p class="Price">Price: <b>$<?php echo $row["Price"]; ?></b></p>
-            <p class="Description">Description:<?php echo $row["Product_Description"]; ?></p>
-            <p class="Seller Name">Seller: <?php echo $row["Username"]; ?></p>
+    $num_row = mysqli_num_rows($result);
+    if ($num_row == 0) {
+  ?>
+    <div class="bg-light" style="width: 100%;">
+        <h3 class="text-center" style="padding: 10px;"> There is no product yet! </h3>
+        <h3 class="text-center" style="padding: 10px;"> Plaese insert your products in insert product form! </h3>
+    </div>
+  <?php
+    } else {
+  ?>
+  <div class='container-fluid list_product'>
+    <?php
+      while ($row = $result->fetch_assoc()) { ?>
+        <div class="card">
+          <div class="caption">
+              <p class="Product Name"><?php echo $row["Product_Name"]; ?></p>
+              <p class="Price">Price: <b>$<?php echo $row["Price"]; ?></b></p>
+              <p class="Description">Description:<?php echo $row["Product_Description"]; ?></p>
+              <p class="Seller Name">Seller: <?php echo $row["Username"]; ?></p>
+          </div>
         </div>
-      </div>
-<?php
-    }           
-?>
-</div>
-
-<!-- <?php include '../product-display.php'; ?> -->
+    <?php
+        }     
+        }     
+    ?>
+  </div>
 
 <!--last child-->
 <div class="bg-info p-3 text-center footer" style="position: fixed; bottom: 0; width: 100%; background-color: #f8f9fa; text-align: center; padding: 10px;">

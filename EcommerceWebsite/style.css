@@ -19,9 +19,10 @@
     flex-wrap: wrap;
     /* justify-content: space-between; */
     margin: auto;
-    width: 90%;
+    width: 95%;
     max-width: 1560px;
     padding-bottom: 80px;
+    justify-content: space-between;
 }
 .card {
 	height: 400;

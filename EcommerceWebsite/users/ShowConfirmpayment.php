@@ -156,8 +156,6 @@ if(isset ($_POST['confirm_payment'])){
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <ul class="navbar-nav me-auto">
         <?php
-  // echo session_id(); 
-  // echo $_SESSION['username'];
           if (!isset($_SESSION['username'])) {
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='#'>Welcome Guest</a></li>";
             echo "<li class='nav-item'> <a class='nav-link active' aria-current='page' href='./user_area/login.php'>Login</a></li>";

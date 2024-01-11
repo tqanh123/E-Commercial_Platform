@@ -117,7 +117,7 @@ session_start();
             </tr>
           </thead>
           <tbody>
-            <form action="" method="post">
+            
             <?php  while ($row = $res -> fetch_assoc()) {
               $quantity = $row["Cart_Item_Quantity"];
               $price = $row["Price"];
@@ -129,6 +129,7 @@ session_start();
               <td><?php echo $row["Product_Name"]; ?></td>
               <td>$<?php echo $price ?></td>
               <td><?php echo $row["Product_Description"]; ?></td>
+              <form action="" method="post">
                 <td>
                   <input type="number" name="quantity" min="1" max="<?php echo $row["Product_Quantity"]; ?>" value="<?php echo $row["Cart_Item_Quantity"]; ?>" required>
                   <div style="display:none">
@@ -140,26 +141,27 @@ session_start();
                   <input type="submit" name="update" value="Update Item">
                 </td>
                 <?php 
-                  if (isset($POST_['update'])){
-                    echo"<script> alert('Update')</script>";
-                    $quantity = $POST_['quantity'];
-                    $cartitem_id = $POST_['ci_id'];
+                  if (isset($_POST['update'])){
+                    // echo"<script> alert('Update')</script>";
+                    $quantity = $_POST['quantity'];
+                    $cartitem_id = $_POST['ci_id'];
               
                     $update = "UPDATE CartItem SET Cart_Item_Quantity = '$quantity' WHERE Cart_Item_ID = '$cartitem_id'";
                     $res = mysqli_query($conn, $update);
               
                     if ($res) {
                       echo"<script> alert('Successfully Update')</script>";
+                      echo "<script>window.open('cart.php','_self')</script>";
                     }
                   }
                 ?>
+                </form>
                 <td>
                   <button class="remove" data-citem=" <?php echo $row["Cart_Item_ID"]; ?> "
                   data-price="<?php echo ($quantity * $price) ?>"> Remove from cart </button>
                 </td>
-              </tr>
-              <?php } ?>
-            </form>
+            </tr>
+            <?php } ?>
           </tbody>
         </table>
       <div>
