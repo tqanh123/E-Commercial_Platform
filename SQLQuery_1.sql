@@ -61,3 +61,31 @@ WHERE Product_Category = '$category';
 SELECT * FROM cartitem 
 NATURAL JOIN Product
 WHERE Cart_ID = '$cart_id';
+
+-- Create a subtable to calculate total sales quantity and value by category --
+WITH CategorySales AS (
+    SELECT c.Category_Name, SUM(oi.Product_Quantity) AS Total_Quantity_Sold, SUM(oi.Price * oi.Product_Quantity) AS Total_Sales_Value
+    FROM Category c
+    JOIN Product p ON c.Category_ID = p.Category_ID
+    JOIN Order_Items oi ON p.Product_ID = oi.Product_ID
+    GROUP BY c.Category_Name
+)
+SELECT * FROM CategorySales;
+
+-- Query to get products that have been sold at least once, sorted by number of sales from high to low --
+SELECT p.Product_ID, p.Product_Name, SUM(oi.Product_Quantity) AS Total_Sold
+FROM Product p
+JOIN Order_Items oi ON p.Product_ID = oi.Product_ID
+GROUP BY p.Product_ID, p.Product_Name
+HAVING Total_Sold > 0
+ORDER BY Total_Sold DESC;
+
+-- Query to get top-rated products, along with seller name and category --
+SELECT p.Product_ID, p.Product_Name, p.Price, p.Product_Ratings, s.Seller_Description, c.Category_Name
+FROM Product p
+JOIN Seller s ON p.Seller_ID = s.Seller_ID
+JOIN Category c ON p.Category_ID = c.Category_ID
+ORDER BY p.Product_Ratings DESC
+LIMIT 10;
+
+-- 
