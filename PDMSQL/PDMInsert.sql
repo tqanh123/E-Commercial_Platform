@@ -20,6 +20,17 @@ VALUES
  (18, 'Nguyen', 'MBBANK', '4888888', 'password18', '120 Tran Phu', 'Female', '0899865775', 'username18@gmail.com', 'profile_pic18.jpg'),
  (19, 'Ngoc', 'VIETCOMBANK', '1111111', 'password19', '9 Le Loi', 'Female', '0988345656', 'username19@gmail.com', 'profile_pic19.jpg'),
  (20, 'Thuy', 'AGRIBANK', '3453451', 'password20', '6 Le Van Viet', 'Female', '0913561234', 'username20@gmail.com', 'profile_pic20.jpg'),
+ (21, 'David', 'BIDV', '666555', 'password21', '1 Le Lai', 'Male', '1231234441', 'username21@gmail.com', 'profile_pic21.jpg'),
+ (22, 'Na', 'VIETCOMBANK', '33456456', 'password22', '4 Tan Hoa', 'Male', '097777788', 'username22@gmail.com', 'profile_pic22.jpg'),
+ (23, 'Phuong', 'MBBANK', '343499999', 'password23', '6 Dong Nai', 'Female', '0981231165', 'username23@gmail.com', 'profile_pic23.jpg'),
+ (24, 'Antony', 'TECHCOMBANK', '2241414', 'password24', '90 Ly Thuong Kiet', 'Female', '0889999999', 'username24@gmail.com', 'profile_pic24.jpg'),
+ (25, 'Neymar', 'AGRIBANK', '2337777', 'password25', '19 Tran Phu', 'Male', '0911611414', 'username25@gmail.com', 'profile_pic25.jpg'),
+ (26, 'Cong', 'BIDV', '4568899', 'password26', '23 Quang Trung', 'Male', '0901777989', 'username26@gmail.com', 'profile_pic26.jpg'),
+ (27, 'Hung', 'TPBANK', '56789102', 'password27', '50 Song Hanh', 'Male', '0987452321', 'username27@gmail.com', 'profile_pic27.jpg'),
+ (28, 'Bach', 'MBBANK', '88888899', 'password28', '110 Tran Phu', 'Female', '0899865275', 'username28@gmail.com', 'profile_pic28.jpg'),
+ (29, 'Bao', 'VIETCOMBANK', '01111111', 'password29', '59 Le Loi', 'Female', '0988345636', 'username29@gmail.com', 'profile_pic29.jpg'),
+ (30, 'Bin', 'AGRIBANK', '23453451', 'password30', '66 Le Van Viet', 'Female', '0913561334', 'username30@gmail.com', 'profile_pic30.jpg'),
+ 
  
 
 INSERT INTO Category (Category_ID, Category_Name)
