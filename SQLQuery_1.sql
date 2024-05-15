@@ -88,4 +88,24 @@ JOIN Category c ON p.Category_ID = c.Category_ID
 ORDER BY p.Product_Ratings DESC
 LIMIT 10;
 
--- 
+-- Query to retrieve completed orders and customer reviews, along with rating scores and comments --
+WITH CompletedOrders AS (
+    SELECT o.Order_ID, o.Total_Order_Value, o.Order_Status, orv.Review_Score, orv.Review_Comment_Title, orv.Review_Comment_Message
+    FROM `Order` o
+    JOIN Order_Review orv ON o.Order_ID = orv.Order_ID
+    WHERE o.Order_Status = 'Shipped'
+)
+SELECT * FROM CompletedOrders;
+
+-- Create a subtable table to get the list of customers with the largest number of orders along with the total order value -- 
+WITH CustomerOrders AS (
+    SELECT c.Customer_ID, a.Username, a.Email, COUNT(o.Order_ID) AS Number_Of_Orders, SUM(o.Total_Order_Value) AS Total_Spent
+    FROM Customer c
+    JOIN Account a ON c.Account_ID = a.Account_ID
+    JOIN `Order` o ON c.Customer_ID = o.Customer_ID
+    GROUP BY c.Customer_ID, a.Username, a.Email
+)
+SELECT * FROM CustomerOrders
+ORDER BY Number_Of_Orders DESC
+LIMIT 10;
+
