@@ -9,7 +9,18 @@ VALUES
  (7, 'Thanh Vu', 'TPBANK', '678910', 'password7', '4 Song Hanh', 'Male', '0987456321', 'thanhvudeptrai@gmail.com', 'profile_pic7.jpg'),
  (8, 'Nguyen Vi', 'MBBANK', '488888', 'password8', '100 Tran Phu', 'Female', '0899883775', 'nguyenvi123@gmail.com', 'profile_pic8.jpg'),
  (9, 'Ngoc Trinh', 'VIETCOMBANK', '111111', 'password9', '99 Le Loi', 'Female', '0988343434', 'ngoctrinh3@gmail.com', 'profile_pic9.jpg'),
- (10, 'Thuy Tien', 'AGRIBANK', '345345', 'password10', '1 Le Van Viet', 'Female', '0913567567', 'hhthuytien@gmail.com', 'profile_pic10.jpg');
+ (10, 'Thuy Tien', 'AGRIBANK', '345345', 'password10', '1 Le Van Viet', 'Female', '0913567567', 'hhthuytien@gmail.com', 'profile_pic10.jpg'),
+ (11, 'John', 'BIDV', '1223456', 'password11', '1 Le Loi', 'Male', '1231231231', 'username11@gmail.com', 'profile_pic11.jpg'),
+ (12, 'Terry', 'VIETCOMBANK', '4654321', 'password12', '4 Tan Lap', 'Male', '097777777', 'username12@gmail.com', 'profile_pic12.jpg'),
+ (13, 'Ronaldo', 'MBBANK', '3499999', 'password13', '6 Hung Vuong', 'Female', '0981231234', 'username13@gmail.com', 'profile_pic13.jpg'),
+ (14, 'Messi', 'TECHCOMBANK', '1141414', 'password14', '9 Ly Thuong Kiet', 'Female', '0999999999', 'username14@gmail.com', 'profile_pic14.jpg'),
+ (15, 'Bale', 'AGRIBANK', '2777777', 'password15', '12 Tran Phu', 'Male', '0911311414', 'username15@gmail.com', 'profile_pic15.jpg'),
+ (16, 'Long', 'BIDV', '4567899', 'password16', '1 Quang Trung', 'Male', '0901777999', 'username16@gmail.com', 'profile_pic16.jpg'),
+ (17, 'Thanh', 'TPBANK', '6789102', 'password17', '40 Song Hanh', 'Male', '0987452311', 'username17@gmail.com', 'profile_pic17.jpg'),
+ (18, 'Nguyen', 'MBBANK', '4888888', 'password18', '120 Tran Phu', 'Female', '0899865775', 'username18@gmail.com', 'profile_pic18.jpg'),
+ (19, 'Ngoc', 'VIETCOMBANK', '1111111', 'password19', '9 Le Loi', 'Female', '0988345656', 'username19@gmail.com', 'profile_pic19.jpg'),
+ (20, 'Thuy', 'AGRIBANK', '3453451', 'password20', '6 Le Van Viet', 'Female', '0913561234', 'username20@gmail.com', 'profile_pic20.jpg'),
+ 
 
 INSERT INTO Category (Category_ID, Category_Name)
 VALUES
