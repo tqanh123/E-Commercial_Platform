@@ -39,7 +39,9 @@ VALUES
    (2, 'Clothing'),
    (3, 'Books'),
    (4, 'Home & Garden'),
-   (5, 'Sports & Outdoors'); 
+   (5, 'Sports & Outdoors'),
+   (6, 'Beauty & Health'),
+   (7, 'Food & Drink'); 
 
 INSERT INTO Seller (Seller_ID, Account_ID, Seller_Description, Seller_Ratings)
 VALUES
