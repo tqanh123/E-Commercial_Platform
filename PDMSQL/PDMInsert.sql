@@ -30,6 +30,27 @@ VALUES
  (28, 'Bach', 'MBBANK', '88888899', 'password28', '110 Tran Phu', 'Female', '0899865275', 'username28@gmail.com', 'profile_pic28.jpg'),
  (29, 'Bao', 'VIETCOMBANK', '01111111', 'password29', '59 Le Loi', 'Female', '0988345636', 'username29@gmail.com', 'profile_pic29.jpg'),
  (30, 'Bin', 'AGRIBANK', '23453451', 'password30', '66 Le Van Viet', 'Female', '0913561334', 'username30@gmail.com', 'profile_pic30.jpg'),
+ (31, 'John', 'BIDV', '1223456', 'password11', '1 Le Loi', 'Male', '1231231231', 'username11@gmail.com', 'profile_pic11.jpg'),
+ (32, 'Terry', 'VIETCOMBANK', '4654321', 'password12', '4 Tan Lap', 'Male', '097777777', 'username12@gmail.com', 'profile_pic12.jpg'),
+ (33, 'Ronaldo', 'MBBANK', '3499999', 'password13', '6 Hung Vuong', 'Female', '0981231234', 'username13@gmail.com', 'profile_pic13.jpg'),
+ (34, 'Messi', 'TECHCOMBANK', '1141414', 'password14', '9 Ly Thuong Kiet', 'Female', '0999999999', 'username14@gmail.com', 'profile_pic14.jpg'),
+ (35, 'Bale', 'AGRIBANK', '2777777', 'password15', '12 Tran Phu', 'Male', '0911311414', 'username15@gmail.com', 'profile_pic15.jpg'),
+ (36, 'Long', 'BIDV', '4567899', 'password16', '1 Quang Trung', 'Male', '0901777999', 'username16@gmail.com', 'profile_pic16.jpg'),
+ (37, 'Thanh', 'TPBANK', '6789102', 'password17', '40 Song Hanh', 'Male', '0987452311', 'username17@gmail.com', 'profile_pic17.jpg'),
+ (38, 'Nguyen', 'MBBANK', '4888888', 'password18', '120 Tran Phu', 'Female', '0899865775', 'username18@gmail.com', 'profile_pic18.jpg'),
+ (39, 'Ngoc', 'VIETCOMBANK', '1111111', 'password19', '9 Le Loi', 'Female', '0988345656', 'username19@gmail.com', 'profile_pic19.jpg'),
+ (40, 'Thuy', 'AGRIBANK', '3453451', 'password20', '6 Le Van Viet', 'Female', '0913561234', 'username20@gmail.com', 'profile_pic20.jpg'),
+ (41, 'David', 'BIDV', '666555', 'password21', '1 Le Lai', 'Male', '1231234441', 'username21@gmail.com', 'profile_pic21.jpg'),
+ (42, 'Na', 'VIETCOMBANK', '33456456', 'password22', '4 Tan Hoa', 'Male', '097777788', 'username22@gmail.com', 'profile_pic22.jpg'),
+ (43, 'Phuong', 'MBBANK', '343499999', 'password23', '6 Dong Nai', 'Female', '0981231165', 'username23@gmail.com', 'profile_pic23.jpg'),
+ (44, 'Antony', 'TECHCOMBANK', '2241414', 'password24', '90 Ly Thuong Kiet', 'Female', '0889999999', 'username24@gmail.com', 'profile_pic24.jpg'),
+ (45, 'Neymar', 'AGRIBANK', '2337777', 'password25', '19 Tran Phu', 'Male', '0911611414', 'username25@gmail.com', 'profile_pic25.jpg'),
+ (46, 'Cong', 'BIDV', '4568899', 'password26', '23 Quang Trung', 'Male', '0901777989', 'username26@gmail.com', 'profile_pic26.jpg'),
+ (47, 'Hung', 'TPBANK', '56789102', 'password27', '50 Song Hanh', 'Male', '0987452321', 'username27@gmail.com', 'profile_pic27.jpg'),
+ (48, 'Bach', 'MBBANK', '88888899', 'password28', '110 Tran Phu', 'Female', '0899865275', 'username28@gmail.com', 'profile_pic28.jpg'),
+ (49, 'Bao', 'VIETCOMBANK', '01111111', 'password29', '59 Le Loi', 'Female', '0988345636', 'username29@gmail.com', 'profile_pic29.jpg'),
+ (50, 'Bin', 'AGRIBANK', '23453451', 'password30', '66 Le Van Viet', 'Female', '0913561334', 'username30@gmail.com', 'profile_pic30.jpg'),
+ 
  
  
 
@@ -49,7 +70,13 @@ VALUES
    (2, 7, 'Fashion store with a focus on denim jeans',  4.5),
    (3, 8, 'Bookstore offering a wide range of literary works',  4.8),
    (4, 9, 'Home and decor shop providing quality products', 4.2),
-   (5, 10, 'Outdoor equipment supplier for camping enthusiasts', 4.6);
+   (5, 10, 'Outdoor equipment supplier for camping enthusiasts', 4.6),
+   (6, 20, 'Curated Premium Beauty and Health Products for Your Wellness', 4.1),
+   (7, 21, 'Curated Premium Food and Drink Products for Your Enjoyment',  4.0),
+   (8, 22, 'Bookstore offering a wide range of literary works',  4.9),
+   (9, 23, 'Home and decor shop providing quality products', 4.5),
+   (10, 24, 'Outdoor equipment supplier for camping enthusiasts', 3.7),
+ 
 
 INSERT INTO Customer (Customer_ID, Account_ID)
 VALUES
